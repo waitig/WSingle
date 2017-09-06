@@ -1,0 +1,72 @@
+body {
+    font-size: 90%;
+}
+
+.status {
+    float: left;
+    margin-top: 4px;
+}
+
+.chapterlist dd {
+    width: 100%;
+}
+
+.item-img {
+    width: 100%;
+    margin-bottom: 8px;
+}
+
+.crumbs {
+    height: 100%;
+    line-height: 24px;
+}
+
+.article #BookText {
+    padding: 0 8px;
+}
+
+ul.gengxin li, .xinshutj {
+    text-align: left;
+}
+
+.gengxin span {
+    display: inline;
+    float: none;
+    width: auto;
+    padding: 0 3px 0 0;
+    margin: 0;
+    height: 24px;
+}
+
+.pagenavitop a, .pagenavitop span {
+    margin-right: 5px;
+}
+
+.pagenavi a, .pagenavi span {
+    width: auto;
+    margin: 2px;
+    padding: 3px;
+}
+
+#floatPanel .ctrolPanel {
+    margin-left: 35%;
+    bottom: 200px;
+}
+
+#comment-author-info input {
+    width: auto;
+}
+
+#content, #sidebar {
+    float: left;
+    width: 100%;
+}
+
+p.not, .qq {
+    margin: 0 -20px;
+    float: left;
+}
+
+.adleft, .adright {
+    margin: 0;
+}
