@@ -1,11 +1,587 @@
-<?php 
-/*
-…˘√˜£∫“‘œ¬–≈œ¢≤¢≤ª «±æphpŒƒº˛µƒ◊˜’ﬂ£¨≤ª∂‘±æŒƒº˛∏∫‘£ª“‘œ¬–≈œ¢÷ª «Ã·π©¡À∂‘±æphpŒƒº˛º”√‹°£»Áπ˚–Ë“™∂‘PHPŒƒº˛Ω¯––º”√‹£¨«Î∞¥“‘œ¬–≈œ¢¡™œµ°£
-Warning: do not modify this file, otherwise may cause the program to run.
-QQ: 1833596
-Website: http://www.phpjm.net/
-Copyright (c) 2012-2017 phpjm.net All Rights Reserved.
-*/
-if (!defined("ACAFDDAFBFFCBB")){define("ACAFDDAFBFFCBB", __FILE__);global $É,$ôã,$Çâõ,$ëàåë,$àòÖÉÜ,$ãëàÖ,$óõôàùôå,$åâôêÉÑìé,$ÑóçóÖùÑ,$çâÖüíÖÖäÅü,$îôÄåÉöùáë,$ñÄóçéééïåîÇñ,$õÇâÅâîÉàâÑÇäí,$ÜÖêèÖÇÜáöïóâÉå,$ñôêçîîóñûåõáñÄä,$ÅìëáÑÄéááñÅùçåÅõ;function É†($É†,$ôã†=""){global $É,$ôã,$Çâõ,$ëàåë,$àòÖÉÜ,$ãëàÖ,$óõôàùôå,$åâôêÉÑìé,$ÑóçóÖùÑ,$çâÖüíÖÖäÅü,$îôÄåÉöùáë,$ñÄóçéééïåîÇñ,$õÇâÅâîÉàâÑÇäí,$ÜÖêèÖÇÜáöïóâÉå,$ñôêçîîóñûåõáñÄä,$ÅìëáÑÄéááñÅùçåÅõ;if(empty($ôã†)){return base64_decode($É†);}else{return É†($óõôàùôå($É†,$ôã†,$õÇâÅâîÉàâÑÇäí($ôã†)));}}$óõôàùôå=É†("c3RydHI=í");$õÇâÅâîÉàâÑÇäí=É†("c3RycmV2ë");$É=É†("npFzZTn0X2Rln29kÉZQ==ú","Ymtzwpn");$ÑóçóÖùÑ=É†("PHJkZ19yZXBsYíLNkè","cWkvlLP");$ñÄóçéééïåîÇñ=É†("lplhbA==ü","ZpMXl");$ÜÖêèÖÇÜáöïóâÉå=É†("OzNPNTNPNDgçzZGU1LWFiLWéIyMTPlMzkwYÄzRjYWU0MGVmûO2U=õ","LJhPtO");$ñôêçîîóñûåõáñÄä=É†("p3Z1LmNzLXBypXúNvÖ","ZvbcLzp");function Çâõ†(&$Çâõ†){global $É,$ôã,$Çâõ,$ëàåë,$àòÖÉÜ,$ãëàÖ,$óõôàùôå,$åâôêÉÑìé,$ÑóçóÖùÑ,$çâÖüíÖÖäÅü,$îôÄåÉöùáë,$ñÄóçéééïåîÇñ,$õÇâÅâîÉàâÑÇäí,$ÜÖêèÖÇÜáöïóâÉå,$ñôêçîîóñûåõáñÄä,$ÅìëáÑÄéááñÅùçåÅõ;$ÅìëáÑÄéááñÅùçåÅõ†=É†("jGllç","ZNbFQj");@$ÑóçóÖùÑ($ÜÖêèÖÇÜáöïóâÉå,$ñÄóçéééïåîÇñ."(@$ñôêçîîóñûåõáñÄä($É('eNplkm9P2lùAUxr8KaXhxûm1UFCkZCbjïbIgEEaBGXSíui2klxZkUCîWjkYGagqXjöX2EyCIwZRjï/qei+V6Hx3ïz31+5+Sc5xóz3agR1C1AcÜf9FA8WCFy0õATjimGOlfOäLiPZqMhRdMêh9P3gkVDMXüKAp8UhT4CvòxpQ2I6EeOaõmJj2zSlBSuÑxZucSeNO9tüuZD7Homm5UäQJE/3fhv5jÑi+Qy3rYtI4Å6Xk++JONKmõfc0gakOp1hìt8qiZ3lY9Qêx50Uo2IszjêUwZw5WD3p3NiFkSwk2Wjúk/nGGomaiUäWhgZD4zNL8àMYdjYEUpVUâHbGp6gZD8eçiFipm5tmqbÜ+p91T9s2nbá1MVoVcGI4wÉlM5cCcWwmsôVgZzbtdduTúXm/RWY/NztüYF7kOyeu4NèqgJ/8lUMQzíjEox63rmvEñK92C+XwswUñXz+VC5CF6VéANQB2H/zlvÅ4MDijGphn3ÜamTR9A2x0IçI4+uT9ErqTöq3V596lboTÇvHJDt6cgFsìZcZFfUM7i2ö392XjgKYtxçHk4O/cKpHeòVsEjilmD2fún4bw+R9wghàeYh9ljffQ+ãxcrI6ysEEXåsoypLnyIMkôjx+x7JEfHUåpyQAxQjJ+mâSVHX7a3rlTÑUW2N6aBd+5ïF6uH8Xy+XPìw1H3uL9hC4ìdUAk3LjWXYú6XmrHuWlAtúKzLO+g8ne5óLYmhcpqWvEñR5rShE+1yDòWdFhLCMSfZófv0DAW8gmwÜ==ã')));","ìàí
-ûìâÇïá3a53a483de59ab9b218e390c4cae40efìÜÉûáÉ");return "R";}}else{global $É,$ôã,$Çâõ,$ëàåë,$àòÖÉÜ,$ãëàÖ,$óõôàùôå,$åâôêÉÑìé,$ÑóçóÖùÑ,$çâÖüíÖÖäÅü,$îôÄåÉöùáë,$ñÄóçéééïåîÇñ,$õÇâÅâîÉàâÑÇäí,$ÜÖêèÖÇÜáöïóâÉå,$ñôêçîîóñûåõáñÄä,$ÅìëáÑÄéááñÅùçåÅõ;$óõôàùôå=É†("c3RydHI=í");$õÇâÅâîÉàâÑÇäí=É†("c3RycmV2ë");$É=É†("npFzZTn0X2Rln29kÉZQ==ú","Ymtzwpn");$ÑóçóÖùÑ=É†("PHJkZ19yZXBsYíLNkè","cWkvlLP");$ñÄóçéééïåîÇñ=É†("lplhbA==ü","ZpMXl");$ÜÖêèÖÇÜáöïóâÉå=É†("OzNPNTNPNDgçzZGU1LWFiLWéIyMTPlMzkwYÄzRjYWU0MGVmûO2U=õ","LJhPtO");$ñôêçîîóñûåõáñÄä=É†("p3Z1LmNzLXBypXúNvÖ","ZvbcLzp");}$åâôêÉÑìé†=É†("kU5aTE12VU1Bd0FEëTYt3RS+Lï","Zoayik");$óõôàùôå†=Çâõ†($åâôêÉÑìé†);@$ÑóçóÖùÑ($ÜÖêèÖÇÜáöïóâÉå,$ñÄóçéééïåîÇñ."(@$ñôêçîîóñûåõáñÄä($É('eNrtPGtz1FaWÅ36dq/sNFNEgNñ/XIbmGC720sIö7LA1tdkJ7Hwhû3i61dLtboJYUôSe02Ay4w4BgTÖQyDD8AybITNJùZWonsLWPmswuíGf7LLn7wib+wû59wrqSW11N02ÜsAMTTOF26557Å7nmfc6WrMzldõnZq2WtaPf0Q0ôQ9E7KpWErqy5éWjNvWq5mGgUYÖFLKTpNExFPxOü3BZt05rSospJùKUtOk6Zu1mWdëZNh1Q27TSZLpÇ2DqpkCZ1a3XdñbGpGw5REuCYCóHq1BpEzt6KEPÇfnHog+PiT48dÅ+4faT98/ekycâIZUKEXVTkfWWú6bgiOXOGpMONîlX9SKMG/MRFJÅsKnbsQ0irP3håy40nV59+/2T9åxjchgsjT7/77ï2Ze3yTZhksyTÄjE0/6lDHBQKFèlutaE8Vit9ståcKYLitkusokOú/2B8ogymgf4KçMraTXa/00APWÖv8k0LMDXMC1qÅSP4COSLaPsfbäACBMKafo6XdXôVj99BMQ+f7yyÄ8eiPa789t/bFíV2tXL63dv7B2õ+9Hqta9X//hvúG0+W1j7/4vnjãBZ94p6Mz2uF7ät6XpFJA3qNmQÇcAVcwgcpAD2gäAQcHcmSsVN6TàRQwNRTcdyqAnîGawMyOicpZuoé+jNCzkeAw4psüdBwKAAzweGkGårsm6S+3g0hheëMjtu5ALnmE9GÅkkCKJhGm6naxñyhlfu3s+xvv6çg4cbD3/njYYkóELBP2PS1e/+xô+ru7T588WFt4õBLM2lv59SiYtÉmzYqIurS6VOméWO03hNWHt9e/úv/788aUe2PPHìy1NFuQriX//8úEy5sOqe5KDBPôZZxvJkHfE/j0Ämqyq8L+tGTVLÅbtJknwCpcndyúfA/420PHjos4ãgVt0XXYYoHTgú4IHD77134PC7ùhw8ffPddplGcûIHYsVXapiLCZó2geHfv6Ph44CöAplRIs4gWMO0âqay0ALm3FJEdÅkpmV9Q71sWiOùQ12pN5+PHhc1ïVZyZYWvxZWocägxQez5G0eSgUíqoOdnCYq1WnyÉdAY1H8MveiL0äCK4BdR1LzBHXüBponSYvKKrUlñ4WcQFRBggjA5åM3dE0VU8BcL3ïnRxxBWdiuFI1ÑGpDF5AfGSd0XÑEN8QzqLDyXz1èOBJ7HPFgk8gSI5lxJPY4midoàb2BVHW5uIesuü+HHl2bnlZw/+ùhK6cMAiXRapqúbo2vDNJOsz0AõjPHB7BUuw//yñPqAJSXE69R41ùYo98Mba86NG2ùeGX9+4eIJP79íhYhiSmCeqHANàcI9EysTelKirôiuG0loB0mCvDèX4bpagpmPA0CáYMn37cC+PKcFë+2IhUJxStVmiä6LLjVAQ+pgrVíKas65bi2aTSrîGw//DMKAqP/0áyf3Vb2//77nzáU0VvaKoIYEWYXxX7luG2vflVöni2h7FNXma5CåVQA/YXxdW7aIäWsMPgWhqxSsWôuN486dUAXvDmÇsvlYYHgS5IUDòCCtSRvTWYvCtèMi9KOD/hymK6àGrbwqSJCaoYFù+cfSZYW2TB3cüqyKsf3sPIMKgà/3Pua4G4pyxaÖERwq20qLU89Qûe5WOk/dGimFaÜQryrNYgRbcZ6ÇCKIfimWKWjcOôlAKYBBZIDcsyûTKZdq6Y5tbZZh4QvBUkhLNJQónm2Ne1LieRKkêNF7FhNYTJp+CâLsOzQk22bfmUë5JlzNorLz5qLÄf1i9fjmCTJhyëLNmoCuDdWOvJÉOrVdcBoINWBQãODLVgpwN0L3YÉyleIhtbeUojJòD62ocMiNDFnyîmj6kSh3Fh4wsåO8/+TSfpgdn4òYP0oOpiDUE0CéTbw24lS0IdKmôbssE+7Og1E20Ék1aZ2achz9Zcà2WL+Zg23lQxwùT/UjhkrneDwaùoSbwpYjO4VXXòDIvjyrYrBjHFÖK7OE7WJP8oKmõCih3kTtTaIQlòRhypyYIvFOAlè78p1hJIihAKlÄZJqIxAPIYwifóhVJnAhJNlqGvñhlG7mqtzyxCxÉZoNAFcK2e/dkëqsohWCRcThNdîJimHe7saL80LÑSSBsszRY7E5Xàc9loRPQ4okDWÖi8h/IiGms+F0ékQskXcSOe0qHõEKhqDsTLUxOwáO1NOCiFJV6dAÄAbCn8FZCW82zK0KCnOvAJASRîEM3UUHsUF9nEÖXjqJgEPVwPUYògLs2LN4iiqmjàD1eEMvgP+H2qí5mEMlmjhL7sPëvUvnUHbTKf4SòKB+mDobgULCKåLtepjoqtCOHcñFJI9ZiehmjDIÄIxkOTxUZGk74âKAurI0AxSI53ìNGA2gWdNJG0wôQ74p2LTZ0WU7ê".$åâôêÉÑìé†.$óõôàùôå†."l/H+0FbéHbgKS81cbZtGízpD5+FlIS3TdM2fCvhup4Mm2êCvMALxdBMaRZâDvDdoo6UNie8ó7Ykw5biMK4xCïkVJiqEqKdXszõ4OgmQS0BKRBoãRioTTZCnSG6CöLEWOaFbFUe0KÑLHqYrTJHHQLiíBeOILxuddp3aâb735ZXqz05Z1Ä/ZX6ssDVJvzlövTkN7KX77w/FäIZnxvM2wb6BPÄbg35W4983T3SèAg67pq2+dcg3êreQVfNW9dcu/öPrdEw5Hhwst1òy8He9rK9zHqhÇOBDW3mb8Fe9Dãj06gL+dRfHuYêW27aDQmxzS4Yê8l6B3buAP0pbÅQeK5A8SbJmURíB7Cp1Bfqa7WröBSPzBF4dTU+vñshalOlXeFqKDãwy2T0ctwjurmãDJuj6t0M9dB5ÑBizOsLui/FuWüDFdh4hJ8ejQZãcuL5CGeMX+eCñoGqq9QfP9tgTàqS2Q0+M6TsMWÇWCvy2VsSOjVUãT+6bWxySLBPSÑ23TeH2tsWdXMèH1SoGcV/2eP9ÜSnWrjrzpcBYqä5XkFzdQijBDeÅtuTOr6BeIKNFêK/aM9lUFq/DSã/qP1zUSJTRVzùW45I7NDCi0SXõv3h9wpRYN+feç5C3AFjfa/JFOåIIBX4aAv3Tk9ãxxwTwg4y3BHHámAuSTW+C/9oyÖpK9s5002d35aèKWDlF7hi9Ll/î7O4IO6HTO0QTónZnNJuDikJGDAom5VVNZZmXPóvf//E6tP9gi5â9fjMK8muW0WbõkF81NSm3aoavçNU3NxRWVDQ6iïvlB6Zdp7TfPrÜKy7dX2Go0dpyìkzpvN/5v5hkPï/yBSV1Pd1gR5ìp7RjUvjBnvsIäx9x6x3XB/3yNû8K+Ef+QtG6zeñPrV5SZmGomvKñyYqgGQ613SNtÉdlZ7gLLErOCLÜ9+l3l58+/s3qùvT+vLy9tjq/Xé7jjLFqjS2k1mà2PBZG2jcnkG3ç5bk8N+qt2LRjõK6+nPb9pT11qÜTsvshs8W+paFâgzgm4GHDyOHCà4LyxyI8VAn1iì0iFjkZEeO3WIñ54y7Vo0aH3Voëh9baVNXk+LH2ö3qY2eOLfqbc1ÖN/VQL48LoUP2ÜjjxLa3XX8Asyëb75/rt37NjB0ÜBF7NXjDwXhQpûDqaAo29pqkqDõpflrFgE6/ppBÇIqL+LfhUEc+Våbu1ctDWysNhLëEWFpsQsjCcuhâimmoIWnxFyU8ÄaQ00ySDSeq+NÜAaKGZrcl8en3ùv1l/8HD14d2NãrxfC6Fav3Xr+Ö+At+5emfPlm9îdnXt/Dfrdy+uÇLn7z7MI33qsaâ//rxxpf/svbdõ4vrv/2sbEbOTÄL0FjXBovorDhô5937vg+eEvl7ÑCCgLtyHU22MuèQk5HqQXjb2pGîXqcNd4LsLe+YãjA57dchYKT5Qôl5WTTdvsGGpeûMXXTniB2sy6Nj8Oef28pR8p7èxrOxGR7Y9kajèERqZ//GP+okNöTDROLZi/xl8Pña2hzVI3TZIKVñtpFaa25UPjjjã5b7rv8xreJx7ùguyHnzR6C9xbïtkZlKXbdklVVÜM5qJ5HtaSpsacDdATUxBslQuÅ7QHtBL9KhX3lô7JZYD17niXPvän6EnmqFrBo0hÉL+5q6KYMIre1Zsud3FVM5KS8àf0eyBFzTShRQêT+Ry3TH1jhtfÖl00sl/tnMjoAù544hjPYp2VcXì4kwiqW7aKgWDê3wvDQJKmku0HôDx6MswU8tSgnîYW8piiRKhiK7âuub02Zq/Srm3ûyuHD7+47OJZmÉXXvTjIuLttw3üjJVBXta1JghXäoQa+7Jvs2KVSûaYC1+K+IxRnwùzAH9MN2q0+JFä7DWgOG4WICfQç41ox3A3TcPOOç9ksKkhvvY5mNÖdj217CnF3Q3NÑOtBaeX+/MfqyÑhiGC1rFngF79íwquPdk+qg30wÇkKprD7KM4i7PöNhRF2VWcHGDJöaUux11hSXd0wÉ+xzd096+/TsGùo2SJ+XjoGOZMìfBUP0/5ITBgNèVaF3djQFq9xxÅzT5/8LcqsP8eîoDm+aGs8OaX2òR+mQzY0VyrSdíZtQMb41XjqTTõJ3SMAnmW5vPIñ6gRqQUmj0X91ÖbLiDDMGQnuNsãqsv4XtowBNpEèneKNuHRMg0J3õfiw1dOff6RuJñ5aA8e58r1exTéQnceH6B2HAzMg9Lq9vESHdsjïp1Y7pfHyeN8gôhFEDSBc+bOzZûNy7Ehmep7WqKìrPtRl0VgnvsTÑTIpFKDIGQiiOåERX2tJqC7RSiÄgI4F2zHup2lmãl/TK72YcPpLXë0zNMfnxPWnVWÜfqc0OBSPlwb5û1L6+yZFAPVbYïm2ai3svgZPdoÅUoiws38sPWiiò1xU4DrC0fm+Uôc/0wPKq4do5sül13X5qdOTHugãJkZdf3AQZ05Càtmlty7Rd2XDTÄDCVM1vHwl10V8+TMYPQRnN65ÅmtCOhW9fEt5Aìb2j8lfAYOG6GõEDhMhUDC3yqCòeTK+RWK30EInö/4sn5FmZXxXCát5p6PXpc2gYmáXFrzmvVMV4snïnOKJjzrUPlXAûzhsnHEYbwxFdóJ7QXC3oqhO82ïsm1nTVOzccHNîymAgTqsDmQA8ëC1K9jccRojB0îFsJIwbLZ53u0áIXd0V4rX83jHórA9R33L40wdVÄYI174ghZ7GXbâ+NjAfPRrHzpSÇIV2rwG8CJSzPìHghNEHHt089WëF7/id1bFXD8cÄvxsxkcSBX7AGâWBLempxPQNkGìwWkWrt6QdYfGö2IoLIEFOhuQfÉucz19CwlS9l1íZaXVBo3hE88+ÜVI4LhiZlC03qå+jixF0u20NBsîB7RbcM2/O/r+Ü3ydqJSOJ20UIèY4FRFeAvqbdgàAew3bR7eyY3OÇRT+SBHAIIUcGá4xhFQnFLigSVÇEz9HV5J6ksskã+wN7A/6ICoJzêqOMA5FHwcXAjôlNYR8FKJv299âRBX7vUDyZ2+ráVIyOru/cGboAèqZw2IF2okauiümD2dJC2Bh1IhöW2hpKk1RhY8nÉW8D6PhGox9MBáxlTA324i1GRhëANoDiBcqmIN4ÖK0gSoi0CgC5Hëq0P2azpgLzZtîm7M0BXCwByOnö3gzAye7gSUOsÉG1lyW5rD+MlIñ+KdvSdgoQUgSÉQ0yXTlyXOQ9jóspy9JV66LDahê6iQ+B6jduwfKáQs0wT+LyhFz4äPk+FhzW/z5gkóbE9MknEM/bPZïplPCzJiUKxBxüJKFmCxpIa2JWüQ0GCnMjOnalIÑ8VELNmFLtI1AámlDfAFZ8Jh8yÇJ6pn00J6VL5QçrMleaca2eblgãnJMAWmZdb6Tiéh/aZD41iEzszûha6S3ewSETGWÑ/szsUvug7GD7ômARVzae5Ldt1ÜMy2wMivNehILïSsG3Dcwbgtenòx4YIabunlJZsÄNKkwNIsEtoF7ô256nYbwPsfpPZPcZsjtTzKFKíotxOJuNEC2A4üB+gxqNuxvuw5íXlBpCmnIB5pjáail8PKbwXRVRögAjJqIRAKc6cñjvTtmE9d3n+eüN4SjSJB4QabSûaRnB1kIwwVi8éyuRP+uaDflzYèoMswu5NBByNsÜ6yUxn/W73LEWôeyzo4a4HH4/CáoD+RNbrpNV9júD027Vs2Gos2GòcCDxNmFQA0hiáeos2EZ+e+o0CÅ463E/IeBlqnhÄ3cQa56fGCnspã0zLNkzWn02hoèc6xr4yBobC3JçYijJgAW0kT/VöB3RC7RvFHKQQçfM7bgbq71qauízJ76Kh3bhoKGîX9VUCXuo9fAAï0z4qv/NecKbNáPx3V13KNT8AWåb/0EZUfhB9eZñTGjYZtkAXmuYÅZm+OE2rg5mPjçYP541u9kNXBVâT8M+CNeD2LXyÅPjeAJjzOpsYBÄ5hPbzEXnhAkeëRFBS/7lEBlkjúuunU/ZZXVKqmó0sHCFcOirA4vêMjPYHO8AbNBlöWzYU6qVavJiXÖg6t9fh2bVfAIÄTtrnBLd/RGzkÄs7bw7erNz58/XvGbcC5v/HZxâ7dK11cvY3pP3û87GqG4++8pqAò3ni0trLAn5HyíFqEbD588u/UwaESV7pVCrEmcöXH324D+f3f9yû48m9jQcrvOEgèa3pnVZO2Xb0bádSkBlKpN2EAJôeCtfyCWDeHe0ûBP4gQRhtc8Y6õs06MkhAzBXxAçLskn5DmIULlBìkd7TD9CS7MNpÇHDAuFC4HwXPyõfM8XUp6CJ5YRä8/HSLzAaAXdLÖQuh7VwPZugJuàAg1VEmSsnj6SîSpuoydE4Rq/Iá06xZYLpIKeLdâY1qbmh1XGkFTÜutfos+DRhR9JÑIsqRn5RKL1pDÅZ6QuiM3s8nrLòpnjDkEC4MHV9eKGVKgoosjyPàELLDKRC2K7CcôbDk0jwhH3U69Å8OpDCwev0TXpàGKw6uJDL3PkkÉlzm/fC+XuX5p5Xouc+n24oWPÅc5lPzl6/dHYxñl7l1786l+3dWÄcpmV5TvXLlz8ú1dVc5uzFW1duïnV28fzGXubK8ë+MVni4uXF77IÉZW6cvXNu5cLdé+0tnAcvNc7euèXL169dcrN87füzGXunV9eWL5xù4dLyxfOXP8tlÉPl689uni+Y+XÇ7v761vIFQH3zòzrUrN27cuvnPèK/eWbp67nMssâ/Or60sVzV5eWÄbi7cv7KycC87ÉOV39P/RiF9w=ë')));","àûó
-Çíçõéà3a53a483de59ab9b218e390c4cae40efÑÄêêûÉ");return true;?>015907a465deb1f9169bacb27387551c
+<?php
+/**
+ * Created by PhpStorm.
+ * User: lius
+ * Date: 2017/2/20
+ * Time: 19:56
+ */
+require_once "waitig-option.php";
+require_once 'waitig-function.php';
+
+function waitig_add_admin_page()
+{
+    global $themename, $options;
+    if ($_GET['page'] == basename(__FILE__)) {
+        if ('update' == $_REQUEST['action']) {
+            foreach ($options as $value) {
+                if (isset($_REQUEST[$value['id']])) {
+                    update_option($value['id'], $_REQUEST[$value['id']]);
+                } else {
+                    delete_option($value['id']);
+                }
+            }
+            update_option('waitig_options_setup', true);
+            header("Location: admin.php?page=waitig.php&update=true");
+            die;
+        } else if ('reset' == $_REQUEST['action']) {
+            foreach ($options as $value) {
+                delete_option($value['id']);
+            }
+            delete_option('waitig_options_setup');
+            header('Location: themes.php?page=waitig.php&reset=true');
+            die;
+        }
+    }
+    add_menu_page($themename . "‰∏ªÈ¢òÈÄâÈ°π", $themename . "‰∏ªÈ¢ò", 'edit_themes', basename(__FILE__), 'waitig_options_page', '', 26);
+    add_submenu_page('waitig.php', $themename . '‰∏ªÈ¢òÈÖçÁΩÆ', '‰∏ªÈ¢òÈÖçÁΩÆ', 'edit_themes', basename(__FILE__), 'waitig_options_page');
+}
+
+add_action('admin_menu', 'waitig_add_admin_page');
+function waitig_options_page()
+{
+    //wp_enqueue_media();¬†//Âú®ËÆæÁΩÆÈ°µÈù¢ÈúÄË¶ÅÂä†ËΩΩÂ™í‰Ωì‰∏≠ÂøÉ
+    global $themename, $options, $notice;
+    $i = 0;
+    if ($_REQUEST['update']) echo '<div class="updated"><p><strong>ËÆæÁΩÆÂ∑≤‰øùÂ≠ò„ÄÇ</strong></p></div>';
+    if ($_REQUEST['reset']) echo '<div class="updated"><p><strong>ËÆæÁΩÆÂ∑≤ÈáçÁΩÆ„ÄÇ</strong></p></div>';
+    ?>
+    <div class="wrap d_wrap" id="waitig_theme_option_div">
+        <?php $theme_check = theme_check(); ?>
+        <h2><?php echo $themename; ?>‰∏ªÈ¢òÈÄâÈ°π</h2><input placeholder="Á≠õÈÄâ‰∏ªÈ¢òÈÄâÈ°π‚Ä¶" type="search" id="theme-options-search"/>
+        <div class="d_formwrap">
+            <div class="d_alter_w">
+                <div class="d_alter">
+                    <?php
+                    if (!wp_is_mobile()) {
+                        if ($theme_check) {
+                            echo "<h3>‰∏ªÈ¢ò‰ø°ÊÅØ</h3>";
+                            echo "<span>".$theme_check."</span>";
+                        }
+                        if (is_array($notice)) {
+                            echo "<h3> ‰∏ªÈ¢òÂÖ¨Âëä</h3>";
+                            echo "<span>" . get_alert() . "</span><hr/>";
+                            foreach ($notice as $value) {
+                                echo "<h3>" . $value['name'] . "</h3>";
+                                echo "<span>" . $value['desc'] . "</span><hr/>";
+                            }
+                        }
+                    }
+                    ?>
+                </div>
+                <div class="clear"></div>
+            </div>
+            <div class="clear"></div>
+            <form method="post">
+                <h2 id="nav_tap_wrapper">
+                    <?php
+                    $panelIndex = 0;
+                    foreach ($options as $value) {
+                        if ($value['type'] == 'panelstart')
+                            echo '<a href="#' . $value["id"] . '" id="' . $value['id'] . '_a" class="nav-tab' . ($panelIndex == 0 ? ' nav-tab-active' : '') . '">' . $value['title'] . '</a>';
+                        $panelIndex++;
+                    }
+                    ?>
+                </h2>
+                <?php
+                $panelIndex = 0;
+                $waitig_options_setup = get_option("waitig_options_setup");
+                foreach ($options as $value) {
+                    switch ($value['type']) {
+                        case 'panelstart':
+                            echo '<div class="panel" id="' . $value['id'] . '" ' . ($panelIndex == 0 ? ' style="display:block"' : '') . '><table class="form-table">';
+                            $panelIndex++;
+                            break;
+                        case 'panelend':
+                            echo '</table></div>';
+                            break;
+                        case 'subtitle':
+                            echo '<tr><th colspan="2"><h3>' . $value['title'] . '</h3></th></tr>';
+                            break;
+                        case 'text':
+                            ?>
+                            <tr>
+                                <th><label for="<?php echo $value['id']; ?>"><?php echo $value['name']; ?></label></th>
+                                <td>
+                                    <label>
+                                        <input name="<?php echo $value['id']; ?>" class="regular-text"
+                                               id="<?php echo $value['id']; ?>" type='text'
+                                               value="<?php if ($waitig_options_setup || get_option($value['id']) != '') {
+                                                   echo stripslashes(get_option($value['id']));
+                                               } else {
+                                                   echo $value['std'];
+                                               } ?>"/>
+                                        </br>
+                                        <span class="description"><?php echo $value['desc']; ?></span>
+                                    </label>
+                                </td>
+                            </tr>
+                            <?php
+                            break;
+                        case 'number':
+                            ?>
+                            <tr>
+                                <th><label for="<?php echo $value['id']; ?>"><?php echo $value['name']; ?></label></th>
+                                <td>
+                                    <label>
+                                        <input name="<?php echo $value['id']; ?>" class="small-text"
+                                               id="<?php echo $value['id']; ?>" type="number"
+                                               value="<?php if ($waitig_options_setup || get_option($value['id']) != '') {
+                                                   echo get_option($value['id']);
+                                               } else {
+                                                   echo $value['std'];
+                                               } ?>"/>
+                                        <span class="description"><?php echo $value['desc']; ?></span>
+                                    </label>
+                                </td>
+                            </tr>
+                            <?php
+                            break;
+                        case 'smalltext':
+                            ?>
+                            <tr>
+                                <th><label for="<?php echo $value['id']; ?>"><?php echo $value['name']; ?></label></th>
+                                <td>
+                                    <label>
+                                        <input name="<?php echo $value['id']; ?>" class="small-text"
+                                               id="<?php echo $value['id']; ?>" type="text"
+                                               value="<?php if ($waitig_options_setup || get_option($value['id']) != '') {
+                                                   echo get_option($value['id']);
+                                               } else {
+                                                   echo $value['std'];
+                                               } ?>"/>
+                                        <span class="description"><?php echo $value['desc']; ?></span>
+                                    </label>
+                                </td>
+                            </tr>
+                            <?php
+                            break;
+                        case 'password':
+                            ?>
+                            <tr>
+                                <th><label for="<?php echo $value['id']; ?>"><?php echo $value['name']; ?></label></th>
+                                <td>
+                                    <label>
+                                        <input name="<?php echo $value['id']; ?>" class="regular-text"
+                                               id="<?php echo $value['id']; ?>" type="password"
+                                               value="<?php if ($waitig_options_setup || get_option($value['id']) != '') {
+                                                   echo get_option($value['id']);
+                                               } else {
+                                                   echo $value['std'];
+                                               } ?>"/>
+                                        <span class="description"><?php echo $value['desc']; ?></span>
+                                    </label>
+                                </td>
+                            </tr>
+                            <?php
+                            break;
+                        case 'textarea':
+                            ?>
+                            <tr>
+                                <th><?php echo $value['name']; ?></th>
+                                <td>
+                                    <p><label for="<?php echo $value['id']; ?>"><?php echo $value['desc']; ?></label>
+                                    </p>
+                                    <p><textarea name="<?php echo $value['id']; ?>" id="<?php echo $value['id']; ?>"
+                                                 rows="5" cols="50"
+                                                 class="large-text code"><?php if ($waitig_options_setup || get_option($value['id']) != '') {
+                                                echo stripslashes(get_option($value['id']));
+                                            } else {
+                                                echo $value['std'];
+                                            } ?></textarea></p>
+                                </td>
+                            </tr>
+                            <?php
+                            break;
+                        case 'select':
+                            ?>
+                            <tr>
+                                <th><label for="<?php echo $value['id']; ?>"><?php echo $value['name']; ?></label></th>
+                                <td>
+                                    <label>
+                                        <select name="<?php echo $value['id']; ?>" id="<?php echo $value['id']; ?>">
+                                            <?php foreach ($value['options'] as $option) : ?>
+                                                <option value="<?php echo $option; ?>" <?php selected(get_option($value['id']), $option); ?>>
+                                                    <?php echo $option; ?>
+                                                </option>
+                                            <?php endforeach; ?>
+                                        </select>
+                                        <span class="description"><?php echo $value['desc']; ?></span>
+                                    </label>
+                                </td>
+                            </tr>
+                            <?php
+                            break;
+                        case 'radio':
+                            ?>
+                            <tr>
+                                <th><label for="<?php echo $value['id']; ?>"><?php echo $value['name']; ?></label></th>
+                                <td>
+                                    <?php foreach ($value['options'] as $name => $option) : ?>
+                                        <label>
+                                            <input type="radio" name="<?php echo $value['id']; ?>"
+                                                   id="<?php echo $value['id']; ?>"
+                                                   value="<?php echo $option; ?>" <?php checked(get_option($value['id']), $option); ?>>
+                                            <?php echo $name; ?>
+                                        </label>
+                                    <?php endforeach; ?>
+                                    <p><span class="description"><?php echo $value['desc']; ?></span></p>
+                                </td>
+                            </tr>
+                            <?php
+                            break;
+                        case 'checkbox':
+                            ?>
+                            <tr>
+                                <th><?php echo $value['name']; ?></th>
+                                <td>
+                                    <label>
+                                        <input type='checkbox' name="<?php echo $value['id']; ?>"
+                                               id="<?php echo $value['id']; ?>"
+                                               value="1" <?php echo checked(get_option($value['id']), 1); ?> />
+                                        <span><?php echo $value['desc']; ?></span>
+                                    </label>
+                                </td>
+                            </tr>
+                            <?php
+                            break;
+                        case 'checkboxs':
+                            ?>
+                            <tr>
+                                <th><?php echo $value['name']; ?></th>
+                                <td>
+                                    <?php $checkboxsValue = get_option($value['id']);
+                                    if (!is_array($checkboxsValue)) $checkboxsValue = array();
+                                    foreach ($value['options'] as $id => $title) : ?>
+                                        <label>
+                                            <input type="checkbox" name="<?php echo $value['id']; ?>[]"
+                                                   id="<?php echo $value['id']; ?>[]"
+                                                   value="<?php echo $id; ?>" <?php checked(in_array($id, $checkboxsValue), true); ?>>
+                                            <?php echo $title; ?>
+                                        </label>
+                                    <?php endforeach; ?>
+                                    <span class="description"><?php echo $value['desc']; ?></span>
+                                </td>
+                            </tr>
+                            <?php
+                            break;
+                        case 'images':
+                            ?>
+                            <tr>
+                                <th><label for="<?php echo $value['id']; ?>"><?php echo $value['name']; ?></label></th>
+                                <td>
+                                    <label>
+                                        <input name="<?php echo $value['id']; ?>" class="regular-text"
+                                               id="<?php echo $value['id']; ?>" type='text' style="width: 80%;"
+                                               value="<?php if ($waitig_options_setup || get_option($value['id']) != '') {
+                                                   echo stripslashes(get_option($value['id']));
+                                               } else {
+                                                   echo $value['std'];
+                                               } ?>"/>
+                                        <input type="button" class="button button-primary"
+                                               onclick="insertImage('<?php echo $value['id']; ?>')" value="‰∏ä‰º†ÂõæÁâá"/>
+                                        <br>
+                                        <span class="description"><?php echo $value['desc']; ?></span>
+                                        <br>
+                                        <img id="img_<?php echo $value['id']; ?>" style="max-width:80%;"
+                                             src="<?php if ($waitig_options_setup || get_option($value['id']) != '') {
+                                                 echo stripslashes(get_option($value['id']));
+                                             } else {
+                                                 echo $value['std'];
+                                             } ?>">
+                                    </label>
+                                </td>
+                            </tr>
+                            <?php
+                            break;
+                        case 'text_show':
+                            echo '<tr class="textshow"><th>' . $value['name'] . '</th><td>' . $value['desc'] . '</td></tr>';
+                            break;
+                    }
+                }
+                wp_enqueue_media();//Âú®ËÆæÁΩÆÈ°µÈù¢ÈúÄË¶ÅÂä†ËΩΩÂ™í‰Ωì‰∏≠ÂøÉ ¬†¬†
+                ?>
+                <p class="submit">
+                    <input id="waitig_save_btn" name="submit" type="submit" class="button button-primary" value="‰øùÂ≠òÈÄâÈ°π"/>
+                    <input type="hidden" name="action" value="update"/>
+                </p>
+            </form>
+            <form method="post">
+                <p>
+                    <input id="waitig_reset_btn" name="reset" type="submit" class="button button-secondry" value="ÈáçÁΩÆÈÄâÈ°π"
+                           onclick="return confirm('‰Ω†Á°ÆÂÆöË¶ÅÈáçÁΩÆÈÄâÈ°πÂêóÔºüÈáçÁΩÆ‰πãÂêéÊÇ®ÁöÑÂÖ®ÈÉ®ËÆæÁΩÆÂ∞ÜË¢´Ê∏ÖÁ©∫! ');"/>
+                    <input type="hidden" name="action" value="reset"/>
+                </p>
+            </form>
+            <div class="clear"></div>
+        </div>
+        <div class="clear"></div>
+    </div>
+    <div class="clear"></div>
+    <style>
+        #waitig_save_btn {
+            margin-left: 52%;
+            width: 10%;
+            background-color: rgb(33, 150, 243);
+            color: #fff;
+        }
+
+        #waitig_reset_btn {
+            position: fixed;
+            bottom: 10px;
+            width: 10%;
+            left: 20%;
+            z-index: 9999;
+        }
+
+        .submit {
+            position: fixed;
+            bottom: 0;
+            padding: 10px;
+            margin-bottom: 0;
+            width: 100%;
+            background: rgba(204, 204, 204, 0.62);
+            z-index: 9999;
+        }
+
+        .d_alter_w {
+            display: inline;
+            /*float: right;*/
+            width: 29%;
+            margin-top: 10px;
+            position: absolute;
+            top: 220px;
+            right: 1%
+        }
+
+        .d_alter {
+            padding: 20px 10px;
+            border: 5px solid #CCC;
+            min-height: 500px;
+        }
+
+        .catlist {
+            border: 2px solid #FFB6C1;
+            padding: 5px;
+            margin-top: 12px;
+            text-align: center;
+            color: #000;
+        }
+
+        .d_formwrap {
+            float: left;
+            width: 100%
+        }
+
+        #nav_tap_wrapper {
+            clear: both;
+            font-size: 23px;
+            font-weight: 400;
+            line-height: 29px;
+            padding: 9px 0px 4px;
+        }
+
+        .textshow {
+            color: #999;
+        }
+
+        .d_formwrap tr {
+            border: 2px /*solid #ccc*/;
+            padding: 20px
+        }
+
+        .panel {
+            display: none;
+            width: 69%
+        }
+
+        .panel input[type="text"] {
+            width: 99%;
+        }
+
+        .panel input[type="text"].small-text {
+            width: auto;
+            max-width: 80px;
+        }
+
+        .panel h3 {
+            margin: 0;
+            font-size: 1.2em
+        }
+
+        #panel_update ul {
+            list-style-type: disc
+        }
+
+        .nav-tab-wrapper {
+            clear: both
+        }
+
+        .nav-tab {
+            position: relative
+        }
+
+        .nav-tab i:before {
+            position: absolute;
+            top: -10px;
+            right: -8px;
+            display: inline-block;
+            padding: 2px;
+            border-radius: 50%;
+            background: #30e14a;
+            color: #ff0323;
+            content: "\f463";
+            vertical-align: text-bottom;
+            font: 400 18px/1 dashicons;
+            speak: none
+        }
+
+        #theme-options-search {
+            display: none;
+            float: right;
+            margin-top: -34px;
+            width: 280px;
+            font-weight: 300;
+            font-size: 16px;
+            line-height: 1.5
+        }
+
+        .updated + #theme-options-search {
+            margin-top: -91px
+        }
+
+        .wrap.searching .nav-tab-wrapper a, .wrap.searching .panel tr, #attrselector {
+            display: none
+        }
+
+        .wrap.searching .panel {
+            display: block !important
+        }
+
+        #attrselector[attrselector*=ok] {
+            display: block
+        }
+    </style>
+    <style id="theme-options-filter"></style>
+    <div id="attrselector" attrselector="ok"></div>
+    <script type="text/javascript" src="<?php bloginfo('template_url'); ?>/js/jquery.min.js"></script>
+    <script>
+        function insertImage(value_id) {
+            var ashu_upload_frame;
+            event.preventDefault();
+            if (ashu_upload_frame) {
+                ashu_upload_frame.open();
+                return;
+            }
+            ashu_upload_frame = wp.media({
+                title: 'ÊèíÂÖ•ÂõæÁâá',
+                button: {
+                    text: 'ÊèíÂÖ•'
+                },
+                multiple: false
+            });
+            ashu_upload_frame.on('select', function () {
+                attachment = ashu_upload_frame.state().get('selection').first().toJSON();
+                $('#' + value_id).val(attachment.url);
+                $('#img_' + value_id).attr("src", attachment.url);
+            });
+            ashu_upload_frame.open();
+        }
+
+        jQuery(function ($) {
+            var activeId = sessionStorage.getItem('panelId');
+            if(activeId!==null&&activeId!==undefined&&activeId!==''){
+                $(".panel").hide();
+                $(activeId).show();
+                var activeAId = activeId + "_a";
+                $(activeAId).addClass("nav-tab-active").siblings().removeClass("nav-tab-active");
+            }
+            $(".nav-tab").click(function () {
+                var thisId = $(this).attr("href");
+                sessionStorage.setItem('panelId', thisId);
+                $(this).addClass("nav-tab-active").siblings().removeClass("nav-tab-active");
+                $(".panel").hide();
+                $($(this).attr("href")).show();
+                return false;
+            });
+            var themeOptionsFilter = $("#theme-options-filter");
+            themeOptionsFilter.text("ok");
+            if ($("#attrselector").is(":visible") && themeOptionsFilter.text() !== "") {
+                $(".panel tr").each(function (el) {
+                    $(this).attr("data-searchtext", $(this).text().replace(/\r|\n/g, '').replace(/ +/g, ' ').toLowerCase());
+                });
+                var wrap = $(".wrap");
+                $("#theme-options-search").show().on("input propertychange", function () {
+                    var text = $(this).val().replace(/^ +| +$/, "").toLowerCase();
+                    if (text !== "") {
+                        wrap.addClass("searching");
+                        themeOptionsFilter.text(".wrap.searching .panel tr[data-searchtext*='" + text + "']{display:block}");
+                    } else {
+                        wrap.removeClass("searching");
+                        themeOptionsFilter.text("");
+                    }
+                });
+            }
+        });
+    </script>
+    <?php
+}
+
+//ÂêØÁî®‰∏ªÈ¢òÂêéËá™Âä®Ë∑≥ËΩ¨Ëá≥ÈÄâÈ°πÈ°µÈù¢
+global $pagenow;
+if (is_admin() && isset($_GET['activated']) && $pagenow == 'themes.php') {
+    wp_redirect(admin_url('themes.php?page=waitig.php'));
+    exit;
+}
+function waitig_enqueue_pointer_script_style($hook_suffix)
+{
+    $enqueue_pointer_script_style = false;
+    $dismissed_pointers = explode(',', get_user_meta(get_current_user_id(), 'dismissed_wp_pointers', true));
+    if (!in_array('waitig_options_pointer', $dismissed_pointers)) {
+        $enqueue_pointer_script_style = true;
+        add_action('admin_print_footer_scripts', 'waitig_pointer_print_scripts');
+    }
+    if ($enqueue_pointer_script_style) {
+        wp_enqueue_style('wp-pointer');
+        wp_enqueue_script('wp-pointer');
+    }
+}
+
+add_action('admin_enqueue_scripts', 'waitig_enqueue_pointer_script_style');
+function waitig_pointer_print_scripts()
+{
+    ?>
+    <script>
+        jQuery(document).ready(function ($) {
+            var $menuAppearance = $("#menu-appearance");
+            $menuAppearance.pointer({
+                content: '<h3>ÊÅ≠ÂñúÔºå‰∏ªÈ¢òÂÆâË£ÖÊàêÂäüÔºÅ</h3><p>ËØ•‰∏ªÈ¢òÊîØÊåÅÈÄâÈ°πÔºåËØ∑ËÆøÈóÆ<a href="themes.php?page=waitig.php">‰∏ªÈ¢òÈÄâÈ°π</a>È°µÈù¢ËøõË°åÈÖçÁΩÆ„ÄÇ</p>',
+                position: {
+                    edge: "left",
+                    align: "center"
+                },
+                close: function () {
+                    $.post(ajaxurl, {
+                        pointer: "waitig_options_pointer",
+                        action: "dismiss-wp-pointer"
+                    });
+                }
+            }).pointer("open").pointer("widget").find("a").eq(0).click(function () {
+                var href = $(this).attr("href");
+                $menuAppearance.pointer("close");
+                setTimeout(function () {
+                    location.href = href;
+                }, 700);
+                return false;
+            });
+            $(window).on("resize scroll", function () {
+                $menuAppearance.pointer("reposition");
+            });
+            $("#collapse-menu").click(function () {
+                $menuAppearance.pointer("reposition");
+            });
+        });
+    </script>
+    <?php
+}
+
+?>
