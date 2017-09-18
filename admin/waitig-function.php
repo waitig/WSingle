@@ -8,7 +8,7 @@
  */
 
 define('THEME_CHECK_KEY', 'waitig-theme-check');
-define('THEME_CHECK_URL','http://127.0.0.1/WNovel/check/theme/wsingle.php');
+define('THEME_CHECK_URL', 'http://127.0.0.1/WBetter/check/theme/wsingle.php');
 function passport_encrypt($str, $key)
 {
     srand((double)microtime() * 1000000);
@@ -56,7 +56,7 @@ function send_post($url, $post_data)
     $postdata = http_build_query($post_data);
     //'Content-type:application/x-www-form-urlencoded\r\n'.
     $header = //'Content-type:application/x-www-form-urlencoded;charset=utf-8\r\n'.
-        'User-Agent:'.constant('THEME_CHECK_KEY');
+        'User-Agent:' . constant('THEME_CHECK_KEY');
     $options = array(
         'http' => array(
             'method' => 'POST',
@@ -93,20 +93,18 @@ function theme_check()
         'param' => $encodeData
     );
     $result = send_post($requestUrl, $postData);
-    $resultArray = json_decode(passport_decrypt($result,constant('THEME_CHECK_KEY')));
+    $resultArray = json_decode(passport_decrypt($result, constant('THEME_CHECK_KEY')));
     $canUse = $resultArray->canUse;
     $userType = $resultArray->userType;
     $leftDays = $resultArray->leftDays;
     $resultText = "欢迎使用 $themename 主题！";
-    if ($canUse == '0' && $userType == '0') {
-        die('<h2>您的授权服务期限已到，请至 -- <a href = "https://www.waitig.com" title = "' . $themename . '主题官网">' . $themename . '主题官网</a> -- 获取帮助，或联系QQ：504508065！</h2>');
-    }
-    else {
+    if ($canUse != '1') {
+        die('<h2>您的授权服务期限已到，请至 -- <a href = "https://www.waitig.com" title = "' . $themename . '官网">' . $themename . '官网</a> -- 获取帮助，或联系QQ：504508065！</h2>');
+    } else {
         $userTypeText = '';
-        if($userType == '0'){
-            $userTypeText='免费';
-        }
-        else {
+        if ($userType != '1') {
+            $userTypeText = '免费';
+        } else {
             $userTypeText = '<span style = "color:red">VIP</span>';
         }
         $resultText .= "您现在是 $userTypeText 用户，剩余服务期限为： $leftDays 天，感谢您的支持！";
