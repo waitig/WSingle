@@ -307,14 +307,7 @@ register_nav_menus(array(
     'header_menu' => __('顶部全站菜单')
 ));
 
-
-/**
- * Class BS_Walker_Nav_Menu
- * 使菜单使用Boostrap
- * From: 等英博客出品 http://www.waitig.com
- */
-require_once 'wp-bootstrap-navwalker.php';
-
+//增加后台菜单
 add_action('admin_menu', 'register_my_custom_submenu_page');
 function register_my_custom_submenu_page()
 {
@@ -324,5 +317,16 @@ function register_my_custom_submenu_page()
 function my_custom_submenu_page_callback()
 {
     echo '<iframe src="https://www.waitig.com/wnovel-theme-user-manual.html" width="100%"  height="800px" frameborder="0"></iframe>';
+}
+
+//全站链接相对路径
+add_filter( 'home_url', 'waitig_remove_root');
+function waitig_remove_root( $url ) {
+    if(!is_feed() || !get_query_var( 'sitemap' )){
+        $url = preg_replace( '|^(https?:)?//[^/]+(/?.*)|i', '$2', $url );
+        return '/' . ltrim( $url, '/' );
+    }else{
+        return $url;
+    }
 }
 

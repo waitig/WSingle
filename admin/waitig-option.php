@@ -25,20 +25,19 @@ $options = array(
         'type' => 'text',
         'std' => ''
     ),
-
-    array(
-        'name' => '网站描述',
-        'desc' => '用简洁的文字描述您的站点，字数建议在120个字以内',
-        'id' => "waitig_description",
-        'type' => 'text',
-        'std' => ''
-    ),
     array(
         'name' => '网站关键字',//选项显示的文字，选填
         'desc' => '各关键字间用半角逗号","分割，数量在6个以内最佳。',//选项显示的一段描述文字，选填
         'id' => "waitig_keywords",//选项的id，必须是唯一，后面根据这个获取值，必填
         'type' => 'text',//种类，这个是普通的文字输入，必填
         'std' => ''//选项的默认值，选填
+    ),
+    array(
+        'name' => '网站描述',
+        'desc' => '用简洁的文字描述您的站点，字数建议在120个字以内',
+        'id' => "waitig_description",
+        'type' => 'textarea',
+        'std' => ''
     ),
     array(
         'name' => '网站手机版地址',//选项显示的文字，选填
@@ -53,6 +52,25 @@ $options = array(
         'id' => "waitig_og_image",//选项的id，必须是唯一，后面根据这个获取值，必填
         'type' => 'images',//种类，这个是普通的文字输入，必填
         'std' => ''//选项的默认值，选填
+    ),
+    array(
+        'name' => '最新章节文章数',
+        'desc' => '最新章节显示的文章数量',
+        'id' => "new_list_num",
+        'type' => 'number',
+        'std' => '9'
+    ),
+    array(
+        'name' => 'QQ群链接',
+        'desc' => '加入QQ群的链接，显示在全站最上方',
+        'id' => 'qq_qun_link',
+        'type' => 'text'
+    ),
+    array(
+        'name' => '开启最近更新和猜您喜欢列表',
+        'desc' => '开启后，在页面下半部分会显示最新更新的章节和一个随机推荐的小说列表',
+        'id' => 'waitig_popcat_on',
+        'type' => 'checkbox'
     ),
     array(
         'name' => '去除头部多余代码',
@@ -92,20 +110,6 @@ $options = array(
         'std' => '1'
     ),
     array(
-        'name' => '开启自动导航',
-        'desc' => '开启后，系统会自动扫描网站中现有的小说，并显示在导航栏中，如果不开启此功能请在菜单栏中管理你的导航',
-        'id' => "nav_auto_set",
-        'type' => 'checkbox',
-        'std' => '1'
-    ),
-    array(
-        'name' => '网站导航显示小说数量',
-        'desc' => '如果您开启了自动导航栏，请在此定义你想在导航栏显示的小说数量！',
-        'id' => "nav_novel_number",
-        'type' => 'number',
-        'std' => '8'
-    ),
-    array(
         'type' => 'panelend'
     ),
     //标签页‘网站设置’结束
@@ -132,13 +136,7 @@ $options = array(
         'type' => 'number',
         'std' => '2'
     ),
-    array(
-        'name' => '导航栏排除小说ID',
-        'desc' => '不想显示在导航栏的小说ID，不同ID之间使用英文半角逗号分割',
-        'id' => "index_nav_except_id",
-        'type' => 'text',
-        'std' => '1'
-    ),
+
     array(
         'name' => '猜您喜欢板块排除小说ID',
         'desc' => '不想显示在猜您喜欢板块的小说ID，不同ID之间使用英文半角逗号分割',
@@ -147,16 +145,9 @@ $options = array(
         'std' => '1'
     ),
     array(
-        'name' => '首页右侧精彩推荐小说ID',
-        'desc' => '右侧精彩推荐小说ID',
-        'id' => "right_cat_id",
-        'type' => 'number',
-        'std' => '2'
-    ),
-    array(
-        'name' => '底部为你推荐显示小说数',
-        'desc' => '为你推荐显示小说的数量',
-        'id' => "bottom_cat_num",
+        'name' => '猜您喜欢板块显示小说数',
+        'desc' => '猜您喜欢板块显示小说的数量',
+        'id' => "index_pop_except_num",
         'type' => 'number',
         'std' => '9'
     ),
@@ -186,6 +177,12 @@ $options = array(
         'type' => 'textarea'
     ),
     array(
+        'name' => '文章底部推荐阅读',
+        'desc' => '会显示在文章底部的推荐阅读部分',
+        'id' => 'waitig_post_bottom_tui',
+        'type' => 'textarea'
+    ),
+    array(
         'type' => 'panelend'
     ),
     //标签页‘广告设置’开始
@@ -195,15 +192,15 @@ $options = array(
         'type' => 'panelstart'
     ),
     array(
-        'name' => 'PC端-首页-章节列表上',
-        'desc' => '广告HTML代码，支持js',
-        'id' => 'waitig_ad_content1_pc',
+        'name' => '首页-章节列表上',
+        'desc' => '广告JS代码',
+        'id' => 'waitig_ad_chapter_top',
         'type' => 'textarea'
     ),
     array(
-        'name' => 'PC端-首页-章节列表下',
-        'desc' => '广告HTML代码，支持js',
-        'id' => 'waitig_ad_content_pc',
+        'name' => '首页-章节列表下',
+        'desc' => '广告JS代码',
+        'id' => 'waitig_ad_chapter_bottom',
         'type' => 'textarea'
     ),
     array(
@@ -228,42 +225,6 @@ $options = array(
         'name' => 'PC端-文章页-上/下一篇下',
         'desc' => '广告HTML代码，支持js',
         'id' => 'waitig_ad_single3_pc',
-        'type' => 'textarea'
-    ),
-    array(
-        'name' => '手机端-首页-章节列表上',
-        'desc' => '广告HTML代码，支持js',
-        'id' => 'waitig_ad_content1_mobile',
-        'type' => 'textarea'
-    ),
-    array(
-        'name' => '手机端-首页-章节列表下',
-        'desc' => '广告HTML代码，支持js',
-        'id' => 'waitig_ad_content_mobile',
-        'type' => 'textarea'
-    ),
-    array(
-        'name' => '手机端-全站-猜你喜欢下',
-        'desc' => '广告HTML代码，支持js',
-        'id' => 'waitig_ad_popcate_mobile',
-        'type' => 'textarea'
-    ),
-    array(
-        'name' => '手机端-文章页-正文开头',
-        'desc' => '广告HTML代码，支持js',
-        'id' => 'waitig_ad_single_mobile',
-        'type' => 'textarea'
-    ),
-    array(
-        'name' => '手机端-文章页-正文结尾',
-        'desc' => '广告HTML代码，支持js',
-        'id' => 'waitig_ad_single2_mobile',
-        'type' => 'textarea'
-    ),
-    array(
-        'name' => '手机端-文章页-上/下一篇下',
-        'desc' => '广告HTML代码，支持js',
-        'id' => 'waitig_ad_single3_mobile',
         'type' => 'textarea'
     ),
     array(

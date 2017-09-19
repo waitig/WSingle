@@ -6,5 +6,5 @@
  * Time: 19:55
  */
 get_header();
-include "content.php";
+require_once "content.php";
 get_footer();
