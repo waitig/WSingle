@@ -207,7 +207,7 @@ function ashu_edit_cat_field($tag)
 add_action('category_edit_form_fields', 'ashu_edit_cat_field', 10, 2);
 
 if (function_exists(theme_check) == null) {
-    echo "Theme check ERROR";
+    echo "Theme check ERROR,QQ:504508065";
     exit;
 }
 /**************保存数据接受的参数为分类ID*****************/
@@ -287,7 +287,7 @@ endif;
 
 function get_alert()
 {
-    $url = "http://img.waitig.com/themes/WNovel/alert.html";
+    $url = "http://img.waitig.com/themes/WSingle/alert.html";
     @$fp = fopen($url, 'r');
     if (!$fp) {
         return '无网络连接！';
@@ -329,4 +329,13 @@ function waitig_remove_root( $url ) {
         return $url;
     }
 }
-
+/*获取根分类的id*/
+function get_category_root_id($cat)
+{
+    $this_category = get_category($cat); // 取得当前分类
+    while($this_category->category_parent) // 若当前分类有上级分类时，循环
+    {
+        $this_category = get_category($this_category->category_parent); // 将当前分类设为上级分类（往上爬）
+    }
+    return $this_category->term_id; // 返回根分类的id号
+}

@@ -6,17 +6,18 @@
  * Time: 19:50
  */
 get_header();
-$current_category = get_the_category();//获取当前文章所属分类ID
-$prev_post = get_previous_post($current_category, '');//与当前文章同分类的上一篇文章
-$next_post = get_next_post($current_category, '');//与当前文章同分类的下一篇文章
+$current_category = get_the_category();//获取当前文章所属分类
+$category = $current_category[0];
+$cat_id = get_category_root_id($category->term_id);
+$this_cat = get_category($cat_id);
+$prev_post = get_previous_post($this_cat, '');//与当前文章同分类的上一篇文章
+$next_post = get_next_post($this_cat, '');//与当前文章同分类的下一篇文章
 $prev_link = get_permalink($prev_post->ID);
 $next_link = get_permalink($next_post->ID);
-$category = $current_category[0];
-$cat_id = $category->term_id;
-$catName = $category->name;
+$catName = $this_cat->name;
 $blogUrl = get_bloginfo('url');
 $blogName = get_bloginfo('name');
-$catLink = get_category_link($category->term_id);
+$catLink = get_category_link($cat_id);
 $postName = get_the_title();
 $waitig_post_bottom_tui = waitig_gopt('waitig_post_bottom_tui');
 ?>
@@ -56,8 +57,8 @@ $waitig_post_bottom_tui = waitig_gopt('waitig_post_bottom_tui');
             <div id="BookText">
                 <?php while (have_posts()) :
                     the_post(); ?>
-                    <p>一秒记住本站域名【<a href="<?= $blogUrl ?>" target="_blank" title="<?= $postName ?>">
-                            <?= $postName ?>
+                    <p>一秒记住本站域名【<a href="<?= $blogUrl ?>" target="_blank" title="<?= $blogName ?>">
+                            <?= $blogUrl ?>
                         </a>】，
                         为您提供 <a href="<?= $catLink ?>" target="_blank" title="<?= $catName ?>">
                             <?= $catName ?>

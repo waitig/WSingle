@@ -67,12 +67,6 @@ $options = array(
         'type' => 'text'
     ),
     array(
-        'name' => '开启最近更新和猜您喜欢列表',
-        'desc' => '开启后，在页面下半部分会显示最新更新的章节和一个随机推荐的小说列表',
-        'id' => 'waitig_popcat_on',
-        'type' => 'checkbox'
-    ),
-    array(
         'name' => '去除头部多余代码',
         'desc' => '如果不用wlw发布博客，则建议开启',
         'id' => 'waitig_remove_head_code',
@@ -136,7 +130,12 @@ $options = array(
         'type' => 'number',
         'std' => '2'
     ),
-
+    array(
+        'name' => '开启最近更新和猜您喜欢列表',
+        'desc' => '开启后，在页面下半部分会显示最新更新的章节和一个随机推荐的小说列表',
+        'id' => 'waitig_popcat_on',
+        'type' => 'checkbox'
+    ),
     array(
         'name' => '猜您喜欢板块排除小说ID',
         'desc' => '不想显示在猜您喜欢板块的小说ID，不同ID之间使用英文半角逗号分割',
