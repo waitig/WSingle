@@ -23,6 +23,7 @@ $catUrl = get_category_link($thiscat->term_id);
 $right_cat_id = waitig_gopt('right_cat_id');
 $cats_id_arr = get_term_children($cat_id, 'category');
 $themeUrl = get_template_directory_uri();
+$new_list_num = waitig_gopt('new_list_num');
 ?>
 <div class="clear"></div>
 <div class="container">
@@ -88,7 +89,20 @@ $themeUrl = get_template_directory_uri();
                     <?= waitig_gopt('waitig_tui') ?>
                 </div>
             </div>
+            <script>chapter_top();</script>
             <dl class="chapterlist">
+                <!--最新列表-->
+                <dt class="title"><?= $thiscat->name ?> 最新章节列表</dt>
+                <?php
+                query_posts("posts_per_page=".$new_list_num."&cat=" . $thiscat->term_id . "&order=ASC");
+                while (have_posts()) :
+                    the_post();
+                    $postUrl = get_the_permalink();
+                    $postTitle = get_the_title();
+                    echo "<dd><a href=\"$postUrl\" title=\"$postTitle\">$postTitle</a></dd>";
+                endwhile;
+                wp_reset_query();
+                ?>
                 <?php if (count($cats_id_arr) == 0) {
                     echo '<dt class="title">正文</dt>';
                     query_posts("posts_per_page=-1&cat=" . $thiscat->term_id . "&order=ASC");
@@ -114,6 +128,11 @@ $themeUrl = get_template_directory_uri();
                     }
                 } ?>
             </dl>
+            <script>chapter_bottom();</script>
         </div>
     </div>
 </div>
+<?php
+if(waitig_gopt('waitig_popcat_on')){
+    require_once 'popcate.php';
+}

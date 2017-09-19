@@ -126,9 +126,6 @@ if (document.all) {
 } else {
     window.addEventListener('load', LoadReadSet, false);
 }
-//引入广.告代码
-var aurl = window.location.host;
-document.write('<script type="text/javascript" src="http://' + aurl + '/wp-content/themes/SNovel/js/nono.js"></script>');
 
 //share
 function share() {
@@ -142,13 +139,3 @@ function backtotop() {
     document.writeln('<div id="floatPanel"><div class="ctrolPanel"><a class="arrow" href="#"><span>顶部</span></a><a class="arrow" href="#"><span>底部</span></a></div></div>');
 }
 
-//tongji
-function tongji() {
-    var _hmt = _hmt || [];
-    (function () {
-        var hm = document.createElement("script");
-        hm.src = "https://hm.baidu.com/hm.js?a567c0df24ece077dc013553ae4cc925";
-        var s = document.getElementsByTagName("script")[0];
-        s.parentNode.insertBefore(hm, s);
-    })();
-}

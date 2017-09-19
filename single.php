@@ -9,114 +9,83 @@ get_header();
 $current_category = get_the_category();//获取当前文章所属分类ID
 $prev_post = get_previous_post($current_category, '');//与当前文章同分类的上一篇文章
 $next_post = get_next_post($current_category, '');//与当前文章同分类的下一篇文章
+$prev_link = get_permalink($prev_post->ID);
+$next_link = get_permalink($next_post->ID);
 $category = $current_category[0];
 $cat_id = $category->term_id;
+$catName = $category->name;
+$blogUrl = get_bloginfo('url');
+$blogName = get_bloginfo('name');
+$catLink = get_category_link($category->term_id);
+$postName = get_the_title();
+$waitig_post_bottom_tui = waitig_gopt('waitig_post_bottom_tui');
 ?>
-    <script type="text/javascript">
-        var pre = '<?php if (!empty($prev_post)):
-            echo get_permalink($prev_post->ID);
-        endif; ?>';
-        var nex = '<?php if (!empty($next_post)) {
-            echo get_permalink($next_post->ID);
-        } else {
-            echo "javascript:window.alert(\'下一章：没有了\');";
-        }?>';
-        var currentpos, timer;
-
-        function initialize() {
-            timer = setInterval("scrollwindow()", 20);
-        }
-
-        function sc() {
-            clearInterval(timer);
-        }
-
-        function scrollwindow() {
-            window.scrollBy(0, 1);
-        }
-
-        $(function () {
-            document.onmousedown = sc;
-            document.ondblclick = initialize;
-
-
-            $(window).keydown(function (e) {
-                var c = e.keyCode;
-                if (c == 37) {
-                    location.href = pre;
-                } else if (c == 39) {
-                    location.href = nex;
-                }
-            });
-        });
-    </script>
-    <div class="container">
-        <?php echo deel_breadcrumbs(); ?>
-        <!--<script>_17mb_waptop();</script>-->
-        <div class="row">
-            <div class="col-sm-12 col-md-12">
-                <div id="gundong" class="alert alert-warning" style="font-size: 12px">
-                    亲,双击屏幕即可自动滚动
+<div class="crumbs">
+    <div class="fl"><span>当前位置：</span>
+        <a href="<?= $blogUrl ?>" title="<?= $blogName ?>"><?= $blogName ?></a> &gt;
+        <a href="<?= $catLink ?>" title="<?= $catName ?>"><?= $catName ?></a> &gt;
+        <?= $postName ?>
+    </div>
+</div>
+<div class="container">
+    <div class="bookset">
+        <script>if (system.win || system.mac || system.xll) {
+                bookset();
+            }
+        </script>
+    </div>
+    <div class="article" id="main">
+        <div class="inner" id="BookCon">
+            <h1><?= $postName ?></h1>
+            <div class="link xb">
+                <a href="<?= $prev_link ?>" rel="prev">上一章</a>←
+                <a href="<?= $catLink ?>">返回列表</a>→
+                <a href="<?= $next_link ?>" rel="next">下一章</a>
+            </div>
+            <div class="ads">
+                <div class="adleft">
+                    <script>post_left();</script>
                 </div>
-                <div>
-                    <?php if (wp_is_mobile()) {
-                        echo waitig_gopt('waitig_ad_single_mobile');
-                    } else {
-                        echo waitig_gopt('waitig_ad_single_pc');
-                    } ?>
+                <div class="adright">
+                    <script>post_right();</script>
                 </div>
-                <div class="panel panel-default">
-                    <?php while (have_posts()) :
+            </div>
+            <div>
+                <script>post_top();</script>
+            </div>
+            <div id="BookText">
+                <?php while (have_posts()) :
                     the_post(); ?>
-                    <div class="panel-heading"><?php echo $category->name . ' ';
-                        the_title(); ?></div>
-                    <div class="chaptera">
-                        <div class="clearfix"></div>
-                    </div>
-                    <div class="panel-body content-body content-ext">&nbsp;&nbsp;&nbsp;&nbsp;<p>一秒记住本站域名【<a
-                                    href="<?php bloginfo('url'); ?>" target="_blank"
-                                    title="<?php bloginfo('name'); ?>"><?php bloginfo('name'); ?></a> <?php bloginfo('url'); ?>
-                            】，为您提供 <a href="<?php echo get_category_link($category->term_id); ?>" target="_blank"
-                                      title="<?php echo $category->name; ?>"><?php echo $category->name; ?></a>
-                            小说最新章节阅读！</p>
-                        <?php the_content(); ?>
-                    </div>
-                </div>
-                <div>
-                    <?php if (wp_is_mobile()) {
-                        echo waitig_gopt('waitig_ad_single2_mobile');
-                    } else {
-                        echo waitig_gopt('waitig_ad_single2_pc');
-                    } ?>
-                </div>
+                    <p>一秒记住本站域名【<a href="<?= $blogUrl ?>" target="_blank" title="<?= $postName ?>">
+                            <?= $postName ?>
+                        </a>】，
+                        为您提供 <a href="<?= $catLink ?>" target="_blank" title="<?= $catName ?>">
+                            <?= $catName ?>
+                        </a>小说最新章节阅读！
+                    </p>
+                    <?php the_content();
+                endwhile; ?>
+                <h4>推荐阅读：<?= $waitig_post_bottom_tui ?></h4>
             </div>
-        </div>
-    <?php endwhile; ?>
-        <div class="row">
-            <div class="col-md-12">
-                <nav>
-                    <ul class="pager">
-                        <li class="previous"><a class="btn btn-info" href="<?php if (!empty($prev_post)):
-                                echo get_permalink($prev_post->ID);
-                            endif; ?>">上一章</a></li>
-                        <li><a class="btn btn-info" href="<?php echo get_category_link($category->term_id) ?>">返回目录</a>
-                        </li>
-                        <li class="next"><a class="btn btn-info" href="<?php if (!empty($next_post)) {
-                                echo get_permalink($next_post->ID);
-                            } else {
-                                echo 'javascript:window.alert(\'下一章：没有了\');';
-                            } ?>">下一篇</a></li>
-                    </ul>
-                </nav>
-                <div>
-                    <?php if (wp_is_mobile()) {
-                        echo waitig_gopt('waitig_ad_single3_mobile');
-                    } else {
-                        echo waitig_gopt('waitig_ad_single3_pc');
-                    } ?>
-                </div>
+            <div>
+                <script>post_bottom();</script>
             </div>
-            <?php include "popcate.php"; ?>
-            <?php include "flink.php"; ?>
+            <div class="link">
+                <a href="<?= $prev_link ?>" rel="prev">上一章</a>←
+                <a href="<?= $catLink ?>">返回列表</a>→
+                <a href="<?= $next_link ?>" rel="next">下一章</a>
+            </div>
+            <div class="clear"></div>
         </div>
-<?php get_footer();
+    </div>
+</div>
+<script type="text/javascript">
+    var next_page = "<?=$next_link?>";
+    var back_page = "<?=$prev_link?>";
+    document.onkeydown = function (evt) {
+        var e = window.event || evt;
+        if (e.keyCode == 37) location.href = back_page;
+        if (e.keyCode == 39) location.href = next_page;
+    };
+</script>
+<?php get_footer(); ?>
