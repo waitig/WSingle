@@ -13,8 +13,9 @@ if (is_category()) {
     $cat_id = waitig_gopt('index_cat_id');
 } elseif (is_single()) {
     $categorys = get_the_category();
+    //var_dump($categorys);
     $thiscat = $categorys[0];
-    $cat_id = $thiscat->term_id;
+    $cat_id = get_category_root_id($thiscat->term_id);
 }
 $thiscat = get_category($cat_id);
 /**
@@ -109,7 +110,7 @@ $qq_qun_link = waitig_gopt('qq_qun_link');
     <div class="container">
         <div class="inner">
             <div class="details">
-                <p class="not"><font color="red"><?= $blogUrl ?></font> 全新改版，无弹窗，最值得书友收藏的小说阅读网！</p>
+                <p class="not"><font color="red"><?= $blogName ?></font> 全新改版，无弹窗，最值得书友收藏的小说阅读网！</p>
                 <p class="qq"><a target="_blank" rel="nofollow" href="<?= $qq_qun_link ?>">
                         <img border="0" src="http://pub.idqqimg.com/wpa/images/group.png" alt="加入QQ群" title="点击加入QQ群">
                     </a>
