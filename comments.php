@@ -43,37 +43,6 @@ $post = get_post();
                 <ol class="commentlist">
                     <?php wp_list_comments('type=comment&callback=mytheme_comment'); ?>
                 </ol>
-            <ol class="commentlist">
-                <li class="comment even thread-even depth-1" id="comment-3">
-                    <div id="div-comment-3" class="comment-body">
-                        <div class="author_box">
-                            <div class="t" style="display:none;" id="comment-3"></div>
-                            <div class="comment-author">
-                                <span class="floor">&nbsp;沙发<sup>#</sup></span>
-                                <strong>一个套路……</strong> :
-                                <span class="datetime">
-												2017年09月14日				</span>
-                                <span class="reply"><a rel='nofollow' class='comment-reply-link'
-                                                       href='/book/11.html?replytocom=3#respond'
-                                                       onclick='return addComment.moveForm( "div-comment-3", "3", "respond", "11" )'
-                                                       aria-label='回复给一个套路……'>回复</a></span>
-                            </div>
-                            <p>????啊啊啊</p>
-                        </div>
-                    </div>
-                </li>
-            </ol>
-            <ol>
-                <?php
-                $args = array(
-                    'max_depth' => 3,
-                    'style' => 'ol',
-                    'reply_text' => '吐槽',
-                    'avatar_size' => 36,
-                );
-                wp_list_comments($args);
-                ?>
-            </ol>
 
             <?php
             $args = array(
@@ -90,7 +59,7 @@ $post = get_post();
                 'fields' => apply_filters('comment_form_default_fields', array(
                     'author' => '<p>' . '<label for="author">' . __('昵称', 'domainreference') . '</label> ' . '<span>*</span>' . '<input id="author" name="author" type="text" value="' . esc_attr($commenter['comment_author']) . '" size="30"' . $aria_req . ' /></p>',
                 )));
-            comment_form();
+            comment_form($args);
             ?>
         </div>
     </div>

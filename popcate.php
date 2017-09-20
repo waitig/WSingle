@@ -15,23 +15,33 @@ $index_pop_except_num = waitig_gopt('index_pop_except_num');
             <div class="details">
                 <ul class="gengxin">
                     <?php
-                    query_posts("posts_per_page=".$index_pop_except_num."&cat=-1&order=DESC");
-//                    $args = array(
-//                        'order' => DESC,
-//                        'category__not_in' => array($index_pop_except_id),
-//                        'orderby' => '',
-//                        'posts_per_page' => waitig_gopt('$index_pop_except_num'),
-//                        'paged' => 1,
-//                        'caller_get_posts' => 1
-//                    );
-//                    query_posts($args);
-                    while (have_posts()) :
-                        the_post();
-                        $postUrl = get_the_permalink();
-                        $postTitle = get_the_title();
-                        $postDate = get_the_time('Y-m-d H:i');
-                        $category = get_the_category();
-                        $catLink = get_category_link($category[0]->term_id);
+                    $args = array(
+                        'numberposts' => $index_pop_except_num,
+                        'offset' => 0,
+                        'category' => 0,
+                        'orderby' => 'post_date',
+                        'order' => 'DESC',
+                        'post_status' => 'publish');
+                    $postList = get_posts($args);
+                    //var_dump($postList);
+                    //query_posts("posts_per_page=" . $index_pop_except_num . "&cat=-1&order=DESC&paged=1");
+                    //                    $args = array(
+                    //                        'order' => DESC,
+                    //                        'category__not_in' => array($index_pop_except_id),
+                    //                        'orderby' => '',
+                    //                        'posts_per_page' => waitig_gopt('$index_pop_except_num'),
+                    //                        'paged' => 1,
+                    //                        'caller_get_posts' => 1
+                    //                    );
+                    //                    query_posts($args);
+                    //while (have_posts()) :
+                    //    the_post();
+                    foreach( $postList as $recent ){
+                        $postUrl = get_permalink($recent->ID);
+                        $postTitle = $recent->post_title;
+                        $postDate = $recent->post_date;
+                        $category = get_the_category($recent->ID);
+                        $catLink = get_category_link(get_category_root_id($category[0]->term_id));
                         $catName = $category[0]->name;
                         $catAuth = waitig_gopt("cat_author_" . $category[0]->term_id);
                         ?>
@@ -45,9 +55,7 @@ $index_pop_except_num = waitig_gopt('index_pop_except_num');
                             <span class="col3"><?= $catAuth ?></span>
                             <span class="col4"><?= $postDate ?></span>
                         </li>
-                    <?php endwhile;
-                    wp_reset_query();
-                    ?>
+                    <?php } ?>
                 </ul>
             </div>
         </div>
