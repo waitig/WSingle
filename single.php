@@ -95,5 +95,7 @@ $waitig_post_bottom_tui = waitig_gopt('waitig_post_bottom_tui');
         window.addEventListener('load', LoadReadSet, false);
     }
 </script>
-<?php require_once 'comment.php'; ?>
-<?php get_footer(); ?>
+<?php if (comments_open() || get_comments_number()) :
+    comments_template();
+endif;
+get_footer(); ?>
