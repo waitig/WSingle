@@ -339,7 +339,7 @@ function get_category_root_id($cat)
     }
     return $this_category->term_id; // 返回根分类的id号
 }
-//去除
+//去除评论中无用字段
 add_filter('comment_form_default_fields', 'unset_url_field');
 function unset_url_field($fields){
     if(isset($fields['url']))
@@ -348,3 +348,84 @@ function unset_url_field($fields){
         unset($fields['email']);
     return $fields;
 }
+
+//添加一个“小说”post_type
+/*function waitig_novel_post_type()
+{
+    $labels = array(
+        'name' => '小说章节列表',
+        'singular_name' => '小说章节',
+        'add_new' => '添加小说章节',
+        'add_new_item' => '添加小说章节',
+        'edit_item' => '编辑小说章节',
+        'new_item' => '新的小说章节',
+        'view_item' => '查看小说章节',
+        'search_items' => '搜索小说章节',
+        'not_found' => '没有发现小说章节',
+        'not_found_in_trash' => '回收站中没有小说章节',
+        'parent_item_colon' => '',
+        'menu_name' => '小说管理',
+    );
+    $args = array(
+        'labels' => $labels,
+        'description' => '热门小说章节，及时分享',
+        'public' => true,
+        'menu_position' => 5,
+        'supports' => array('title', 'editor', 'thumbnail', 'except', 'custom-fields', 'comments', 'revisions'),
+        'has_archive' => true,
+        'taxonomies' => array('novel_category', 'post_tag'),//支持的分类法
+    );
+    register_post_type('novel', $args);
+}
+
+add_action('init', 'waitig_novel_post_type');
+//添加一个分类法novel_catgegory
+function waitig_novel_taxonomy()
+{
+    $labels = array(
+        'name' => '小说分类',
+        'singular_name' => '小说',
+        'search_items' => '搜索',
+        'popular_items' => '常用小说分类',
+        'all_items' => '所有小说分类',
+        'parent_item' => '小说父分类',
+        'parent_item_colon' => '小说父分类colon',
+        'edit_item' => '编辑小说分类',
+        'update_item' => '更新小说分类',
+        'add_new_item' => '添加小说分类',
+        'new_item_name' => '新的小说分类',
+    );
+    $args = array(
+        'labels' => $labels,
+        'hierarchical' => true,//分层级
+    );
+    register_taxonomy('novel_category', 'novel', $args);
+}
+add_action('init', 'waitig_novel_taxonomy');*/
+function change_post_menu_label() {
+    global $menu;
+    global $submenu;
+    $menu[5][0] = '小说管理';
+    $submenu['edit.php'][5][0] = '小说章节管理';
+    $submenu['edit.php'][10][0] = '新增小说章节';
+    $submenu['edit.php'][15][0] = '小说管理'; // Change name for categories
+    $submenu['edit.php'][16][0] = ''; // Change name for tags
+    echo '';
+}
+
+function change_post_object_label() {
+    global $wp_post_types;
+    $labels = &$wp_post_types['post']->labels;
+    $labels->name = 'Contacts';
+    $labels->singular_name = 'Contact';
+    $labels->add_new = 'Add Contact';
+    $labels->add_new_item = 'Add Contact';
+    $labels->edit_item = 'Edit Contacts';
+    $labels->new_item = 'Contact';
+    $labels->view_item = 'View Contact';
+    $labels->search_items = 'Search Contacts';
+    $labels->not_found = 'No Contacts found';
+    $labels->not_found_in_trash = 'No Contacts found in Trash';
+}
+//add_action( 'init', 'change_post_object_label' );
+add_action( 'admin_menu', 'change_post_menu_label' );

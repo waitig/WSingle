@@ -94,7 +94,7 @@ $_SESSION['thiscat']=$thiscat;
         <link rel="stylesheet" href="<?= $themeUrl ?>/style.css" type="text/css" media="screen">
         <link rel="stylesheet" media="screen and (max-width:600px)" href="<?= $themeUrl ?>/css/mobile.css"
               type="text/css">
-        <script type="text/javascript" src="<?= $themeUrl ?>/js/user.js"></script>
+        <script type="text/javascript" src="<?= $themeUrl ?>/js/waitig.js"></script>
         <?=$waitig_head_code?>
     </head>
 <body>
