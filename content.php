@@ -7,8 +7,10 @@
  * Index:http://www.waitig.com
  * Theme:WBetter Theme
  */
-$cat_id = 1;
-$right_cat_id = 1;
+session_start();
+$cat_id = $_SESSION['cat_id'];
+$thiscat = $_SESSION['thiscat'];
+/*$right_cat_id = 1;
 if (is_category()) {
     $cat_id = get_cat_ID(single_cat_title('', false));
 } elseif (is_home()) {
@@ -17,10 +19,9 @@ if (is_category()) {
     $categorys = get_the_category();
     $category = $categorys[0];
     $cat_id = get_category_root_id($category->term_id);
-}
-$thiscat = get_category($cat_id);
+}*/
+//$thiscat = get_category($cat_id);
 $catUrl = get_category_link($thiscat->term_id);
-$right_cat_id = waitig_gopt('right_cat_id');
 $cats_id_arr = get_term_children($cat_id, 'category');
 $themeUrl = get_template_directory_uri();
 $new_list_num = waitig_gopt('new_list_num');
@@ -102,7 +103,7 @@ $blogName = get_bloginfo('name');
                         <?= waitig_gopt('waitig_tui') ?>
                     </div>
                 </div>
-                <script>chapter_top();</script>
+                <?= waitig_gopt('waitig_ad_chapter_top') ?>
                 <dl class="chapterlist">
                     <!--最新列表-->
                     <dt class="title"><?= $thiscat->name ?> 最新章节列表</dt>
@@ -141,11 +142,12 @@ $blogName = get_bloginfo('name');
                         }
                     } ?>
                 </dl>
-                <script>chapter_bottom();</script>
+                <?= waitig_gopt('waitig_ad_chapter_bottom') ?>
             </div>
         </div>
     </div>
 <?php
+require_once 'comment.php';
 if (waitig_gopt('waitig_popcat_on')) {
     require_once 'popcate.php';
 }

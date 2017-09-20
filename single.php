@@ -6,10 +6,11 @@
  * Time: 19:50
  */
 get_header();
-$current_category = get_the_category();//获取当前文章所属分类
-$category = $current_category[0];
-$cat_id = get_category_root_id($category->term_id);
-$this_cat = get_category($cat_id);
+session_start();
+//$current_category = get_the_category();//获取当前文章所属分类
+//$category = $current_category[0];
+$cat_id = $_SESSION['cat_id'];
+$this_cat = $_SESSION['thiscat'];
 $prev_post = get_previous_post($this_cat, '');//与当前文章同分类的上一篇文章
 $next_post = get_next_post($this_cat, '');//与当前文章同分类的下一篇文章
 $prev_link = get_permalink($prev_post->ID);
@@ -45,16 +46,16 @@ $waitig_post_bottom_tui = waitig_gopt('waitig_post_bottom_tui');
             </div>
             <div class="ads">
                 <div class="adleft">
-                    <script>post_left();</script>
+                    <?= waitig_gopt('waitig_ad_post_left') ?>
                 </div>
                 <div class="adright">
-                    <script>post_right();</script>
+                    <?= waitig_gopt('waitig_ad_post_right') ?>
                 </div>
             </div>
             <div>
-                <script>post_top();</script>
+                <?= waitig_gopt('waitig_ad_post_top') ?>
             </div>
-            <div id="BookText">
+            <div id="BookText" style="">
                 <?php while (have_posts()) :
                     the_post(); ?>
                     <p>一秒记住本站域名【<a href="<?= $blogUrl ?>" target="_blank" title="<?= $blogName ?>">
@@ -69,7 +70,7 @@ $waitig_post_bottom_tui = waitig_gopt('waitig_post_bottom_tui');
                 <h4>推荐阅读：<?= $waitig_post_bottom_tui ?></h4>
             </div>
             <div>
-                <script>post_bottom();</script>
+                <?= waitig_gopt('waitig_ad_post_bottom') ?>
             </div>
             <div class="link">
                 <a href="<?= $prev_link ?>" rel="prev">上一章</a>←
@@ -88,5 +89,11 @@ $waitig_post_bottom_tui = waitig_gopt('waitig_post_bottom_tui');
         if (e.keyCode == 37) location.href = back_page;
         if (e.keyCode == 39) location.href = next_page;
     };
+    if (document.all) {
+        window.attachEvent('onload', LoadReadSet);
+    } else {
+        window.addEventListener('load', LoadReadSet, false);
+    }
 </script>
+<?php require_once 'comment.php'; ?>
 <?php get_footer(); ?>

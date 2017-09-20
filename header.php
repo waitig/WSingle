@@ -58,6 +58,10 @@ $themeUrl = get_template_directory_uri();
 $blogUrl = get_bloginfo('url');
 $blogName = get_bloginfo('name');
 $qq_qun_link = waitig_gopt('qq_qun_link');
+$waitig_head_code = waitig_gopt('waitig_head_code');
+session_start();
+$_SESSION['cat_id']=$cat_id;
+$_SESSION['thiscat']=$thiscat;
 ?>
     <!DOCTYPE html>
     <html class="no-js" lang="zh-CN">
@@ -91,7 +95,7 @@ $qq_qun_link = waitig_gopt('qq_qun_link');
         <link rel="stylesheet" media="screen and (max-width:600px)" href="<?= $themeUrl ?>/css/mobile.css"
               type="text/css">
         <script type="text/javascript" src="<?= $themeUrl ?>/js/user.js"></script>
-        <script type="text/javascript" src="<?= $themeUrl ?>/js/user.php.js"></script>
+        <?=$waitig_head_code?>
     </head>
 <body>
     <!-- Fixed navbar -->

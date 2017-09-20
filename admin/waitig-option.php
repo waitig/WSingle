@@ -40,13 +40,6 @@ $options = array(
         'std' => ''
     ),
     array(
-        'name' => '网站手机版地址',//选项显示的文字，选填
-        'desc' => '网站的手机站地址',//选项显示的一段描述文字，选填
-        'id' => "waitig_murl",//选项的id，必须是唯一，后面根据这个获取值，必填
-        'type' => 'text',//种类，这个是普通的文字输入，必填
-        'std' => ''//选项的默认值，选填
-    ),
-    array(
         'name' => '网站缩略图',//选项显示的文字，选填
         'desc' => '网站og:image标签图片地址',//选项显示的一段描述文字，选填
         'id' => "waitig_og_image",//选项的id，必须是唯一，后面根据这个获取值，必填
@@ -73,14 +66,26 @@ $options = array(
         'type' => 'checkbox'
     ),
     array(
+        'name' => '统计代码',
+        'desc' => '统计代码，百度，CNZZ等统计代码',
+        'id' => 'waitig_tongji_code',
+        'type' => 'textarea'
+    ),
+    array(
+        'name' => '百度自动推送代码',
+        'desc' => '百度自动推送代码',
+        'id' => 'waitig_baidu_tui_code',
+        'type' => 'textarea'
+    ),
+    array(
         'name' => '头部公共代码',
-        'desc' => '网站头部公共代码',
+        'desc' => '网站头部公共代码,可以是任意HTML代码',
         'id' => 'waitig_head_code',
         'type' => 'textarea'
     ),
     array(
         'name' => '页脚公共代码',
-        'desc' => '网站页脚公共代码',
+        'desc' => '网站页脚公共代码,可以是任意HTML代码',
         'id' => 'waitig_foot_code',
         'type' => 'textarea'
     ),
@@ -95,13 +100,6 @@ $options = array(
         'desc' => '禁止自动更新 【不推荐】',
         'id' => "waitig_updates_un",
         'type' => 'checkbox'
-    ),
-    array(
-        'name' => '是否开启HTTPS',
-        'desc' => '开启后，系统分享将会失效',
-        'id' => "https_on",
-        'type' => 'checkbox',
-        'std' => '1'
     ),
     array(
         'type' => 'panelend'
@@ -192,38 +190,38 @@ $options = array(
     ),
     array(
         'name' => '首页-章节列表上',
-        'desc' => '广告JS代码',
+        'desc' => '广告代码',
         'id' => 'waitig_ad_chapter_top',
         'type' => 'textarea'
     ),
     array(
         'name' => '首页-章节列表下',
-        'desc' => '广告JS代码',
+        'desc' => '广告代码',
         'id' => 'waitig_ad_chapter_bottom',
         'type' => 'textarea'
     ),
     array(
-        'name' => 'PC端-全站-猜你喜欢下',
-        'desc' => '广告HTML代码，支持js',
-        'id' => 'waitig_ad_popcate_pc',
+        'name' => '文章页-左侧',
+        'desc' => '广告代码',
+        'id' => 'waitig_ad_post_left',
         'type' => 'textarea'
     ),
     array(
-        'name' => 'PC端-文章页-正文开头',
-        'desc' => '广告HTML代码，支持js',
-        'id' => 'waitig_ad_single_pc',
+        'name' => '文章页-右侧',
+        'desc' => '广告代码',
+        'id' => 'waitig_ad_post_right',
         'type' => 'textarea'
     ),
     array(
-        'name' => 'PC端-文章页-正文结尾',
-        'desc' => '广告HTML代码，支持js',
-        'id' => 'waitig_ad_single2_pc',
+        'name' => '文章页-文章上方',
+        'desc' => '广告代码',
+        'id' => 'waitig_ad_post_top',
         'type' => 'textarea'
     ),
     array(
-        'name' => 'PC端-文章页-上/下一篇下',
-        'desc' => '广告HTML代码，支持js',
-        'id' => 'waitig_ad_single3_pc',
+        'name' => '文章页-文章下方',
+        'desc' => '广告代码',
+        'id' => 'waitig_ad_post_bottom',
         'type' => 'textarea'
     ),
     array(
