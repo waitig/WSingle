@@ -8,7 +8,7 @@
 $dname = 'WSingle';
 $themename = 'WSingle';
 $themeDir = get_stylesheet_directory_uri();
-include('admin/waitig.php');
+require_once ('admin/waitig.php');
 function deel_breadcrumbs()
 {
     if (!is_single()) return false;
@@ -320,15 +320,15 @@ function my_custom_submenu_page_callback()
 }
 
 //全站链接相对路径
-add_filter( 'home_url', 'waitig_remove_root');
-function waitig_remove_root( $url ) {
-    if(!is_feed() || !get_query_var( 'sitemap' )){
-        $url = preg_replace( '|^(https?:)?//[^/]+(/?.*)|i', '$2', $url );
-        return '/' . ltrim( $url, '/' );
-    }else{
-        return $url;
-    }
-}
+//add_filter( 'home_url', 'waitig_remove_root');
+//function waitig_remove_root( $url ) {
+//    if(!is_feed() || !get_query_var( 'sitemap' )){
+//        $url = preg_replace( '|^(https?:)?//[^/]+(/?.*)|i', '$2', $url );
+//        return '/' . ltrim( $url, '/' );
+//    }else{
+//        return $url;
+//    }
+//}
 /*获取根分类的id*/
 function get_category_root_id($cat)
 {
@@ -338,4 +338,13 @@ function get_category_root_id($cat)
         $this_category = get_category($this_category->category_parent); // 将当前分类设为上级分类（往上爬）
     }
     return $this_category->term_id; // 返回根分类的id号
+}
+//去除
+add_filter('comment_form_default_fields', 'unset_url_field');
+function unset_url_field($fields){
+    if(isset($fields['url']))
+        unset($fields['url']);
+    if(isset($fields['email']))
+        unset($fields['email']);
+    return $fields;
 }

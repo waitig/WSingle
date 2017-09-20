@@ -121,11 +121,6 @@ function LoadReadSet() {
     ReadSet.LoadSet();
 }
 
-if (document.all) {
-    window.attachEvent('onload', LoadReadSet);
-} else {
-    window.addEventListener('load', LoadReadSet, false);
-}
 
 //share
 function share() {

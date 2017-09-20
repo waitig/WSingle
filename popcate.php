@@ -15,16 +15,16 @@ $index_pop_except_num = waitig_gopt('index_pop_except_num');
             <div class="details">
                 <ul class="gengxin">
                     <?php
-                    //query_posts("posts_per_page=".$index_pop_except_num."&cat=-1&order=ASC");
-                    $args = array(
-                        'order' => DESC,
-                        'category__not_in' => array($index_pop_except_id),
-                        'orderby' => '',
-                        'posts_per_page' => waitig_gopt('$index_pop_except_num'),
-                        'paged' => 1,
-                        'caller_get_posts' => 1
-                    );
-                    query_posts($args);
+                    query_posts("posts_per_page=".$index_pop_except_num."&cat=-1&order=DESC");
+//                    $args = array(
+//                        'order' => DESC,
+//                        'category__not_in' => array($index_pop_except_id),
+//                        'orderby' => '',
+//                        'posts_per_page' => waitig_gopt('$index_pop_except_num'),
+//                        'paged' => 1,
+//                        'caller_get_posts' => 1
+//                    );
+//                    query_posts($args);
                     while (have_posts()) :
                         the_post();
                         $postUrl = get_the_permalink();
