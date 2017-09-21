@@ -335,7 +335,7 @@ function register_my_custom_submenu_page()
 
 function my_custom_submenu_page_callback()
 {
-    echo '<iframe src="https://www.waitig.com/wnovel-theme-user-manual.html" width="100%"  height="800px" frameborder="0"></iframe>';
+    echo '<iframe src="https://www.waitig.com/wsingle-theme-user-manual.html" width="100%"  height="800px" frameborder="0"></iframe>';
 }
 
 //全站链接相对路径
