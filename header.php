@@ -16,7 +16,7 @@ if (is_category()) {
     //var_dump($categorys);
     $cat = $categorys[0];
     $thiscat = get_root_category($cat);
-    $cat_id = $thiscat ->term_id;
+    $cat_id = $thiscat->term_id;
 }
 $thiscat = get_category($cat_id);
 /**
@@ -61,11 +61,11 @@ $blogName = get_bloginfo('name');
 $qq_qun_link = waitig_gopt('qq_qun_link');
 $waitig_head_code = waitig_gopt('waitig_head_code');
 session_start();
-$_SESSION['cat_id']=$cat_id;
-$_SESSION['thiscat']=$thiscat;
+$_SESSION['cat_id'] = $cat_id;
+$_SESSION['thiscat'] = $thiscat;
 ?>
-    <!DOCTYPE html>
-    <html class="no-js" lang="zh-CN">
+<!DOCTYPE html>
+<html class="no-js" lang="zh-CN">
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title><?= $title ?></title>
@@ -87,16 +87,16 @@ $_SESSION['thiscat']=$thiscat;
         <meta property="og:novel:read_url" content="<?= get_category_link($thiscat->term_id) ?>"/>
         <?php query_posts("posts_per_page=1&cat=" . $thiscat->term_id) ?>
         <?php while (have_posts()) : the_post(); ?>
-            <meta property="og:novel:update_time" content="<?= the_time('Y-m-d H:i') ?>"/>
-            <meta property="og:novel:latest_chapter_name" content="<?= get_the_title() ?>"/>
-            <meta property="og:novel:latest_chapter_url" content="<?= get_the_permalink() ?>"/>
+        <meta property="og:novel:update_time" content="<?= the_time('Y-m-d H:i') ?>"/>
+        <meta property="og:novel:latest_chapter_name" content="<?= get_the_title() ?>"/>
+        <meta property="og:novel:latest_chapter_url" content="<?= get_the_permalink() ?>"/>
         <?php endwhile;
         wp_reset_query(); ?>
         <link rel="stylesheet" href="<?= $themeUrl ?>/style.css?ver=1.01" type="text/css" media="screen">
         <link rel="stylesheet" media="screen and (max-width:600px)" href="<?= $themeUrl ?>/css/mobile.css"
               type="text/css">
         <script type="text/javascript" src="<?= $themeUrl ?>/js/waitig.js"></script>
-        <?=$waitig_head_code?>
+        <?= $waitig_head_code ?>
     </head>
 <body>
     <!-- Fixed navbar -->
@@ -115,7 +115,7 @@ $_SESSION['thiscat']=$thiscat;
     <div class="container">
         <div class="inner">
             <div class="details">
-                <p class="not"><font color="red"><?= $blogName ?>(<?=$blogUrl?>)</font> 全新改版，无弹窗，最值得书友收藏的小说阅读网！</p>
+                <p class="not"><font color="red"><?= $blogName ?>(<?= $blogUrl ?>)</font> 全新改版，无弹窗，最值得书友收藏的小说阅读网！</p>
                 <p class="qq"><a target="_blank" rel="nofollow" href="<?= $qq_qun_link ?>">
                         <img border="0" src="http://pub.idqqimg.com/wpa/images/group.png" alt="加入QQ群" title="点击加入QQ群">
                     </a>
