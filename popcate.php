@@ -29,10 +29,11 @@ $index_pop_except_num = waitig_gopt('index_pop_except_num');
                         $postUrl = get_permalink($recent->ID);
                         $postTitle = $recent->post_title;
                         $postDate = $recent->post_date;
-                        $category = get_the_category($recent->ID);
-                        $catLink = get_category_link(get_category_root_id($category[0]->term_id));
-                        $catName = $category[0]->name;
-                        $catAuth = waitig_gopt("cat_author_" . $category[0]->term_id);
+                        $cat = get_the_category($recent->ID);
+                        $category = get_root_category($cat[0]);
+                        $catLink = get_category_link($category->term_id);
+                        $catName = $category->name;
+                        $catAuth = waitig_gopt("cat_author_" . $category->term_id);
                         ?>
                         <li>
                         <span class="col1">

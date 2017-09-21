@@ -22,7 +22,7 @@ $catLink = get_category_link($cat_id);
 $postName = get_the_title();
 $waitig_post_bottom_tui = waitig_gopt('waitig_post_bottom_tui');
 ?>
-<div class="crumbs">
+<div class="container crumbs">
     <div class="fl"><span>当前位置：</span>
         <a href="<?= $blogUrl ?>" title="<?= $blogName ?>"><?= $blogName ?></a> &gt;
         <a href="<?= $catLink ?>" title="<?= $catName ?>"><?= $catName ?></a> &gt;

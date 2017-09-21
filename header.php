@@ -14,8 +14,9 @@ if (is_category()) {
 } elseif (is_single()) {
     $categorys = get_the_category();
     //var_dump($categorys);
-    $thiscat = $categorys[0];
-    $cat_id = get_category_root_id($thiscat->term_id);
+    $cat = $categorys[0];
+    $thiscat = get_root_category($cat);
+    $cat_id = $thiscat ->term_id;
 }
 $thiscat = get_category($cat_id);
 /**
@@ -91,7 +92,7 @@ $_SESSION['thiscat']=$thiscat;
             <meta property="og:novel:latest_chapter_url" content="<?= get_the_permalink() ?>"/>
         <?php endwhile;
         wp_reset_query(); ?>
-        <link rel="stylesheet" href="<?= $themeUrl ?>/style.css" type="text/css" media="screen">
+        <link rel="stylesheet" href="<?= $themeUrl ?>/style.css?ver=1.01" type="text/css" media="screen">
         <link rel="stylesheet" media="screen and (max-width:600px)" href="<?= $themeUrl ?>/css/mobile.css"
               type="text/css">
         <script type="text/javascript" src="<?= $themeUrl ?>/js/waitig.js"></script>
@@ -114,7 +115,7 @@ $_SESSION['thiscat']=$thiscat;
     <div class="container">
         <div class="inner">
             <div class="details">
-                <p class="not"><font color="red"><?= $blogName ?></font> 全新改版，无弹窗，最值得书友收藏的小说阅读网！</p>
+                <p class="not"><font color="red"><?= $blogName ?>(<?=$blogUrl?>)</font> 全新改版，无弹窗，最值得书友收藏的小说阅读网！</p>
                 <p class="qq"><a target="_blank" rel="nofollow" href="<?= $qq_qun_link ?>">
                         <img border="0" src="http://pub.idqqimg.com/wpa/images/group.png" alt="加入QQ群" title="点击加入QQ群">
                     </a>
