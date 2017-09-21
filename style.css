@@ -506,7 +506,7 @@ ul.gengxin li{
 }
 .col1{
     padding: 0 8px 0 5px;
-    width:15%;
+    width:10%;
 }
 .col1 a{
     /*color:#000;*/
@@ -516,7 +516,7 @@ ul.gengxin li{
     text-align: left;
 }
 .col2{
-    width:55%;
+    width:50%;
 }
 span.col2{
     /*max-width: 300px;*/
@@ -532,6 +532,8 @@ span.col2{
 }
 span.col3{
     text-align: left;
+}
+.col4{
 }
 .title h3{
     clear: both;
