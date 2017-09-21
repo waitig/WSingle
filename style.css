@@ -65,7 +65,7 @@ body {
     color: #333;
     font: 12px/1.65 Arial, Helvetica, sans-serif;
 }
-.clear {clear:both; height:10px;}
+.clear {clear:both;}
 h1, h2, h3, h4, h5, h6,dt {
     font-size: 14px;
     margin-bottom:0;
@@ -107,13 +107,7 @@ b,em{
 .bdsharebuttonbox,.bdsharebuttonbox a{
     float:left;
 }
-.hd{
-    max-width:788px;
-    *width:788px;
-    margin: 0 auto;
-    position: relative;
-    clear: both;
-}
+
 #headbar {
     height: 90px;
 }
@@ -173,13 +167,25 @@ b,em{
 }
 /**layout**/
 .container {
-    max-width: 980px;
-    *width:980px;
+    max-width: 1080px;
+    *width:1080px;
     margin: 0 auto 10px;
     border: 1px solid #ddd;
     background: #fcfcfc;
     clear: both;
     overflow: hidden;
+}
+.crumbs {
+    height: 30px;
+    line-height: 30px;
+    color: #bbb;
+}
+.hd{
+    max-width:1080px;
+    *width:1080px;
+    margin: 0 auto;
+    position: relative;
+    clear: both;
 }
 .inner {
     clear: both;
@@ -274,6 +280,7 @@ b,em{
     margin:0;
     text-align:left;
     font-size: 13px;
+    max-height: 133px;
 }
 .btitle{
     overflow:auto;
@@ -302,6 +309,7 @@ b,em{
 }
 .fl {
     float: left;
+    margin:0 5px;
 }
 .status{
     float:right;
@@ -314,6 +322,7 @@ b,em{
     text-align: left;
     color: #999;
     border-top: 1px dotted #ddd;
+    padding:10px 0 0 0;
 }
 .intro b{
     float:left;
@@ -386,18 +395,7 @@ b,em{
 dd.left{
     float:left;
 }
-.crumbs {
-    max-width: 778px;
-    *width:778px;
-    margin: 0 auto 5px;
-    border: 1px solid #ddd;
-    background: #fcfcfc;
-    height: 30px;
-    line-height: 30px;
-    padding: 0 5px;
-    color: #bbb;
-    overflow: hidden;
-}
+
 /*content*/
 .bookset{
     border-bottom: 1px solid #ddd;
@@ -506,7 +504,7 @@ ul.gengxin li{
 }
 .col1{
     padding: 0 8px 0 5px;
-    width:10%;
+    width:15%;
 }
 .col1 a{
     /*color:#000;*/
@@ -516,7 +514,7 @@ ul.gengxin li{
     text-align: left;
 }
 .col2{
-    width:50%;
+    max-width:50%;
 }
 span.col2{
     /*max-width: 300px;*/
@@ -532,8 +530,10 @@ span.col2{
 }
 span.col3{
     text-align: left;
+    max-width:16%;
 }
 .col4{
+    max-width:16%;
 }
 .title h3{
     clear: both;
@@ -727,7 +727,7 @@ a.page-numbers:hover{
 }
 /* 返回顶部 */
 #floatPanel a{text-decoration:none;}
-#floatPanel .ctrolPanel{width:36px;height:62px;background:#fff url(img/float-panel-bg.png) no-repeat left top;border:solid 1px #ddd;margin-left:39%;position:fixed;_position:absolute;bottom:100px; left:50%;overflow:hidden;z-index:10000; _position:absolute; /* for IE6 */_top:expression(documentElement.scrollTop + 300);}
+#floatPanel .ctrolPanel{width:36px;height:62px;background:#fff url(img/float-panel-bg.png) no-repeat left top;border:solid 1px #ddd;margin-left:30%;position:fixed;_position:absolute;bottom:100px; left:50%;overflow:hidden;z-index:10000; _position:absolute; /* for IE6 */_top:expression(documentElement.scrollTop + 300);}
 #floatPanel .ctrolPanel a{width:34px;font-size:12px;color:#ff6600;letter-spacing:1px;text-align:center;overflow:hidden;}
 #floatPanel .ctrolPanel .arrow{height:29px;line-height:28px;display:block;margin:1px auto;}
 #floatPanel .ctrolPanel .arrow span{display:none;}
