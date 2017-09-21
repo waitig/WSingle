@@ -11,32 +11,21 @@ $index_pop_except_num = waitig_gopt('index_pop_except_num');
 <div class="container">
     <div id="content">
         <div class="inner">
-            <div class="title"><h3>最近更新</h3></div>
+            <div class="title">
+                <h3>最近更新</h3>
+            </div>
             <div class="details">
                 <ul class="gengxin">
                     <?php
                     $args = array(
                         'numberposts' => $index_pop_except_num,
-                        'offset' => 0,
+                        'offset' => 1,
                         'category' => 0,
                         'orderby' => 'post_date',
                         'order' => 'DESC',
                         'post_status' => 'publish');
                     $postList = get_posts($args);
-                    //var_dump($postList);
-                    //query_posts("posts_per_page=" . $index_pop_except_num . "&cat=-1&order=DESC&paged=1");
-                    //                    $args = array(
-                    //                        'order' => DESC,
-                    //                        'category__not_in' => array($index_pop_except_id),
-                    //                        'orderby' => '',
-                    //                        'posts_per_page' => waitig_gopt('$index_pop_except_num'),
-                    //                        'paged' => 1,
-                    //                        'caller_get_posts' => 1
-                    //                    );
-                    //                    query_posts($args);
-                    //while (have_posts()) :
-                    //    the_post();
-                    foreach( $postList as $recent ){
+                    foreach ($postList as $recent) {
                         $postUrl = get_permalink($recent->ID);
                         $postTitle = $recent->post_title;
                         $postDate = $recent->post_date;
@@ -62,28 +51,33 @@ $index_pop_except_num = waitig_gopt('index_pop_except_num');
     </div>
     <div id="sidebar">
         <div class="inner">
-            <div class="title"><h3>猜你喜欢</h3></div>
+            <div class="title"><h3>最新入库</h3></div>
             <div class="details">
                 <ul class="item-list">
-                    <?php $args = array(
-                        'orderby' => 'name',
-                        'order' => 'ASC',
-                        'hierarchical' => 0,
+                    <?php
+                    $args2 = array(
+                        'type' => 'post',
                         'child_of' => 0,
-                        'hide_empty' => 1,
-                        'taxonomy' => 'category',
+                        'parent' => '0',
+                        'orderby' => 'ID',
+                        'order' => 'DESC',
+                        'hide_empty' => 0,
+                        'hierarchical' => 0,
+                        'exclude' => $index_pop_except_id,
+                        'include' => '',
                         'number' => $index_pop_except_num,
-                        'exclude' => $index_pop_except_id
-
-                    );
-                    $categories = get_categories($args);
-                    foreach ($categories as $category) {
+                        'taxonomy' => 'category',
+                        'pad_counts' => false);
+                    $categories = get_categories($args2);
+                    for($i = 0; ($i<$index_pop_except_num&&$i<count($categories));$i++){
+                    //foreach ($categories as $category) {
+                        $category = $categories[$i];
                         $catLink = get_category_link($category->term_id);
                         $catName = $category->name;
                         $catAuth = waitig_gopt("cat_author_" . $category->term_id);
                         ?>
                         <li>
-                            <a href="<?= $catLink ?>" target="_blank" title="$catName全文阅读"><?= $catName ?></a>
+                            <a href="<?= $catLink ?>" target="_blank" title="<?= $catName ?>全文阅读"><?= $catName ?></a>
                             <?= $catAuth ?>
                         </li>
                     <?php } ?>

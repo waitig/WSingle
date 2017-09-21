@@ -8,7 +8,7 @@
 $dname = 'WSingle';
 $themename = 'WSingle';
 $themeDir = get_stylesheet_directory_uri();
-require_once ('admin/waitig.php');
+require_once('admin/waitig.php');
 function deel_breadcrumbs()
 {
     if (!is_single()) return false;
@@ -61,17 +61,36 @@ add_action('init', 'googlo_remove_open_sans_from_wp_core');
 //获取所有站点分类id
 function Bing_show_category()
 {
-    global $wpdb;
-    $output = '';
+    $args = array(
+        'type' => 'post',
+        'child_of' => 0,
+        'parent' => '0',
+        'orderby' => 'ID',
+        'order' => 'ASC',
+        'hide_empty' => 0,
+        'hierarchical' => 0,
+        'exclude' => '1',
+        'include' => '',
+        'number' => '',
+        'taxonomy' => 'category',
+        'pad_counts' => false);
+    $categorys = get_categories($args);
+    $output = '<table><tbody><tr style="padding:5px;">';
+    /*global $wpdb;
     $request = "SELECT $wpdb->terms.term_id, name FROM $wpdb->terms ";
     $request .= " LEFT JOIN $wpdb->term_taxonomy ON $wpdb->term_taxonomy.term_id = $wpdb->terms.term_id ";
     $request .= " WHERE $wpdb->term_taxonomy.taxonomy = 'category' ";
     $request .= " ORDER BY term_id asc";
-    $categorys = $wpdb->get_results($request);
+    $categorys = $wpdb->get_results($request);*/
+    $num = 1;
     foreach ($categorys as $category) { //调用菜单
-        $output .= $category->name . "&nbsp;&nbsp;[&nbsp" . $category->term_id . '&nbsp;]&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;';
-
+        $output .= '<td style="padding:5px;">'.$category->name . "&nbsp;&nbsp;[&nbsp" . $category->term_id . '&nbsp;]</td>';
+        if($num%4==0){
+            $output.='</tr><tr style="padding:5px;">';
+        }
+        $num+=1;
     }
+    $output.='</tr></tbody></table>';
     return $output;
 }
 
@@ -333,18 +352,20 @@ function my_custom_submenu_page_callback()
 function get_category_root_id($cat)
 {
     $this_category = get_category($cat); // 取得当前分类
-    while($this_category->category_parent) // 若当前分类有上级分类时，循环
+    while ($this_category->category_parent) // 若当前分类有上级分类时，循环
     {
         $this_category = get_category($this_category->category_parent); // 将当前分类设为上级分类（往上爬）
     }
     return $this_category->term_id; // 返回根分类的id号
 }
+
 //去除评论中无用字段
 add_filter('comment_form_default_fields', 'unset_url_field');
-function unset_url_field($fields){
-    if(isset($fields['url']))
+function unset_url_field($fields)
+{
+    if (isset($fields['url']))
         unset($fields['url']);
-    if(isset($fields['email']))
+    if (isset($fields['email']))
         unset($fields['email']);
     return $fields;
 }
@@ -402,7 +423,8 @@ function waitig_novel_taxonomy()
     register_taxonomy('novel_category', 'novel', $args);
 }
 add_action('init', 'waitig_novel_taxonomy');*/
-function change_post_menu_label() {
+function change_post_menu_label()
+{
     global $menu;
     global $submenu;
     $menu[5][0] = '小说管理';
@@ -413,7 +435,8 @@ function change_post_menu_label() {
     echo '';
 }
 
-function change_post_object_label() {
+function change_post_object_label()
+{
     global $wp_post_types;
     $labels = &$wp_post_types['post']->labels;
     $labels->name = 'Contacts';
@@ -427,5 +450,6 @@ function change_post_object_label() {
     $labels->not_found = 'No Contacts found';
     $labels->not_found_in_trash = 'No Contacts found in Trash';
 }
+
 //add_action( 'init', 'change_post_object_label' );
-add_action( 'admin_menu', 'change_post_menu_label' );
+add_action('admin_menu', 'change_post_menu_label');
