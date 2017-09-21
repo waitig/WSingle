@@ -117,7 +117,7 @@ $options = array(
         'type' => 'subtitle'
     ),
     array(
-        'name' => '您的网站现有分类ID为：',
+        'name' => '您的网站现有小说ID为：',
         'desc' => Bing_show_category(),
         'type' => 'text_show'
     ),
@@ -129,8 +129,8 @@ $options = array(
         'std' => '2'
     ),
     array(
-        'name' => '开启最近更新和猜您喜欢列表',
-        'desc' => '开启后，在页面下半部分会显示最新更新的章节和一个随机推荐的小说列表',
+        'name' => '开启最近更新和最新入库小说列表',
+        'desc' => '开启后，在页面下半部分会显示最新更新的章节和一个最新增加的小说列表',
         'id' => 'waitig_popcat_on',
         'type' => 'checkbox'
     ),

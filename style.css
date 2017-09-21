@@ -76,8 +76,8 @@ a {
     outline: none;
 }
 a:hover {
-    color: #f60;
-    text-decoration: underline;
+    color: #1abc9c;
+    text-decoration: none;
 }
 b,em{
     font-weight: normal;
@@ -173,8 +173,8 @@ b,em{
 }
 /**layout**/
 .container {
-    max-width: 788px;
-    *width:788px;
+    max-width: 980px;
+    *width:980px;
     margin: 0 auto 10px;
     border: 1px solid #ddd;
     background: #fcfcfc;
@@ -186,12 +186,12 @@ b,em{
     overflow: hidden;
 }
 .title {
-    height: 30px;
     line-height: 40px;
     background-color: #fcfcfc;
     font-size: 16px;
     font-weight: bold;
     padding: 0 15px;
+
 }
 .details {
     padding: 0 15px;
@@ -218,7 +218,7 @@ b,em{
     font-weight: bold;
 }
 .item-img h2 a {
-    color: #129151;
+    color: #1abc9c;
 }
 .item-img p {
     line-height: 20px;
@@ -263,6 +263,7 @@ b,em{
 .bookinfo .tuijian {
     text-align:left;
     margin-bottom:0;
+    font-size: 13px;
 }
 .bookinfo {
     padding: 15px;
@@ -272,6 +273,7 @@ b,em{
 .bookinfo p{
     margin:0;
     text-align:left;
+    font-size: 13px;
 }
 .btitle{
     overflow:auto;
@@ -280,12 +282,12 @@ b,em{
 .btitle h1 {
     font-size: 40px;
     font-weight: bold;
-    color: #129151;
+    color: #1abc9c;
     float: left;
     padding-right:20px;
 }
 .btitle a{
-    color:#129151;
+    color:#1abc9c;
 }
 .btitle em {
     padding: 25px 0 0;
@@ -343,20 +345,34 @@ b,em{
     color: gray;
     overflow: hidden;
     white-space: nowrap;
+    font-size: 13px;
 }
 /**布局**/
 .chapterlist dt{
     text-align:center;
     clear: both;
+    border-bottom: 1px solid #eee;
+    line-height: 40px;
+    height: 40px;
+    font-size: 16px;
+    border-top: 2px solid #1abc9c;
+    margin: 0px -30px;
+    color: #1abc9c;
 }
 .chapterlist dd {
-    width: 33.3%;
+    /*width: 33.3%;
     height: 32px;
     line-height: 32px;
     float: left;
     border-top: 1px solid #eee;
     overflow: hidden;
     white-space: nowrap;
+    text-overflow:ellipsis;*/
+    float: left;
+    width: 33.3%;
+    height: 33px;
+    line-height: 33px;
+    border-bottom: 1px dashed #E8E8E8;
 }
 .cate dt {
     border-bottom: 1px solid #eee;
@@ -420,6 +436,12 @@ dd.left{
     float: left;
     width: 100%;
     text-align: left;
+    font-size: 14px;
+    font-weight: normal;
+    font-family: "Microsoft YaHei", Verdana, Arial, Helvetica, Sans-serif;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
 }
 
 .article .inner {
@@ -442,7 +464,7 @@ dd.left{
 }
 .article .link a {
     margin: 0 10px;
-    color: #129151;
+    color: #1abc9c;
 }
 .article #BookText {
     clear: both;
@@ -473,24 +495,35 @@ ul.gengxin li{
     border-top: 1px dotted #d7d7d7;
     clear: both;
     *height:24px;
+    font-size: 13px;
 }
 .col1,.col2,.col3,.col4{
     display: inline-block;
     vertical-align: top;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 .col1{
     padding: 0 8px 0 5px;
+    width:15%;
 }
 .col1 a{
-    color:#000;
+    /*color:#000;*/
 }
 .col1,.col2{
     float: left;
     text-align: left;
 }
+.col2{
+    width:55%;
+}
 span.col2{
-    max-width: 250px;
+    /*max-width: 300px;*/
     height: 24px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 .col3,.col4{
     text-align: right;
@@ -499,6 +532,15 @@ span.col2{
 }
 span.col3{
     text-align: left;
+}
+.title h3{
+    clear: both;
+    border-bottom: 1px solid #eee;
+    font-size: 16px;
+    border-top: 2px solid #1abc9c;
+    margin: 0px -30px;
+    color: #1abc9c;
+    padding: 0px 30px;
 }
 /** 广告 **/
 .ads{
@@ -554,7 +596,7 @@ span.col3{
     width:64px;
     height:24px;
     color:#E8ECF1;
-    font-size:12px;
+    font-size:13px;
     line-height:24px;
     margin:0 10px 0 5px;
     padding:2px 0;
@@ -683,7 +725,7 @@ a.page-numbers:hover{
 }
 /* 返回顶部 */
 #floatPanel a{text-decoration:none;}
-#floatPanel .ctrolPanel{width:36px;height:62px;background:#fff url(img/float-panel-bg.png) no-repeat left top;border:solid 1px #ddd;margin-left:394px;position:fixed;_position:absolute;bottom:76px; left:50%;overflow:hidden;z-index:10000; _position:absolute; /* for IE6 */_top:expression(documentElement.scrollTop + 300);}
+#floatPanel .ctrolPanel{width:36px;height:62px;background:#fff url(img/float-panel-bg.png) no-repeat left top;border:solid 1px #ddd;margin-left:39%;position:fixed;_position:absolute;bottom:100px; left:50%;overflow:hidden;z-index:10000; _position:absolute; /* for IE6 */_top:expression(documentElement.scrollTop + 300);}
 #floatPanel .ctrolPanel a{width:34px;font-size:12px;color:#ff6600;letter-spacing:1px;text-align:center;overflow:hidden;}
 #floatPanel .ctrolPanel .arrow{height:29px;line-height:28px;display:block;margin:1px auto;}
 #floatPanel .ctrolPanel .arrow span{display:none;}
