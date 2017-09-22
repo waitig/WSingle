@@ -29,7 +29,7 @@ $blogUrl = get_bloginfo('url');
 $blogName = get_bloginfo('name');
 ?>
 <?php if (is_category()) { ?>
-    <div class="crumbs">
+    <div class="container crumbs">
         <div class="fl"><span>当前位置：</span>
             <a href="<?= $blogUrl ?>" title="<?= $blogName ?>"><?= $blogName ?></a> &gt;
             <a href="<?= $catUrl ?>" title="<?= $thiscat->name ?>"><?= $thiscat->name ?></a> &gt;
@@ -108,39 +108,61 @@ $blogName = get_bloginfo('name');
                     <!--最新列表-->
                     <dt class="title"><?= $thiscat->name ?> 最新章节列表</dt>
                     <?php
-                    query_posts("posts_per_page=" . $new_list_num . "&cat=" . $thiscat->term_id . "&order=ASC");
-                    while (have_posts()) :
-                        the_post();
-                        $postUrl = get_the_permalink();
-                        $postTitle = get_the_title();
+                    $args = array(
+                        'numberposts' => $new_list_num,
+                        'offset' => 0,
+                        'category' => $thiscat->term_id,
+                        'orderby' => 'post_date',
+                        'order' => 'DESC',
+                        'post_status' => 'publish');
+                    $postList = get_posts($args);
+                    foreach ($postList as $post) {
+                        $postUrl = get_permalink($post->ID);
+                        $postTitle = $post->post_title;
                         echo "<dd><a href=\"$postUrl\" title=\"$postTitle\">$postTitle</a></dd>";
-                    endwhile;
-                    wp_reset_query();
-                    ?>
-                    <?php if (count($cats_id_arr) == 0) {
-                        echo '<dt class="title">正文</dt>';
-                        query_posts("posts_per_page=-1&cat=" . $thiscat->term_id . "&order=ASC");
-                        while (have_posts()) :
-                            the_post();
-                            $postUrl = get_the_permalink();
-                            $postTitle = get_the_title();
-                            echo "<dd><a href=\"$postUrl\" title=\"$postTitle\">$postTitle</a></dd>";
-                        endwhile;
-                        wp_reset_query();
-                    } else {
+                    }
+                    /**判断是否有自定义章节
+                     * 如果有，则优先显示自定义章节
+                     * 如果没有，则显示正文章节
+                     * 如果有子分类，但没有放入子分类的文章，则显示在最后的正文章节中
+                     */
+                    if (count($cats_id_arr) != 0) {
                         foreach ($cats_id_arr as $childCatId) {
                             $childCat = get_category($childCatId);
                             echo "<dt class=\"title\">$childCat->name</dt>";
-                            query_posts("posts_per_page=-1&cat=" . $childCatId . "&order=ASC");
-                            while (have_posts()) :
-                                the_post();
-                                $postUrl = get_the_permalink();
-                                $postTitle = get_the_title();
+                            $args = array(
+                                'numberposts' => 0,
+                                'offset' => 0,
+                                'category' => $childCatId,
+                                'orderby' => 'post_date',
+                                'order' => 'ASC',
+                                'post_status' => 'publish');
+                            $postList = get_posts($args);
+                            foreach ($postList as $post) {
+                                $postUrl = get_permalink($post->ID);
+                                $postTitle = $post->post_title;
                                 echo "<dd><a href=\"$postUrl\" title=\"$postTitle\">$postTitle</a></dd>";
-                            endwhile;
-                            wp_reset_query();
+                            }
                         }
-                    } ?>
+
+                    } else {
+                        $args = array(
+                            'numberposts' => 0,
+                            'offset' => 0,
+                            'category' => $thiscat->term_id,
+                            'orderby' => 'post_date',
+                            'order' => 'ASC',
+                            'post_status' => 'publish');
+                        $postList = get_posts($args);
+                        echo '<dt class="title">正文</dt>';
+                        foreach ($postList as $post) {
+                            $postUrl = get_permalink($post->ID);
+                            $postTitle = $post->post_title;
+                            echo "<dd><a href=\"$postUrl\" title=\"$postTitle\">$postTitle</a></dd>";
+                        }
+                    }
+
+                    ?>
                 </dl>
                 <?= waitig_gopt('waitig_ad_chapter_bottom') ?>
             </div>

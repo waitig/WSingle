@@ -92,7 +92,7 @@ $_SESSION['thiscat'] = $thiscat;
         <meta property="og:novel:latest_chapter_url" content="<?= get_the_permalink() ?>"/>
         <?php endwhile;
         wp_reset_query(); ?>
-        <link rel="stylesheet" href="<?= $themeUrl ?>/style.css?ver=1.01" type="text/css" media="screen">
+        <link rel="stylesheet" href="<?= $themeUrl ?>/style.css?ver=1.04" type="text/css" media="screen">
         <link rel="stylesheet" media="screen and (max-width:600px)" href="<?= $themeUrl ?>/css/mobile.css"
               type="text/css">
         <script type="text/javascript" src="<?= $themeUrl ?>/js/waitig.js"></script>
