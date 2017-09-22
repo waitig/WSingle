@@ -32,7 +32,7 @@ $blogName = get_bloginfo('name');
     <div class="container crumbs">
         <div class="fl"><span>当前位置：</span>
             <a href="<?= $blogUrl ?>" title="<?= $blogName ?>"><?= $blogName ?></a> &gt;
-            <a href="<?= $catUrl ?>" title="<?= $thiscat->name ?>"><?= $thiscat->name ?></a>全文阅读
+            <a href="<?= $catUrl ?>" title="<?= $thiscat->name ?>"><?= $thiscat->name ?>全文阅读</a>
         </div>
     </div>
 <?php } ?>
