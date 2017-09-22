@@ -19,7 +19,7 @@ function deel_breadcrumbs()
 }
 
 // 取消原有jQuery
-function footerScript()
+/*function footerScript()
 {
     if (!is_admin()) {
         wp_deregister_script('jquery');
@@ -30,7 +30,7 @@ function footerScript()
     }
 }
 
-add_action('wp_enqueue_scripts', 'footerScript');
+add_action('wp_enqueue_scripts', 'footerScript');*/
 function deel_strimwidth($str, $start, $width, $trimmarker)
 {
     $output = preg_replace('/^(?:[\x00-\x7F]|[\xC0-\xFF][\x80-\xBF]+){0,' . $start . '}((?:[\x00-\x7F]|[\xC0-\xFF][\x80-\xBF]+){0,' . $width . '}).*/s', '\1', $str);

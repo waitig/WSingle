@@ -4,7 +4,7 @@ Theme URL:https://waitig.com/
 Description:欢迎使用WSingle主题，主题更新地址：<a href="https://waitig.com/">等英博客</a>
 Author:waitig
 Author URI:http://waitig.com/
-Version:1.0.2
+Version:1.0.4
 */
 /* reset.css */
 html {margin:0;padding:0;border:0;}
@@ -672,7 +672,7 @@ ol,li{
     height: 32px;
 }
 #commentform textarea{
-    width:660px;
+    width:100%;
     height:130px;
 }
 #commentform p{
@@ -727,7 +727,7 @@ a.page-numbers:hover{
 }
 /* 返回顶部 */
 #floatPanel a{text-decoration:none;}
-#floatPanel .ctrolPanel{width:36px;height:62px;background:#fff url(img/float-panel-bg.png) no-repeat left top;border:solid 1px #ddd;margin-left:30%;position:fixed;_position:absolute;bottom:100px; left:50%;overflow:hidden;z-index:10000; _position:absolute; /* for IE6 */_top:expression(documentElement.scrollTop + 300);}
+#floatPanel .ctrolPanel{width:36px;height:62px;background:#fff url(img/float-panel-bg.png) no-repeat left top;border:solid 1px #ddd;margin-left:540px;position:fixed;_position:absolute;bottom:100px; left:50%;overflow:hidden;z-index:10000; _position:absolute; /* for IE6 */_top:expression(documentElement.scrollTop + 300);}
 #floatPanel .ctrolPanel a{width:34px;font-size:12px;color:#ff6600;letter-spacing:1px;text-align:center;overflow:hidden;}
 #floatPanel .ctrolPanel .arrow{height:29px;line-height:28px;display:block;margin:1px auto;}
 #floatPanel .ctrolPanel .arrow span{display:none;}
