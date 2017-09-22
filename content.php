@@ -32,8 +32,7 @@ $blogName = get_bloginfo('name');
     <div class="container crumbs">
         <div class="fl"><span>当前位置：</span>
             <a href="<?= $blogUrl ?>" title="<?= $blogName ?>"><?= $blogName ?></a> &gt;
-            <a href="<?= $catUrl ?>" title="<?= $thiscat->name ?>"><?= $thiscat->name ?></a> &gt;
-            <?= $postName ?>
+            <a href="<?= $catUrl ?>" title="<?= $thiscat->name ?>"><?= $thiscat->name ?></a>全文阅读
         </div>
     </div>
 <?php } ?>
@@ -95,7 +94,7 @@ $blogName = get_bloginfo('name');
                                             style="width:100px; height:133px;" alt="<?= $thiscat->name ?>"
                                             src="<?= waitig_gopt("cat_image_" . $thiscat->term_id) ?>"></a></p>
                         <?php } ?>
-                        <p>内容简介：<?= $thiscat->description ?></p>
+                        <p>内容简介：<?= wpautop($thiscat->description) ?></p>
                     </div>
                     <div class="clear"></div>
                     <div class="tuijian">
@@ -131,7 +130,7 @@ $blogName = get_bloginfo('name');
                             $childCat = get_category($childCatId);
                             echo "<dt class=\"title\">$childCat->name</dt>";
                             $args = array(
-                                'numberposts' => 0,
+                                'numberposts' => -1,
                                 'offset' => 0,
                                 'category' => $childCatId,
                                 'orderby' => 'post_date',
@@ -147,7 +146,7 @@ $blogName = get_bloginfo('name');
 
                     } else {
                         $args = array(
-                            'numberposts' => 0,
+                            'numberposts' => -1,
                             'offset' => 0,
                             'category' => $thiscat->term_id,
                             'orderby' => 'post_date',
@@ -161,7 +160,6 @@ $blogName = get_bloginfo('name');
                             echo "<dd><a href=\"$postUrl\" title=\"$postTitle\">$postTitle</a></dd>";
                         }
                     }
-
                     ?>
                 </dl>
                 <?= waitig_gopt('waitig_ad_chapter_bottom') ?>
