@@ -4,7 +4,7 @@ Theme URL:https://waitig.com/
 Description:欢迎使用WSingle主题，主题更新地址：<a href="https://waitig.com/">等英博客</a>
 Author:waitig
 Author URI:http://waitig.com/
-Version:1.0.6
+Version:1.0.7
 */
 /* reset.css */
 html {margin:0;padding:0;border:0;}
@@ -280,8 +280,6 @@ b,em{
     margin:0;
     text-align:left;
     font-size: 13px;
-    max-height: 133px;
-    overflow-y: auto;
 }
 .btitle{
     overflow:auto;
@@ -324,6 +322,30 @@ b,em{
     color: #999;
     border-top: 1px dotted #ddd;
     padding:10px 0 0 0;
+}
+.intro-p{
+    max-height: 150px;
+    overflow-y: auto;
+}
+.intro-p p{
+    max-height: 150px;
+    overflow-y: auto;
+}
+.intro .img-p{
+    float: left;
+    width: 120px;
+    height: 160px;
+    margin: 0px 15px 0px 15px;
+    border: 1px solid #ccc;
+    padding: 5px;
+}
+.intro .img-a{
+    width:120px;
+    height:160px;
+}
+.intro .img-img{
+    width:120px;
+    height:160px;
 }
 .intro b{
     float:left;

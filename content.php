@@ -89,12 +89,13 @@ $blogName = get_bloginfo('name');
                     <div class="clear"></div>
                     <div class="intro">
                         <?php if (waitig_gopt("cat_image_" . $thiscat->term_id)) { ?>
-                            <p style="float: left;width: 100px;height: 133px;margin: 0px 15px 0px 15px;border: 1px solid #ccc;padding: 5px;">
-                                <a style="width:100px; height:133px;" href="<?= $catUrl ?>"><img
-                                            style="width:100px; height:133px;" alt="<?= $thiscat->name ?>"
-                                            src="<?= waitig_gopt("cat_image_" . $thiscat->term_id) ?>"></a></p>
+                            <p class="img-p">
+                                <a class="img-a" href="<?= $catUrl ?>">
+                                    <img class="img-img" alt="<?= $thiscat->name ?>" src="<?= waitig_gopt("cat_image_" . $thiscat->term_id) ?>">
+                                </a>
+                            </p>
                         <?php } ?>
-                        <p>内容简介：<?= wpautop($thiscat->description) ?></p>
+                        <span class="intro-p">内容简介：<?= wpautop($thiscat->description) ?><div class="clear"></div></span>
                     </div>
                     <div class="clear"></div>
                     <div class="tuijian">
