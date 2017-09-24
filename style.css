@@ -4,7 +4,7 @@ Theme URL:https://waitig.com/
 Description:欢迎使用WSingle主题，主题更新地址：<a href="https://waitig.com/">等英博客</a>
 Author:waitig
 Author URI:http://waitig.com/
-Version:1.0.7
+Version:1.0.8
 */
 /* reset.css */
 html {margin:0;padding:0;border:0;}
@@ -238,7 +238,49 @@ b,em{
     line-height: 32px;
     border-bottom: 1px dotted #ddd;
     overflow: hidden;
+
+}
+.item-qb-auth{
+
+}
+.item-qb-container{
+
+}
+.item-qb-desc{
+
+    line-height:16px;
+    overflow : hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 6;
+    -webkit-box-orient: vertical;
+
+}
+.item-qb-desc p{
+    word-wrap: break-word;
+    word-break: normal;
+}
+.item-qb-img{
+    float: left;
+    padding: 10px 10px 0 10px;
+}
+.item-qb-img img{
+    height: 160px;
+    width: 120px;
+}
+.item-qb-title{
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin-top: 10px;
+    font-size: 20px;
     white-space: nowrap;
+
+}
+.item-qb-title a{
+    color: #1abc9c;;
+}
+.item-qb-title a:hover{
+    color: #e8434c;
 }
 .not {
     float:left;
@@ -268,7 +310,6 @@ b,em{
 }
 .bookinfo .tuijian {
     text-align:left;
-    margin-bottom:0;
     font-size: 13px;
 }
 .bookinfo {
@@ -335,7 +376,7 @@ b,em{
     float: left;
     width: 120px;
     height: 160px;
-    margin: 0px 15px 0px 15px;
+    margin: 0 15px 15px 15px;
     border: 1px solid #ccc;
     padding: 5px;
 }
@@ -768,7 +809,7 @@ a.page-numbers:hover{
     background: #FFF9D9;
     border: 1px solid #FFCC33;
     line-height: 150%;
-    margin: 20px auto auto;
+    margin: 10px auto auto;
     padding: 6px 10px;
     text-align: center;
 }
