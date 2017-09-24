@@ -98,10 +98,12 @@ $blogName = get_bloginfo('name');
                         <span class="intro-p">内容简介：<?= wpautop($thiscat->description) ?><div class="clear"></div></span>
                     </div>
                     <div class="clear"></div>
-                    <div class="tuijian">
-                        重磅推荐：
-                        <?= waitig_gopt('waitig_tui') ?>
-                    </div>
+                    <?php if(waitig_gopt('waitig_tui')){?>
+                        <div class="tuijian">
+                            重磅推荐：
+                            <?= waitig_gopt('waitig_tui') ?>
+                        </div>
+                    <?php } ?>
                 </div>
                 <?= waitig_gopt('waitig_ad_chapter_top') ?>
                 <dl class="chapterlist">
