@@ -15,6 +15,9 @@ body {
     width: 100%;
     margin-bottom: 8px;
 }
+.item-qb li {
+    width:100%;
+}
 
 .crumbs {
     height: 100%;
