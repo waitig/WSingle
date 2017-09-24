@@ -174,3 +174,6 @@ comments_template();
 if (waitig_gopt('waitig_popcat_on')) {
     require_once 'popcate.php';
 }
+if (waitig_gopt('waitig_flink')) {
+    require_once 'flink.php';
+}
