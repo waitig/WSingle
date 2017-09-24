@@ -170,7 +170,6 @@ $blogName = get_bloginfo('name');
         </div>
     </div>
 <?php
-comments_template();
 if (waitig_gopt('waitig_popcat_on')) {
     require_once 'popcate.php';
 }
