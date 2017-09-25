@@ -109,7 +109,7 @@ $options = array(
     //标签页‘首页设置’开始
     array(
         'title' => 'SEO设置',
-        'id' => 'personsetting',
+        'id' => 'SEOsetting',
         'type' => 'panelstart'
     ),
     array(
