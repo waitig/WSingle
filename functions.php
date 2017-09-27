@@ -9,6 +9,7 @@ $dname = 'WSingle';
 $themename = 'WSingle';
 $themeDir = get_stylesheet_directory_uri();
 require_once('admin/waitig.php');
+require_once 'inc/whtml.php';
 function deel_breadcrumbs()
 {
     if (!is_single()) return false;

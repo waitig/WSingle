@@ -27,8 +27,6 @@ Change log:
 				
 */
 /* config */
-echo 'begin huancun';
-
 
 define('IS_INDEX',true);// false = do not create home page cache 
 
@@ -38,10 +36,7 @@ define('COSVERSION','2.7.3');
 
 require_once(ABSPATH . 'wp-admin/includes/file.php');
 /* end of config */
-$sm_locale = get_locale();
 
-$sm_mofile = dirname(__FILE__) . "/cosbeta-$sm_locale.mo";
-load_textdomain('cosbeta', $sm_mofile);
 $cossithome = get_option('home');
 $script_uri = rtrim( "http://".$_SERVER["HTTP_HOST"].$_SERVER["REQUEST_URI"]  ,"/");
 $home_path = get_home_path();
@@ -112,6 +107,8 @@ if(!substr_count($_SERVER['REQUEST_URI'], 'wp-admin')){
 	if(  substr_count($_SERVER['REQUEST_URI'], '?'))  $is_buffer = false;
 	if(  substr_count($_SERVER['REQUEST_URI'], '../'))  $is_buffer = false;
 }
+var_dump($is_buffer);
+var_dump($_SERVER['REQUEST_URI']);
 if( $is_buffer ){
     //将输出缓冲重定向到cos_cache_ob_callback函数中
 	ob_start('cos_cache_ob_callback');
@@ -224,7 +221,7 @@ if(!function_exists("htmlCacheDel_reg_admin")) {
 	}
 }
 
-add_action('admin_menu', 'htmlCacheDel_reg_admin');
+//add_action('admin_menu', 'htmlCacheDel_reg_admin');
 
 if(!function_exists("cosHtmlOption")) {
 function cosHtmlOption(){
@@ -323,7 +320,7 @@ $comment_author='';
 }
 //add_action('comments_array','clearCommentHistory');
 add_action('get_footer', 'CosSafeTag');
-add_action('comment_form', 'cos_comments_js');
+//add_action('comment_form', 'cos_comments_js');
 
 /* end of ajaxcomments*/
 if(IS_INDEX)	add_action('publish_post', 'createIndexHTML');
