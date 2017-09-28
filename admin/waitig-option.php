@@ -283,6 +283,37 @@ $options = array(
     array(
         'type' => 'panelend'
     ),
+    //标签页‘缓存设置’开始
+    array(
+        'title' => '缓存设置',
+        'id' => 'CacheSetting',
+        'type' => 'panelstart'
+    ),
+    array(
+        'title' => '本主题内置纯静态HTML缓存功能，在此页设置静态缓存功能！',
+        'type' => 'subtitle'
+    ),
+    array(
+        'name' => '开启纯静态HTML缓存',
+        'desc' => '缓存为纯静态HTML页面，有可能与其他插件有冲突，请慎重使用',
+        'id' => 'waitig_Cache_on',
+        'type' => 'checkbox'
+    ),
+    array(
+        'name' => '开启首页缓存',
+        'desc' => '是否缓存首页',
+        'id' => 'waitig_Cache_index_on',
+        'type' => 'checkbox'
+    ),
+    array(
+        'name' => '开启小说页缓存',
+        'desc' => '是否缓存小说页面',
+        'id' => 'waitig_Cache_cate_on',
+        'type' => 'checkbox'
+    ),
+    array(
+        'type' => 'panelend'
+    ),
 );
 $notice = array(
     //将选项放入数组中，管理更加方便

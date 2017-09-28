@@ -7,6 +7,7 @@
  */
 $dname = 'WSingle';
 $themename = 'WSingle';
+define('THEMEVERSION','1.10');
 $themeDir = get_stylesheet_directory_uri();
 require_once('admin/waitig.php');
 require_once 'inc/whtml.php';
