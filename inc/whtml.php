@@ -1,44 +1,36 @@
 <?php
-if (waitig_gopt('waitig_Cache_on')&&(!is_admin())):
+if (waitig_gopt('waitig_Cache_on')):
+
+    //引入文件
+    require_once(ABSPATH . 'wp-admin/includes/file.php');
 
     //是否开启首页缓存
     $indexOn = waitig_gopt('waitig_Cache_index_on');
-    define('INDEXON',$indexOn);
+    define('INDEXON', $indexOn);
 
     //是否开启分类页缓存
     $cateOn = waitig_gopt('waitig_Cache_cate_on');
-    define('CATEON',$cateOn);
+    define('CATEON', $cateOn);
 
     //请求脚本的网址
     $http_type = ((isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] == 'on') || (isset($_SERVER['HTTP_X_FORWARDED_PROTO']) && $_SERVER['HTTP_X_FORWARDED_PROTO'] == 'https')) ? 'https://' : 'http://';
     $scriptUrl = rtrim($http_type . $_SERVER["HTTP_HOST"] . $_SERVER["REQUEST_URI"], "/");
-    define('SCRIPTURL',$scriptUrl);
+    define('SCRIPTURL', $scriptUrl);
 
     //网站首页地址
     $indexUrl = get_site_url();
-    define('INDEXURL',$indexUrl);
+    define('INDEXURL', $indexUrl);
 
     //网站根路径
     $homePath = get_home_path();
-    define('HOMEPATH',$homePath);
+    define('HOMEPATH', $homePath);
 
     //页脚备注
-    $footMeta = '<!--您正在浏览的是页面是由WSingle主题' . constant('THEMEVERSION') . '版本缓存系统创建的真实HTML文件，缓存创建日期：' . date("Y-m-d H:i:s") . ' -->';
-    define('FOOTMETA',$footMeta);
+    $footMeta = '<!--您正在浏览的页面是由WSingle主题' . constant('THEMEVERSION') . '版本缓存系统创建的真实HTML文件，缓存创建日期：' . date("Y-m-d H:i:s") . ' -->';
+    define('FOOTMETA', $footMeta);
 
-    define('SAFETAG','<!--THIS IS A REAL HTML , CREATED BY WSINGLE THEME.-->');
+    define('SAFETAG', '<!--THIS IS A REAL HTML , CREATED BY WSINGLE THEME.-->');
 
-    //require_once(ABSPATH . 'wp-admin/includes/file.php');
-//    /* end of config */
-//
-//    $cossithome = get_option('home');
-//    $script_uri =
-//    $home_path = get_home_path();
-//
-//    define('SCRIPT_URI', $script_uri);
-//    define('CosSiteHome', $cossithome);
-//    define('CosBlogPath', $home_path);
-//    define("COSMETA", "<!--this is a real static html file created at " . date("Y-m-d H:i:s") . " by cos-html-cache " . COSVERSION . " -->");
     /**
      * 根据路径和内容创建HTML文件
      * @param $FilePath
@@ -47,6 +39,7 @@ if (waitig_gopt('waitig_Cache_on')&&(!is_admin())):
      */
     function CreateHtmlFile($FilePath, $Content)
     {
+        waitig_logs('开始');
         $FilePath = preg_replace('/[ <>\'\"\r\n\t\(\)]/', '', $FilePath);
 
         // if there is http:// $FilePath will return its bas path
@@ -60,7 +53,7 @@ if (waitig_gopt('waitig_Cache_on')&&(!is_admin())):
         while ($i < $max_index) {
             $path .= "/" . $dir_array[$i];
             $path = str_replace("//", "/", $path);
-
+            waitig_logs($path . '--' . $i . '--');
             if ($dir_array[$i] == "") {
                 $i++;
                 continue;
@@ -70,13 +63,17 @@ if (waitig_gopt('waitig_Cache_on')&&(!is_admin())):
             if (substr_count($path, '?')) return true;
             if (!substr_count($path, '.htm')) {
                 //if is a directory
-                if (is_dir($path) && !file_exists($path)) {
-                    @mkdir($path, 0777);
-                    @chmod($path, 0777);
+                if (!file_exists($path)) {
+                    waitig_logs('是目录');
+                    mkdir($path, 0777);
+                    chmod($path, 0777);
                 }
             }
             $i++;
         }
+
+        waitig_logs($path);
+        waitig_logs(is_dir($path));
 
         if (is_dir($path)) {
             $path = $path . "/index.html";
@@ -94,28 +91,28 @@ if (waitig_gopt('waitig_Cache_on')&&(!is_admin())):
             @flock($fp, LOCK_UN);
             fclose($fp);
         }
+        waitig_logs('结束');
     }
 
-    function checkBuffer(){
+    function checkBuffer()
+    {
         $needBuffer = false;
-        if (substr_count($_SERVER['REQUEST_URI'], '?')){
+        if (substr_count($_SERVER['REQUEST_URI'], '?')) {
             return false;
         }
-        if (substr_count($_SERVER['REQUEST_URI'], '../')){
+        if (substr_count($_SERVER['REQUEST_URI'], '../')) {
             return false;
         }
         //未登录
         if (strlen($_COOKIE['wordpress_logged_in_' . COOKIEHASH]) < 4) {
             //判断首页
-            if(is_home()&&INDEXON){
+            if (is_home() && INDEXON) {
                 $needBuffer = true;
                 return true;
-            }
-            elseif(is_category()&&CATEON){
+            } elseif (is_category() && CATEON) {
                 $needBuffer = true;
                 return true;
-            }
-            elseif(is_single()){
+            } elseif (is_single()) {
                 $needBuffer = true;
                 return true;
             }
@@ -123,13 +120,21 @@ if (waitig_gopt('waitig_Cache_on')&&(!is_admin())):
         return false;
     }
 
-    //判断此页面是否需要缓存
-    $needBuffer = checkBuffer();
-    if ($needBuffer) {
-        //将输出缓冲重定向到cos_cache_ob_callback函数中
-        ob_start('cos_cache_ob_callback');
-        register_shutdown_function('cos_cache_shutdown_callback');
+    //缓存钩子函数
+    function createHtml()
+    {
+        var_dump('heeeeeeeeeeeeeeeeeee');
+        $needBuffer = checkBuffer();
+        var_dump($needBuffer);
+        if ($needBuffer) {
+            //将输出缓冲重定向到cos_cache_ob_callback函数中
+            ob_start('cos_cache_ob_callback');
+            register_shutdown_function('cos_cache_shutdown_callback');
+        }
     }
+
+    add_action('get_header', 'createHtml');
+
 
     /**
      * 处理输出缓存
@@ -157,8 +162,7 @@ if (waitig_gopt('waitig_Cache_on')&&(!is_admin())):
         if (strlen($_COOKIE[$wppasscookie]) > 0) return $buffer;//to check if post password protected
 
 
-
-        elseif ((SCRIPTURL == INDEXURL)&&INDEXON) {// creat homepage
+        elseif ((SCRIPTURL == INDEXURL) && INDEXON) {// creat homepage
             $fp = @fopen(HOMEPATH . "index.html", "w+");
             if ($fp) {
                 @flock($fp, LOCK_EX);
@@ -247,59 +251,30 @@ if (waitig_gopt('waitig_Cache_on')&&(!is_admin())):
          */
         function createIndexHTML($post_ID)
         {
+            waitig_logs('删除首页缓存');
             if ($post_ID == "") return true;
-            //[menghao]@rename(ABSPATH."index.html",ABSPATH."index.bak");
-            @rename(HOMEPATH . "index.html", HOMEPATH . "index.bak");//[menghao]
+            DelCacheByUrl(INDEXURL);
         }
     }
 
-//    if (!function_exists("htmlCacheDel_reg_admin")) {
-//        /**
-//         * Add the options page in the admin menu
-//         */
-//        function htmlCacheDel_reg_admin()
-//        {
-//            if (function_exists('add_options_page')) {
-//                add_options_page('html-cache-creator', 'CosHtmlCache', 'manage_options', basename(__FILE__), 'cosHtmlOption');
-//                //add_options_page($page_title, $menu_title, $access_level, $file).
-//            }
-//        }
-//    }
-//
-//
-//    if (!function_exists("cosHtmlOption")) {
-//        function cosHtmlOption()
-//        {
-//            do_cos_html_cache_action();
-//            ?>
-<!--            <div class="wrap" style="padding:10px 0 0 10px;text-align:left">-->
-<!--                <form method="post" action="--><?php //echo $_SERVER["REQUEST_URI"]; ?><!--">-->
-<!--                    <p>-->
-<!--                        --><?php //_e("Click the button bellow to delete all the html cache files", "cosbeta"); ?><!--</p>-->
-<!--                    <p>--><?php //_e("Note:this will Not  delete data from your databases", "cosbeta"); ?><!--</p>-->
-<!--                    <p>--><?php //_e("If you want to rebuild all cache files, you should delete them first,and then the cache files will be built when post or page first visited", "cosbeta"); ?><!--</p>-->
-<!---->
-<!--                    <p><b>--><?php //_e("specify a post ID or Title to to delete the related cache file", "cosbeta"); ?><!--</b>-->
-<!--                        <input type="text" id="cache_id" name="cache_id"-->
-<!--                               value=""/> --><?php //_e("Leave blank if you want to delete all caches", "cosbeta"); ?><!--</p>-->
-<!--                    <p><input type="submit" value="--><?php //_e("Delete Html Cache files", "cosbeta"); ?><!--"-->
-<!--                              id="htmlCacheDelbt"-->
-<!--                              name="htmlCacheDelbt" onClick="return checkcacheinput(); "/>-->
-<!--                </form>-->
-<!--            </div>-->
-<!---->
-<!--            <SCRIPT LANGUAGE="JavaScript">-->
-<!--                <!---->
-<!--                function checkcacheinput() {-->
-<!--                    document.getElementById('htmlCacheDelbt').value = 'Please Wait...';-->
-<!--                    return true;-->
-<!--                }-->
-<!---->
-<!--                //-->-->
-<!--            </SCRIPT>-->
-<!--            --><?php
-//        }
-//    }
+    if (!function_exists('createCateHTML')) {
+        /**
+         * 更新小说页缓存
+         * @param $post_ID
+         * @return bool
+         * 等英博客出品 https://www.waitig.com
+         */
+        function createCateHTML($post_ID)
+        {
+            waitig_logs($post_ID);
+            if ($post_ID == "") return true;
+            $categroy = get_the_category($post_ID);
+            $cateLink = get_category_link($categroy->term_id);
+            DelCacheByUrl($cateLink);
+        }
+    }
+
+
     /*
     end of get url
     */
@@ -378,19 +353,22 @@ if (waitig_gopt('waitig_Cache_on')&&(!is_admin())):
         $comment_author = '';
     }
 
-//add_action('comments_array','clearCommentHistory');
     add_action('get_footer', 'CosSafeTag');
-//add_action('comment_form', 'cos_comments_js');
-
-    /* end of ajaxcomments*/
-    if (INDEXON) add_action('publish_post', 'createIndexHTML');
     add_action('publish_post', 'htmlCacheDelNb');
+    if (INDEXON){
+        waitig_logs('新增首页更新钩子');
+        add_action('publish_post', 'createIndexHTML');
+        add_action('delete_post', 'createIndexHTML');
+        add_action('edit_post', 'createIndexHTML');
+    }
 
-    if (INDEXON) add_action('delete_post', 'createIndexHTML');
+    if (CATEON){
+        waitig_logs('新增分类页更新钩子');
+        add_action('publish_post', 'createCateHTML');
+        add_action('delete_post', 'createCateHTML');
+        add_action('edit_post', 'createCateHTML');
+    }
     add_action('delete_post', 'htmlCacheDelNb');
-
-//if comments add
     add_action('edit_post', 'htmlCacheDel');
-    if (INDEXON) add_action('edit_post', 'createIndexHTML');
 
 endif;

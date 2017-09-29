@@ -11,13 +11,17 @@ define('THEMEVERSION','1.10');
 $themeDir = get_stylesheet_directory_uri();
 require_once('admin/waitig.php');
 require_once 'inc/whtml.php';
-function deel_breadcrumbs()
-{
-    if (!is_single()) return false;
-    $categorys = get_the_category();
-    $category = $categorys[0];
 
-    return '<ol class="breadcrumb"><li><a title="返回首页" href="' . get_bloginfo('url') . '"></a> </li><li> ' . get_category_parents($category->term_id, true, ' </li><li> ') . '<li class="active">' . get_the_title() . '</li></ol>';
+/**
+ * 日志函数
+ * @param $data
+ */
+function waitig_logs($data){
+    if(constant('WP_DEBUG')==true){
+        $file = constant('ABSPATH').'/logs.txt';
+        $contant = date('Y-m-d H:i:s').' ['.$_SERVER["REQUEST_URI"].']:'.$data ."\n";
+        file_put_contents($file,$contant,FILE_APPEND);
+    }
 }
 
 // 取消原有jQuery
