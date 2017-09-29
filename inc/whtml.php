@@ -1,5 +1,5 @@
 <?php
-if (waitig_gopt('waitig_Cache_on')):
+if (waitig_gopt('waitig_Cache_on')&&(!is_admin())):
 
     //是否开启首页缓存
     $indexOn = waitig_gopt('waitig_Cache_index_on');
@@ -10,7 +10,8 @@ if (waitig_gopt('waitig_Cache_on')):
     define('CATEON',$cateOn);
 
     //请求脚本的网址
-    $scriptUrl = rtrim("http://" . $_SERVER["HTTP_HOST"] . $_SERVER["REQUEST_URI"], "/");
+    $http_type = ((isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] == 'on') || (isset($_SERVER['HTTP_X_FORWARDED_PROTO']) && $_SERVER['HTTP_X_FORWARDED_PROTO'] == 'https')) ? 'https://' : 'http://';
+    $scriptUrl = rtrim($http_type . $_SERVER["HTTP_HOST"] . $_SERVER["REQUEST_URI"], "/");
     define('SCRIPTURL',$scriptUrl);
 
     //网站首页地址
@@ -22,7 +23,7 @@ if (waitig_gopt('waitig_Cache_on')):
     define('HOMEPATH',$homePath);
 
     //页脚备注
-    $footMeta = '<!--您正在浏览的是页面是由WSingle主题' . constant('THEMEVERSION') . '版本缓存系统创建的真实HTML，缓存创建日期：' . date("Y-m-d H:i:s") . ' -->';
+    $footMeta = '<!--您正在浏览的是页面是由WSingle主题' . constant('THEMEVERSION') . '版本缓存系统创建的真实HTML文件，缓存创建日期：' . date("Y-m-d H:i:s") . ' -->';
     define('FOOTMETA',$footMeta);
 
     define('SAFETAG','<!--THIS IS A REAL HTML , CREATED BY WSINGLE THEME.-->');
