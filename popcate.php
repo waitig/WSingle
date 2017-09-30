@@ -19,7 +19,7 @@ $index_pop_except_num = waitig_gopt('index_pop_except_num');
                     <?php
                     $args = array(
                         'numberposts' => $index_pop_except_num,
-                        'offset' => 1,
+                        'offset' => 0,
                         'category' => 0,
                         'orderby' => 'post_date',
                         'order' => 'DESC',

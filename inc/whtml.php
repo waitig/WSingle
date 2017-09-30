@@ -54,7 +54,7 @@ if (waitig_gopt('waitig_Cache_on')):
      */
     function CreateHtmlFile($FilePath, $Content)
     {
-        waitig_logs('开始');
+        waitig_logs('开始,FilePath:'.$FilePath);
         $FilePath = preg_replace('/[ <>\'\"\r\n\t\(\)]/', '', $FilePath);
 
         // if there is http:// $FilePath will return its bas path
@@ -77,8 +77,8 @@ if (waitig_gopt('waitig_Cache_on')):
             if (substr_count($path, '&')) return true;
             if (substr_count($path, '?')) return true;
             if (!substr_count($path, '.htm')) {
-                //if is a directory
-                if (!file_exists($path)) {
+                //如果完整路径里没有html，则代表此路径为分类或者文章页
+                if ((!file_exists($path))&&(substr_count($FilePath,'.htm'))) {
                     waitig_logs('是目录');
                     mkdir($path, 0777);
                     chmod($path, 0777);
@@ -206,9 +206,12 @@ if (waitig_gopt('waitig_Cache_on')):
     if (!function_exists('DelCacheByUrl')) {
         function DelCacheByUrl($url)
         {
+            waitig_logs('开始根据url删除缓存，url：'.$url);
             $url = HOMEPATH . str_replace(INDEXURL, "", $url);
             $url = str_replace("//", "/", $url);
+            waitig_logs('真实路径');
             if (file_exists($url)) {
+                waitig_logs('路径存在，开始删除');
                 if (is_dir($url)) {
                     @unlink($url . "/index.html");
                     @rmdir($url);
