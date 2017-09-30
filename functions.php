@@ -7,7 +7,7 @@
  */
 $dname = 'WSingle';
 $themename = 'WSingle';
-define('THEMEVERSION','1.10');
+define('THEMEVERSION','2.0.1');
 $themeDir = get_stylesheet_directory_uri();
 $blogUrl = get_bloginfo('url');
 require_once('admin/waitig.php');
