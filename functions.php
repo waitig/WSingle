@@ -9,6 +9,7 @@ $dname = 'WSingle';
 $themename = 'WSingle';
 define('THEMEVERSION','1.10');
 $themeDir = get_stylesheet_directory_uri();
+$blogUrl = get_bloginfo('url');
 require_once('admin/waitig.php');
 require_once 'inc/whtml.php';
 
@@ -24,19 +25,7 @@ function waitig_logs($data){
     }
 }
 
-// 取消原有jQuery
-/*function footerScript()
-{
-    if (!is_admin()) {
-        wp_deregister_script('jquery');
-        wp_register_script('jquery', '//libs.baidu.com/jquery/1.8.3/jquery.min.js', false, '1.0');
-        wp_enqueue_script('jquery');
-        wp_register_style('style', get_template_directory_uri() . '/style.css', false, '1.10');
-        wp_enqueue_style('style');
-    }
-}
 
-add_action('wp_enqueue_scripts', 'footerScript');*/
 function deel_strimwidth($str, $start, $width, $trimmarker)
 {
     $output = preg_replace('/^(?:[\x00-\x7F]|[\xC0-\xFF][\x80-\xBF]+){0,' . $start . '}((?:[\x00-\x7F]|[\xC0-\xFF][\x80-\xBF]+){0,' . $width . '}).*/s', '\1', $str);
@@ -82,12 +71,7 @@ function Bing_show_category()
         'pad_counts' => false);
     $categorys = get_categories($args);
     $output = '<table><tbody><tr style="padding:5px;">';
-    /*global $wpdb;
-    $request = "SELECT $wpdb->terms.term_id, name FROM $wpdb->terms ";
-    $request .= " LEFT JOIN $wpdb->term_taxonomy ON $wpdb->term_taxonomy.term_id = $wpdb->terms.term_id ";
-    $request .= " WHERE $wpdb->term_taxonomy.taxonomy = 'category' ";
-    $request .= " ORDER BY term_id asc";
-    $categorys = $wpdb->get_results($request);*/
+
     $num = 1;
     foreach ($categorys as $category) { //调用菜单
         $output .= '<td style="padding:5px;">'.$category->name . "&nbsp;&nbsp;[&nbsp" . $category->term_id . '&nbsp;]</td>';
@@ -472,13 +456,13 @@ add_action('admin_menu', 'change_post_menu_label');
 
 
 /* 给分类目录和单页链接末尾加上斜杠 */
-$permalink_structure = get_option('permalink_structure');
-if (!$permalink_structure || '/' === substr($permalink_structure, -1))
-    return;
-add_filter('user_trailingslashit', 'ppm_fixe_trailingslash', 10, 2);
-function ppm_fixe_trailingslash($url, $type)
-{
-    if ('single' === $type)
-        return $url;
-    return trailingslashit($url);
-}
+//$permalink_structure = get_option('permalink_structure');
+//if (!$permalink_structure || '/' === substr($permalink_structure, -1))
+//    return;
+//add_filter('user_trailingslashit', 'ppm_fixe_trailingslash', 10, 2);
+//function ppm_fixe_trailingslash($url, $type)
+//{
+//    if ('single' === $type)
+//        return $url;
+//    return trailingslashit($url);
+//}

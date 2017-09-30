@@ -88,3 +88,21 @@ function insertImage_cat(value_id) {
     });
     ashu_upload_frame.open();
 }
+function delHtmlCache(homeUrl) {
+    if(confirm('你确定要删除此缓存吗？')){
+        var cache_id = $("#waitig_Cache_Del_id").val();
+        $.ajax({
+            url:homeUrl+'/inc/whtml.php',
+            data:{"htmlCacheDelbt":'1',"cache_id":cache_id},
+            type:'post',
+            success:function(result){
+                $("#waitig_Cache_Del_span").html(result);
+                $("#waitig_Cache_Del_id").val('');
+            },
+            error:function(msg){
+                alert("连接网络失败");
+            }
+        });
+    }
+    return false;
+}

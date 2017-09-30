@@ -12,6 +12,11 @@ if (waitig_gopt('waitig_Cache_on')):
     $cateOn = waitig_gopt('waitig_Cache_cate_on');
     define('CATEON', $cateOn);
 
+    //是否开启页面缓存
+    $PageOn = waitig_gopt('waitig_Cache_page_on');
+    define('PAGEON', $PageOn);
+
+
     //请求脚本的网址
     $http_type = ((isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] == 'on') || (isset($_SERVER['HTTP_X_FORWARDED_PROTO']) && $_SERVER['HTTP_X_FORWARDED_PROTO'] == 'https')) ? 'https://' : 'http://';
     $scriptUrl = rtrim($http_type . $_SERVER["HTTP_HOST"] . $_SERVER["REQUEST_URI"], "/");
@@ -30,6 +35,16 @@ if (waitig_gopt('waitig_Cache_on')):
     define('FOOTMETA', $footMeta);
 
     define('SAFETAG', '<!--THIS IS A REAL HTML , CREATED BY WSINGLE THEME.-->');
+
+    /**
+     * 处理删除文章的请求
+     */
+
+
+    /**
+     * 删除缓存
+     */
+
 
     /**
      * 根据路径和内容创建HTML文件
@@ -112,6 +127,9 @@ if (waitig_gopt('waitig_Cache_on')):
             } elseif (is_category() && CATEON) {
                 $needBuffer = true;
                 return true;
+            } elseif (is_page() && PAGEON) {
+                $needBuffer = true;
+                return true;
             } elseif (is_single()) {
                 $needBuffer = true;
                 return true;
@@ -123,9 +141,7 @@ if (waitig_gopt('waitig_Cache_on')):
     //缓存钩子函数
     function createHtml()
     {
-        var_dump('heeeeeeeeeeeeeeeeeee');
         $needBuffer = checkBuffer();
-        var_dump($needBuffer);
         if ($needBuffer) {
             //将输出缓冲重定向到cos_cache_ob_callback函数中
             ob_start('cos_cache_ob_callback');
@@ -134,7 +150,6 @@ if (waitig_gopt('waitig_Cache_on')):
     }
 
     add_action('get_header', 'createHtml');
-
 
     /**
      * 处理输出缓存
@@ -274,37 +289,6 @@ if (waitig_gopt('waitig_Cache_on')):
         }
     }
 
-
-    /*
-    end of get url
-    */
-// deal with rebuild or delete
-    function do_cos_html_cache_action()
-    {
-        if (!empty($_POST['htmlCacheDelbt'])) {
-            @rename(CosBlogPath . "index.html", CosBlogPath . "index.bak");
-            @chmod(CosBlogPath . "index.bak", 0666);
-            global $wpdb;
-            if ($_POST['cache_id'] * 1 > 0) {
-                //delete cache by id
-                DelCacheByUrl(get_permalink($_POST['cache_id']));
-                $msg = __('the post cache was deleted successfully: ID=', 'cosbeta') . $_POST['cache_id'];
-            } else if (strlen($_POST['cache_id']) > 2) {
-                $postRes = $wpdb->get_results("SELECT `ID`  FROM `" . $wpdb->posts . "` WHERE post_title LIKE '%" . $_POST['cache_id'] . "%' LIMIT 0,1 ");
-                DelCacheByUrl(get_permalink($postRes[0]->ID));
-                $msg = __('the post cache was deleted successfully: Title=', 'cosbeta') . $_POST['cache_id'];
-            } else {
-                $postRes = $wpdb->get_results("SELECT `ID`  FROM `" . $wpdb->posts . "` WHERE post_status = 'publish' AND ( post_type='post' OR  post_type='page' )  ORDER BY post_modified DESC ");
-                foreach ($postRes as $post) {
-                    DelCacheByUrl(get_permalink($post->ID));
-                }
-                $msg = __('HTML Caches were deleted successfully', 'cosbeta');
-            }
-        }
-        if ($msg)
-            echo '<div class="updated"><strong><p>' . $msg . '</p></strong></div>';
-    }
-
     $is_add_comment_is = true;
     /*
      * with ajax comments
@@ -353,16 +337,44 @@ if (waitig_gopt('waitig_Cache_on')):
         $comment_author = '';
     }
 
+
+    function do_del_html_cache_action()
+    {
+        if (!empty($_POST['htmlCacheDelbt'])) {
+            @unlink(HOMEPATH . "index.html");
+            global $wpdb;
+            if ($_POST['cache_id'] * 1 > 0) {
+                DelCacheByUrl(get_permalink($_POST['cache_id']));
+                $msg = __('删除成功 ID=' . $_POST['cache_id']);
+            } else if (strlen($_POST['cache_id']) > 2) {
+                $postRes = $wpdb->get_results("SELECT `ID`  FROM `" . $wpdb->posts . "` WHERE post_title LIKE '%" . $_POST['cache_id'] . "%' LIMIT 0,1 ");
+                DelCacheByUrl(get_permalink($postRes[0]->ID));
+                $msg = __('删除成功 Title=' . $_POST['cache_id']);
+            } else {
+                $postRes = $wpdb->get_results("SELECT `ID`  FROM `" . $wpdb->posts . "` WHERE post_status = 'publish' AND ( post_type='post' OR  post_type='page' )  ORDER BY post_modified DESC ");
+                foreach ($postRes as $post) {
+                    DelCacheByUrl(get_permalink($post->ID));
+                }
+                $msg = __('HTML缓存清空成功！');
+            }
+            if ($msg)
+                echo $msg;
+            exit;
+        }
+    }
+
+    do_del_html_cache_action();
+
     add_action('get_footer', 'CosSafeTag');
     add_action('publish_post', 'htmlCacheDelNb');
-    if (INDEXON){
+    if (INDEXON) {
         waitig_logs('新增首页更新钩子');
         add_action('publish_post', 'createIndexHTML');
         add_action('delete_post', 'createIndexHTML');
         add_action('edit_post', 'createIndexHTML');
     }
 
-    if (CATEON){
+    if (CATEON) {
         waitig_logs('新增分类页更新钩子');
         add_action('publish_post', 'createCateHTML');
         add_action('delete_post', 'createCateHTML');

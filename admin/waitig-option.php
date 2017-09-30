@@ -312,6 +312,22 @@ $options = array(
         'type' => 'checkbox'
     ),
     array(
+        'name' => '开启页面缓存',
+        'desc' => '是否缓存自定义页面',
+        'id' => 'waitig_Cache_page_on',
+        'type' => 'checkbox'
+    ),
+    array(
+        'name' => '删除文章缓存',
+        'desc' => '请输入要删除缓存的文章(页面)ID或者文章(页面)名称，留空则代表删除全部缓存<br/>'
+            ."<a href='#' class='button-primary' rel='nofollow' onclick='delHtmlCache(\"".$_SERVER["REQUEST_URI"]."\")'>删除缓存</a>"
+            .'<br/><span style="color:red" id="waitig_Cache_Del_span"></span>'
+            ."<script type='application/javascript' src='$themeDir/js/wnovel.js'></script>",
+        'id' => 'waitig_Cache_Del_id',
+        'type' => 'text'
+    ),
+
+    array(
         'type' => 'panelend'
     ),
 );
