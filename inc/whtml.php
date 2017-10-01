@@ -392,7 +392,6 @@
                 $categorys = get_categories($args);
                 foreach ($categorys as $category) {
                     $cateLink = get_category_link($category->term_id);
-                    var_dump($cateLink);
                     DelCacheByUrl($cateLink);
                 }
                 $msg = __('小说页HTML缓存清空成功！');
