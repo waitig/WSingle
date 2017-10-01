@@ -294,8 +294,16 @@ $options = array(
         'type' => 'subtitle'
     ),
     array(
+        'name' => '静态缓存使用说明：',
+        'desc' => '1、请在服务器设置中，将主页的index.html页面优先级排到index.php之前。<br/>'
+            . '2、请在【设置】-【固定链接】设置中设置合适的伪静态规则，文章页面以html结尾。推荐的伪静态规则：/book/%post_id%.html<br/>'
+            . '3、小说页面链接请设置为英文，且不要以 wp- 开头，否则后果自负！<br/>'
+            . '4、请尽量不要使用删除全部文章页缓存的功能，因为如果你网站的文章量很大，则此功能会消耗比较大的服务器资源。<br/>',
+        'type' => 'text_show'
+    ),
+    array(
         'name' => '开启纯静态HTML缓存',
-        'desc' => '缓存为纯静态HTML页面，请在固定链接中设置好伪静态规则，文章页面请以html结尾',
+        'desc' => '缓存为纯静态HTML页面',
         'id' => 'waitig_Cache_on',
         'type' => 'checkbox'
     ),
@@ -307,7 +315,7 @@ $options = array(
     ),
     array(
         'name' => '开启小说页缓存',
-        'desc' => '是否缓存小说页面，小说页面链接请设置为英文，且不要以 wp- 开头，否则后果自负！',
+        'desc' => '是否缓存小说页面，',
         'id' => 'waitig_Cache_cate_on',
         'type' => 'checkbox'
     ),
@@ -320,18 +328,18 @@ $options = array(
     array(
         'name' => '删除文章缓存',
         'desc' => '请输入要删除缓存的文章(页面)ID或者文章(页面)名称，留空则代表删除全部文章页缓存<br/>'
-            ."<a href='#' class='button-primary' rel='nofollow' onclick='delHtmlCache(\"".$blogUrl."/index.php\",\"1\")'>删除缓存</a>"
-            .'<br/><span style="color:red" id="waitig_Cache_Del_span"></span>'
-            ."<script type='application/javascript' src='$themeDir/js/wnovel.js'></script>",
+            . "<a href='#' class='button-primary' rel='nofollow' onclick='delHtmlCache(\"" . $blogUrl . "/index.php\",\"1\")'>删除缓存</a>"
+            . '<br/><span style="color:red" id="waitig_Cache_Del_span"></span>'
+            . "<script type='application/javascript' src='$themeDir/js/wnovel.js'></script>",
         'id' => 'waitig_Cache_Del_id',
         'type' => 'text'
     ),
     array(
         'name' => '删除小说页缓存',
         'desc' => '请输入要删除缓存的小说ID，留空则代表删除全部小说页缓存  '
-            ."<a href='#' class='button-primary' rel='nofollow' onclick='delHtmlCache(\"".$blogUrl."/index.php\",\"2\")'>删除缓存</a>"
-            .'<br/><span style="color:red" id="waitig_Cache_Del_Cate_span"></span>'
-            ."<script type='application/javascript' src='$themeDir/js/wnovel.js'></script>",
+            . "<a href='#' class='button-primary' rel='nofollow' onclick='delHtmlCache(\"" . $blogUrl . "/index.php\",\"2\")'>删除缓存</a>"
+            . '<br/><span style="color:red" id="waitig_Cache_Del_Cate_span"></span>'
+            . "<script type='application/javascript' src='$themeDir/js/wnovel.js'></script>",
         'id' => 'waitig_Cache_Del_cate_id',
         'type' => 'number'
     ),

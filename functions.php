@@ -11,7 +11,7 @@ define('THEMEVERSION','2.0.1');
 $themeDir = get_stylesheet_directory_uri();
 $blogUrl = get_bloginfo('url');
 require_once('admin/waitig.php');
-
+require_once 'inc/whtml.php';
 
 /**
  * 日志函数
@@ -467,4 +467,3 @@ function ppm_fixe_trailingslash($url, $type)
     return trailingslashit($url);
 }
 
-require_once 'inc/whtml.php';

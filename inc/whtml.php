@@ -1,5 +1,5 @@
 <?php
-if (waitig_gopt('waitig_Cache_on')):
+
 
     //引入文件
     require_once(ABSPATH . 'wp-admin/includes/file.php');
@@ -207,7 +207,7 @@ if (waitig_gopt('waitig_Cache_on')):
             waitig_logs('开始根据url删除缓存，url：'.$url);
             $url = HOMEPATH . str_replace(INDEXURL, "", $url);
             $url = str_replace("//", "/", $url);
-            waitig_logs('真实路径');
+            waitig_logs('真实路径'.$url);
             if (file_exists($url)) {
                 waitig_logs('路径存在，开始删除');
                 if (is_dir($url)) {
@@ -285,7 +285,8 @@ if (waitig_gopt('waitig_Cache_on')):
             waitig_logs($post_ID);
             if ($post_ID == "") return true;
             $categroy = get_the_category($post_ID);
-            $cateLink = get_category_link($categroy->term_id);
+            $rootCate = get_root_category($categroy[0]);
+            $cateLink = get_category_link($rootCate->term_id);
             DelCacheByUrl($cateLink);
         }
     }
@@ -401,9 +402,9 @@ if (waitig_gopt('waitig_Cache_on')):
             exit;
         }
     }
-
-
     add_action('get_header', 'do_del_html_cache_action');
+
+if (waitig_gopt('waitig_Cache_on')):
     add_action('get_header', 'createHtml');
     add_action('get_footer', 'CosSafeTag');
     add_action('publish_post', 'htmlCacheDelNb');
