@@ -78,7 +78,7 @@ if (waitig_gopt('waitig_Cache_on')):
             if (substr_count($path, '?')) return true;
             if (!substr_count($path, '.htm')) {
                 //如果完整路径里没有html，则代表此路径为分类或者文章页
-                if ((!file_exists($path))&&(substr_count($FilePath,'.htm'))) {
+                if (!file_exists($path)) {
                     waitig_logs('是目录');
                     mkdir($path, 0777);
                     chmod($path, 0777);
@@ -148,8 +148,6 @@ if (waitig_gopt('waitig_Cache_on')):
             register_shutdown_function('cos_cache_shutdown_callback');
         }
     }
-
-    add_action('get_header', 'createHtml');
 
     /**
      * 处理输出缓存
@@ -343,7 +341,8 @@ if (waitig_gopt('waitig_Cache_on')):
 
     function do_del_html_cache_action()
     {
-        if (!empty($_POST['htmlCacheDelbt'])) {
+        //删除文章页
+        if ((!empty($_POST['htmlCacheDelbt']))&&($_POST['htmlCacheDelbt']=='1')) {
             @unlink(HOMEPATH . "index.html");
             global $wpdb;
             if ($_POST['cache_id'] * 1 > 0) {
@@ -364,10 +363,48 @@ if (waitig_gopt('waitig_Cache_on')):
                 echo $msg;
             exit;
         }
+        //删除分类
+        elseif ((!empty($_POST['htmlCacheDelbt']))&&($_POST['htmlCacheDelbt']=='2')) {
+            @unlink(HOMEPATH . "index.html");
+            $msg='';
+            //根据ID删除分类
+            if ($_POST['cache_id'] * 1 > 0) {
+                $cateLink = get_category_link($_POST['cache_id']*1);
+                DelCacheByUrl($cateLink);
+                $msg = __('小说页缓存删除成功 ID=' . $_POST['cache_id']);
+            }
+            //删除全部分类
+            else{
+                $args = array(
+                    'type' => 'post',
+                    'child_of' => 0,
+                    'parent' => '0',
+                    'orderby' => 'ID',
+                    'order' => 'ASC',
+                    'hide_empty' => 0,
+                    'hierarchical' => 0,
+                    'exclude' => '1',
+                    'include' => '',
+                    'number' => '',
+                    'taxonomy' => 'category',
+                    'pad_counts' => false);
+                $categorys = get_categories($args);
+                foreach ($categorys as $category) {
+                    $cateLink = get_category_link($category->term_id);
+                    var_dump($cateLink);
+                    DelCacheByUrl($cateLink);
+                }
+                $msg = __('小说页HTML缓存清空成功！');
+            }
+            if ($msg)
+                echo $msg;
+            exit;
+        }
     }
 
-    do_del_html_cache_action();
 
+    add_action('get_header', 'do_del_html_cache_action');
+    add_action('get_header', 'createHtml');
     add_action('get_footer', 'CosSafeTag');
     add_action('publish_post', 'htmlCacheDelNb');
     if (INDEXON) {

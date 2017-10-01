@@ -11,7 +11,7 @@ define('THEMEVERSION','2.0.1');
 $themeDir = get_stylesheet_directory_uri();
 $blogUrl = get_bloginfo('url');
 require_once('admin/waitig.php');
-require_once 'inc/whtml.php';
+
 
 /**
  * 日志函数
@@ -456,13 +456,15 @@ add_action('admin_menu', 'change_post_menu_label');
 
 
 /* 给分类目录和单页链接末尾加上斜杠 */
-//$permalink_structure = get_option('permalink_structure');
-//if (!$permalink_structure || '/' === substr($permalink_structure, -1))
-//    return;
-//add_filter('user_trailingslashit', 'ppm_fixe_trailingslash', 10, 2);
-//function ppm_fixe_trailingslash($url, $type)
-//{
-//    if ('single' === $type)
-//        return $url;
-//    return trailingslashit($url);
-//}
+$permalink_structure = get_option('permalink_structure');
+if (!$permalink_structure || '/' === substr($permalink_structure, -1))
+    return;
+add_filter('user_trailingslashit', 'ppm_fixe_trailingslash', 10, 2);
+function ppm_fixe_trailingslash($url, $type)
+{
+    if ('single' === $type)
+        return $url;
+    return trailingslashit($url);
+}
+
+require_once 'inc/whtml.php';

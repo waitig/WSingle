@@ -295,7 +295,7 @@ $options = array(
     ),
     array(
         'name' => '开启纯静态HTML缓存',
-        'desc' => '缓存为纯静态HTML页面，有可能与其他插件有冲突，请慎重使用',
+        'desc' => '缓存为纯静态HTML页面，请在固定链接中设置好伪静态规则，文章页面请以html结尾',
         'id' => 'waitig_Cache_on',
         'type' => 'checkbox'
     ),
@@ -307,7 +307,7 @@ $options = array(
     ),
     array(
         'name' => '开启小说页缓存',
-        'desc' => '是否缓存小说页面',
+        'desc' => '是否缓存小说页面，小说页面链接请设置为英文，且不要以 wp- 开头，否则后果自负！',
         'id' => 'waitig_Cache_cate_on',
         'type' => 'checkbox'
     ),
@@ -319,12 +319,26 @@ $options = array(
     ),
     array(
         'name' => '删除文章缓存',
-        'desc' => '请输入要删除缓存的文章(页面)ID或者文章(页面)名称，留空则代表删除全部缓存<br/>'
-            ."<a href='#' class='button-primary' rel='nofollow' onclick='delHtmlCache(\"".$_SERVER["REQUEST_URI"]."\")'>删除缓存</a>"
+        'desc' => '请输入要删除缓存的文章(页面)ID或者文章(页面)名称，留空则代表删除全部文章页缓存<br/>'
+            ."<a href='#' class='button-primary' rel='nofollow' onclick='delHtmlCache(\"".$blogUrl."/index.php\",\"1\")'>删除缓存</a>"
             .'<br/><span style="color:red" id="waitig_Cache_Del_span"></span>'
             ."<script type='application/javascript' src='$themeDir/js/wnovel.js'></script>",
         'id' => 'waitig_Cache_Del_id',
         'type' => 'text'
+    ),
+    array(
+        'name' => '删除小说页缓存',
+        'desc' => '请输入要删除缓存的小说ID，留空则代表删除全部小说页缓存  '
+            ."<a href='#' class='button-primary' rel='nofollow' onclick='delHtmlCache(\"".$blogUrl."/index.php\",\"2\")'>删除缓存</a>"
+            .'<br/><span style="color:red" id="waitig_Cache_Del_Cate_span"></span>'
+            ."<script type='application/javascript' src='$themeDir/js/wnovel.js'></script>",
+        'id' => 'waitig_Cache_Del_cate_id',
+        'type' => 'number'
+    ),
+    array(
+        'name' => '您的网站现有小说ID为：',
+        'desc' => Bing_show_category(),
+        'type' => 'text_show'
     ),
 
     array(
