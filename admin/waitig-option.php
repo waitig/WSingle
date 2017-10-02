@@ -118,42 +118,48 @@ $options = array(
     ),
     array(
         'name' => '小说页SEO标题格式',
-        'desc' => '小说页面SEO标题格式，可用标签：{{blog_name}}-网站名称,{{cat_name}}-小说名称,{{cat_auth}}-小说作者',
+        'desc' => '小说页面SEO标题格式，可用标签：{{blog_name}}-网站名称,{{cat_name}}-小说名称,{{cat_auth}}-小说作者<br/>'
+            . '示例：{{cat_name}}({{cat_auth}})_起点小说_{{cat_name}}最新章节_{{cat_auth}}新书全文免费阅读_{{blog_name}}',
         'id' => "waitig_novel_seo_title",
         'type' => 'textarea',
         'std' => '{{cat_name}}({{cat_auth}})_起点小说_{{cat_name}}最新章节_{{cat_auth}}新书全文免费阅读_{{blog_name}}'
     ),
     array(
         'name' => '小说页SEO关键词格式',
-        'desc' => '小说页面SEO关键词格式，可用标签：{{blog_name}}-网站名称,{{cat_name}}-小说名称,{{cat_auth}}-小说作者',
+        'desc' => '小说页面SEO关键词格式，可用标签：{{blog_name}}-网站名称,{{cat_name}}-小说名称,{{cat_auth}}-小说作者<br/>'
+            . '示例：{{cat_name}},{{cat_name}}起点,{{cat_name}}小说,{{cat_name}}最新章节,{{cat_name}}免费阅读,{{cat_name}}全文阅读,{{cat_auth}},{{cat_name}}吧',
         'id' => "waitig_novel_seo_keywords",
         'type' => 'textarea',
         'std' => '{{cat_name}},{{cat_name}}起点,{{cat_name}}小说,{{cat_name}}最新章节,{{cat_name}}免费阅读,{{cat_name}}全文阅读,{{cat_auth}},{{cat_name}}吧'
     ),
     array(
         'name' => '小说页SEO描述格式',
-        'desc' => '小说页面SEO描述格式，可用标签：{{blog_name}}-网站名称,{{cat_name}}-小说名称,{{cat_auth}}-小说作者',
+        'desc' => '小说页面SEO描述格式，可用标签：{{blog_name}}-网站名称,{{cat_name}}-小说名称,{{cat_auth}}-小说作者<br/>'
+            . '示例：{{cat_name}}是{{cat_auth}}创作的全新精彩小说，{{cat_name}}最新章节来源于互联网网友,{{blog_name}}提供{{cat_name}}全文在线免费阅读，并且无任何弹窗广告。',
         'id' => "waitig_novel_seo_desc",
         'type' => 'textarea',
         'std' => '{{cat_name}}是{{cat_name}}创作的全新精彩小说，{{cat_name}}最新章节来源于互联网网友,{{blog_name}}提供重燃全文在线免费阅读，并且无任何弹窗广告。'
     ),
     array(
         'name' => '章节阅读页SEO标题格式',
-        'desc' => '章节阅读页面SEO标题格式，可用标签：{{blog_name}}-网站名称,{{cat_name}}-小说名称,{{cat_auth}}-小说作者,{{post_title}}-章节名称',
+        'desc' => '章节阅读页面SEO标题格式，可用标签：{{blog_name}}-网站名称,{{cat_name}}-小说名称,{{cat_auth}}-小说作者,{{post_title}}-章节名称<br/>'
+            . '示例：{{cat_name}}-{{post_title}}_{{cat_name}}最新章节',
         'id' => "waitig_post_seo_title",
         'type' => 'textarea',
         'std' => '{{cat_name}}-{{post_title}}_{{cat_name}}最新章节'
     ),
     array(
         'name' => '章节阅读页SEO关键词格式',
-        'desc' => '章节阅读页面SEO关键词格式，可用标签：{{blog_name}}-网站名称,{{cat_name}}-小说名称,{{cat_auth}}-小说作者,{{post_title}}-章节名称',
+        'desc' => '章节阅读页面SEO关键词格式，可用标签：{{blog_name}}-网站名称,{{cat_name}}-小说名称,{{cat_auth}}-小说作者,{{post_title}}-章节名称<br/>'
+            . '示例：{{cat_name}},{{cat_name}}起点,{{cat_name}}小说,{{cat_name}}最新章节,{{cat_name}}免费阅读,{{cat_name}}全文阅读,{{cat_auth}},{{cat_name}}吧',
         'id' => "waitig_post_seo_keywords",
         'type' => 'textarea',
         'std' => '{{cat_name}},{{cat_name}}起点,{{cat_name}}小说,{{cat_name}}最新章节,{{cat_name}}免费阅读,{{cat_name}}全文阅读,{{cat_auth}},{{cat_name}}吧'
     ),
     array(
         'name' => '章节阅读页SEO描述格式',
-        'desc' => '章节阅读页面SEO描述格式，可用标签：{{blog_name}}-网站名称,{{cat_name}}-小说名称,{{cat_auth}}-小说作者,{{post_title}}-章节名称',
+        'desc' => '章节阅读页面SEO描述格式，可用标签：{{blog_name}}-网站名称,{{cat_name}}-小说名称,{{cat_auth}}-小说作者,{{post_title}}-章节名称<br/>'
+            . '示例：{{cat_name}}是{{cat_auth}}创作的全新精彩小说，{{cat_name}}最新章节来源于互联网网友,{{blog_name}}提供{{cat_name}}全文在线免费阅读，并且无任何弹窗广告。',
         'id' => "waitig_post_seo_desc",
         'type' => 'textarea',
         'std' => '{{cat_name}}是{{cat_name}}创作的全新精彩小说，{{cat_name}}最新章节来源于互联网网友,{{blog_name}}提供重燃全文在线免费阅读，并且无任何弹窗广告。'
@@ -316,7 +322,7 @@ $options = array(
     ),
     array(
         'name' => '开启小说页缓存',
-        'desc' => '是否缓存小说页面，',
+        'desc' => '是否缓存小说页面',
         'id' => 'waitig_Cache_cate_on',
         'type' => 'checkbox'
     ),
