@@ -118,6 +118,9 @@
         if (substr_count($_SERVER['REQUEST_URI'], '../')) {
             return false;
         }
+        if (substr_count($_SERVER['REQUEST_URI'], '.php')||substr_count($_SERVER['REQUEST_URI'], 'wp-')) {
+            return false;
+        }
         //未登录
         if (strlen($_COOKIE['wordpress_logged_in_' . COOKIEHASH]) < 4) {
             //判断首页
