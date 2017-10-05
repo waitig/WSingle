@@ -93,7 +93,7 @@
         if (is_dir($path)) {
             $path = $path . "/index.html";
         }
-        if (!strstr(strtolower($Content), '</html>')) return;
+        if (!strstr(strtolower($Content), '</html>')) return true;
 
         //if sql error ignore...
         $fp = @fopen($path, "w+");
@@ -107,6 +107,7 @@
             fclose($fp);
         }
         waitig_logs('结束');
+        return true;
     }
 
     function checkBuffer()
@@ -233,6 +234,7 @@
             if ($post_ID == "") return true;
             $uri = get_permalink($post_ID);
             DelCacheByUrl($uri);
+            return true;
         }
     }
 
@@ -246,18 +248,21 @@
         function htmlCacheDelNb($post_ID)
         {
             if ($post_ID == "") return true;
-
             $uri = get_permalink($post_ID);
             DelCacheByUrl($uri);
-            global $wpdb;
-            $postRes = $wpdb->get_results("SELECT `ID`  FROM `" . $wpdb->posts . "` WHERE post_status = 'publish'   AND   post_type='post'   AND  ID < " . $post_ID . " ORDER BY ID DESC LIMIT 0,1;");
-            $uri1 = get_permalink($postRes[0]->ID);
-            DelCacheByUrl($uri1);
-            $postRes = $wpdb->get_results("SELECT `ID`  FROM `" . $wpdb->posts . "` WHERE post_status = 'publish'  AND   post_type='post'    AND ID > " . $post_ID . "  ORDER BY ID ASC  LIMIT 0,1;");
-            if ($postRes[0]->ID != '') {
-                $uri2 = get_permalink($postRes[0]->ID);
-                DelCacheByUrl($uri2);
-            }
+
+            //删除同一小说下相邻文章
+            $categorys = get_the_category($post_ID);
+            //var_dump($categorys);
+            $cat = $categorys[0];
+            $thiscat = get_root_category($cat);
+            $prev_post = get_previous_post($thiscat, '');//与当前文章同分类的上一篇文章
+            $next_post = get_next_post($thiscat, '');//与当前文章同分类的下一篇文章
+            $prev_link = get_permalink($prev_post->ID);
+            $next_link = get_permalink($next_post->ID);
+            DelCacheByUrl($prev_link);
+            DelCacheByUrl($next_link);
+            return true;
         }
     }
 
@@ -273,6 +278,7 @@
             waitig_logs('删除首页缓存');
             if ($post_ID == "") return true;
             DelCacheByUrl(INDEXURL);
+            return true;
         }
     }
 
@@ -291,6 +297,7 @@
             $rootCate = get_root_category($categroy[0]);
             $cateLink = get_category_link($rootCate->term_id);
             DelCacheByUrl($cateLink);
+            return true;
         }
     }
 
