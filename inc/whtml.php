@@ -259,7 +259,9 @@
             $prev_post = get_previous_post($thiscat, '');//与当前文章同分类的上一篇文章
             $next_post = get_next_post($thiscat, '');//与当前文章同分类的下一篇文章
             $prev_link = get_permalink($prev_post->ID);
+            waitig_logs('pre:'.$prev_link);
             $next_link = get_permalink($next_post->ID);
+            waitig_logs('$next_post:'.$next_link);
             DelCacheByUrl($prev_link);
             DelCacheByUrl($next_link);
             return true;
@@ -417,6 +419,7 @@ if (waitig_gopt('waitig_Cache_on')):
     add_action('get_header', 'createHtml');
     add_action('get_footer', 'CosSafeTag');
     add_action('publish_post', 'htmlCacheDelNb');
+    add_action('wp_insert_post','htmlCacheDelNb');
     if (INDEXON) {
         waitig_logs('新增首页更新钩子');
         add_action('publish_post', 'createIndexHTML');
