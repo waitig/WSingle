@@ -11,8 +11,8 @@ session_start();
 //$category = $current_category[0];
 $cat_id = $_SESSION['cat_id'];
 $this_cat = $_SESSION['thiscat'];
-$prev_post = get_previous_post($this_cat, '');//与当前文章同分类的上一篇文章
-$next_post = get_next_post($this_cat, '');//与当前文章同分类的下一篇文章
+$prev_post = get_previous_post(true, '');//与当前文章同分类的上一篇文章
+$next_post = get_next_post(true, '');//与当前文章同分类的下一篇文章
 $prev_link = get_permalink($prev_post->ID);
 $next_link = get_permalink($next_post->ID);
 $catName = $this_cat->name;
