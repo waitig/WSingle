@@ -1,5 +1,15 @@
 <?php
-
+/* 给分类目录和单页链接末尾加上斜杠 */
+$permalink_structure = get_option('permalink_structure');
+if (!$permalink_structure || '/' === substr($permalink_structure, -1))
+    return;
+add_filter('user_trailingslashit', 'ppm_fixe_trailingslash', 10, 2);
+function ppm_fixe_trailingslash($url, $type)
+{
+    if ('single' === $type)
+        return $url;
+    return trailingslashit($url);
+}
 
 //引入文件
 require_once(ABSPATH . 'wp-admin/includes/file.php');
@@ -31,10 +41,10 @@ $homePath = get_home_path();
 define('HOMEPATH', $homePath);
 
 //页脚备注
-$footMeta = '<!--您正在浏览的页面是由WSingle主题' . constant('THEMEVERSION') . '版本缓存系统创建的真实HTML文件，缓存创建日期：' . date("Y-m-d H:i:s") . ' -->';
+$footMeta = '<!--您正在浏览的页面是由'. $themename .'主题' . constant('THEMEVERSION') . '版本缓存系统创建的真实HTML文件，缓存创建日期：' . date("Y-m-d H:i:s") . ' -->';
 define('FOOTMETA', $footMeta);
 
-define('SAFETAG', '<!--THIS IS A REAL HTML , CREATED BY WSINGLE THEME.-->');
+define('SAFETAG', '<!--THIS IS A REAL HTML , CREATED BY '. $themename .' THEME.-->');
 
 /**
  * 处理删除文章的请求
