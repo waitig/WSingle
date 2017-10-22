@@ -251,39 +251,64 @@ $options = array(
         'type' => 'panelstart'
     ),
     array(
-        'name' => '首页-章节列表上',
+        'name' => '首页-章节列表上-PC端',
         'desc' => '广告代码',
-        'id' => 'waitig_ad_chapter_top',
+        'id' => 'waitig_ad_chapter_top-PC',
         'type' => 'textarea'
     ),
     array(
-        'name' => '首页-章节列表下',
+        'name' => '首页-章节列表下-PC端',
         'desc' => '广告代码',
-        'id' => 'waitig_ad_chapter_bottom',
+        'id' => 'waitig_ad_chapter_bottom-PC',
         'type' => 'textarea'
     ),
     array(
-        'name' => '文章页-左侧',
+        'name' => '文章页-左侧-PC端',
         'desc' => '广告代码',
-        'id' => 'waitig_ad_post_left',
+        'id' => 'waitig_ad_post_left-PC',
         'type' => 'textarea'
     ),
     array(
-        'name' => '文章页-右侧',
+        'name' => '文章页-右侧-PC端',
         'desc' => '广告代码',
-        'id' => 'waitig_ad_post_right',
+        'id' => 'waitig_ad_post_right-PC',
         'type' => 'textarea'
     ),
     array(
-        'name' => '文章页-文章上方',
+        'name' => '文章页-文章上方-PC端',
         'desc' => '广告代码',
-        'id' => 'waitig_ad_post_top',
+        'id' => 'waitig_ad_post_top-PC',
         'type' => 'textarea'
     ),
     array(
-        'name' => '文章页-文章下方',
+        'name' => '文章页-文章下方-PC端',
         'desc' => '广告代码',
-        'id' => 'waitig_ad_post_bottom',
+        'id' => 'waitig_ad_post_bottom-PC',
+        'type' => 'textarea'
+    ),
+
+    array(
+        'name' => '首页-章节列表上-手机端',
+        'desc' => '广告代码',
+        'id' => 'waitig_ad_chapter_top-wap',
+        'type' => 'textarea'
+    ),
+    array(
+        'name' => '首页-章节列表下-手机端',
+        'desc' => '广告代码',
+        'id' => 'waitig_ad_chapter_bottom-wap',
+        'type' => 'textarea'
+    ),
+    array(
+        'name' => '文章页-文章上方-手机端',
+        'desc' => '广告代码',
+        'id' => 'waitig_ad_post_top-wap',
+        'type' => 'textarea'
+    ),
+    array(
+        'name' => '文章页-文章下方-手机端',
+        'desc' => '广告代码',
+        'id' => 'waitig_ad_post_bottom-wap',
         'type' => 'textarea'
     ),
     array(

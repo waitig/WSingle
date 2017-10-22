@@ -21,6 +21,20 @@ $blogName = get_bloginfo('name');
 $catLink = get_category_link($cat_id);
 $postName = get_the_title();
 $waitig_post_bottom_tui = waitig_gopt('waitig_post_bottom_tui');
+$waitig_ad_post_top='';
+if(wp_is_mobile()){
+    $waitig_ad_post_top =  waitig_gopt('waitig_ad_post_top-wap');
+}
+else{
+    $waitig_ad_post_top =  waitig_gopt('waitig_ad_post_top-PC');
+}
+$waitig_ad_post_bottom='';
+if(wp_is_mobile()){
+    $waitig_ad_post_bottom =  waitig_gopt('waitig_ad_post_bottom-wap');
+}
+else{
+    $waitig_ad_post_bottom =  waitig_gopt('waitig_ad_post_bottom-PC');
+}
 ?>
 <div class="container crumbs">
     <div class="fl"><span>当前位置：</span>
@@ -46,14 +60,14 @@ $waitig_post_bottom_tui = waitig_gopt('waitig_post_bottom_tui');
             </div>
             <div class="ads">
                 <div class="adleft">
-                    <?= waitig_gopt('waitig_ad_post_left') ?>
+                    <?= waitig_gopt('waitig_ad_post_left-PC') ?>
                 </div>
                 <div class="adright">
-                    <?= waitig_gopt('waitig_ad_post_right') ?>
+                    <?= waitig_gopt('waitig_ad_post_right-PC') ?>
                 </div>
             </div>
             <div>
-                <?= waitig_gopt('waitig_ad_post_top') ?>
+                <?= $waitig_ad_post_top ?>
             </div>
             <div id="BookText" style="">
                 <?php while (have_posts()) :
@@ -70,7 +84,7 @@ $waitig_post_bottom_tui = waitig_gopt('waitig_post_bottom_tui');
                 <h4>推荐阅读：<?= $waitig_post_bottom_tui ?></h4>
             </div>
             <div>
-                <?= waitig_gopt('waitig_ad_post_bottom') ?>
+                <?= $waitig_ad_post_bottom ?>
             </div>
             <div class="link">
                 <a href="<?= $prev_link ?>" rel="prev">上一章</a>←

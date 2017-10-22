@@ -27,6 +27,20 @@ $themeUrl = get_template_directory_uri();
 $new_list_num = waitig_gopt('new_list_num');
 $blogUrl = get_bloginfo('url');
 $blogName = get_bloginfo('name');
+$waitig_ad_chapter_top='';
+if(wp_is_mobile()){
+    $waitig_ad_chapter_top =  waitig_gopt('waitig_ad_chapter_top-wap');
+}
+else{
+    $waitig_ad_chapter_top =  waitig_gopt('waitig_ad_chapter_top-PC');
+}
+$waitig_ad_chapter_bottom='';
+if(wp_is_mobile()){
+    $waitig_ad_chapter_bottom =  waitig_gopt('waitig_ad_chapter_bottom-wap');
+}
+else{
+    $waitig_ad_chapter_bottom =  waitig_gopt('waitig_ad_chapter_bottom-PC');
+}
 ?>
 <?php if (is_category()) { ?>
     <div class="container crumbs">
@@ -105,7 +119,7 @@ $blogName = get_bloginfo('name');
                         </div>
                     <?php } ?>
                 </div>
-                <?= waitig_gopt('waitig_ad_chapter_top') ?>
+                <?= $waitig_ad_chapter_top ?>
                 <dl class="chapterlist">
                     <!--最新列表-->
                     <dt class="title"><?= $thiscat->name ?> 最新章节列表</dt>
@@ -165,7 +179,7 @@ $blogName = get_bloginfo('name');
                     }
                     ?>
                 </dl>
-                <?= waitig_gopt('waitig_ad_chapter_bottom') ?>
+                <?= $waitig_ad_chapter_bottom ?>
             </div>
         </div>
     </div>
