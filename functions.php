@@ -183,7 +183,7 @@ function ashu_add_cat_field()
     echo '<div class="form-field">';
     echo '<label for="cat_other_novel" >本作者其他小说</label>';
     echo '<textarea type="textarea" rows="5" cols="40" class="large-text code" value="" id="cat_other_novel" name="cat_other_novel"/></textarea>';
-    echo '<p>请输入本作者其他小说名称及链接（HTML格式，每个项目用li标签包裹）</p>';
+    echo '<p>请输入本作者其他小说名称及链接（HTML格式，每个项目用dd标签包裹）</p>';
     echo '</div>';
     echo '<div class="form-field">';
     echo '<label for="cat_download_url" >小说TXT下载地址</label>';
@@ -206,7 +206,7 @@ function ashu_edit_cat_field($tag)
     echo '<p class="description"><img style="max-width:80%" id="img_cat_image" src="' . get_option('cat_image_' . $tag->term_id) . '"/></p>';
     echo '</td></tr>';
     echo '<tr class="form-field"><th>本小说的作品相关内容</th><td><textarea type="textarea" rows="5" cols="40" class="large-text code" value="" id="cat_novel_about" name="cat_novel_about"/>' . stripslashes(get_option('cat_novel_about_' . $tag->term_id)) . '</textarea><br/>请输入作品相关</td></tr>';
-    echo '<tr class="form-field"><th>本作者其他小说</th><td><textarea type="textarea" rows="5" cols="40" class="large-text code" value="" id="cat_other_novel" name="cat_other_novel"/>' . stripslashes(get_option('cat_other_novel_' . $tag->term_id)) . '</textarea><br/>请输入本作者其他小说名称及链接（HTML格式，每个项目用li标签包裹）</td></tr>';
+    echo '<tr class="form-field"><th>本作者其他小说</th><td><textarea type="textarea" rows="5" cols="40" class="large-text code" value="" id="cat_other_novel" name="cat_other_novel"/>' . stripslashes(get_option('cat_other_novel_' . $tag->term_id)) . '</textarea><br/>请输入本作者其他小说名称及链接（HTML格式，每个项目用dd标签包裹）</td></tr>';
     echo '<tr class="form-field"><th>小说TXT下载地址</th><td><input type="text" size="40" value="' . get_option('cat_download_url_' . $tag->term_id) . '" id="cat_download_url" name="cat_download_url"/>请输入本小说TXT文件下载地址</td></tr>';
     echo "<script type='application/javascript' src='$themeDir/js/jquery.min.js'></script>";
     echo "<script type='application/javascript' src='$themeDir/js/wnovel.js'></script>";

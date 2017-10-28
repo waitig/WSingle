@@ -119,6 +119,13 @@ else{
                         </div>
                     <?php } ?>
                 </div>
+<?php if (waitig_gopt("cat_other_novel_" . $cat_id)) { ?>
+    <dl class="chapterlist">
+        <!--最新列表-->
+        <dt class="title"><?= waitig_gopt("cat_author_" . $cat_id) ?> 大神的其他作品</dt>
+        <?=waitig_gopt("cat_other_novel_" . $cat_id)?>
+    </dl>
+    <?php } ?>
                 <?= $waitig_ad_chapter_top ?>
                 <dl class="chapterlist">
                     <!--最新列表-->
