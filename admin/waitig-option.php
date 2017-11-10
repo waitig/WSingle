@@ -54,6 +54,19 @@ $options = array(
         'std' => '9'
     ),
     array(
+        'name' => '是否开启小说章节分页',
+        'desc' => '开启',
+        'id' => 'waitig_post_paged_on',
+        'type'=>'checkbox'
+    ),
+    array(
+        'name' => '每个分页显示文章数',
+        'desc' => '每个分页显示的文章数量',
+        'id' => "waitig_post_paged_num",
+        'type' => 'number',
+        'std' => '50'
+    ),
+    array(
         'name' => 'QQ群链接',
         'desc' => '加入QQ群的链接，显示在全站最上方',
         'id' => 'qq_qun_link',

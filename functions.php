@@ -29,12 +29,11 @@ function waitig_logs($data){
  * 处理分页
  */
 if (!function_exists('deel_paging')) :
-    function deel_paging()
+    function deel_paging($max_page)
     {
         $p = 4;
         if (is_singular()) return;
         global $wp_query, $paged;
-        $max_page = $wp_query->max_num_pages;
         if ($max_page == 1) return;
         echo '<div class="pagination"><ul>';
         if (empty($paged)) $paged = 1;

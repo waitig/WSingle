@@ -137,15 +137,28 @@ else{
                      * 如果没有，则显示正文章节
                      * 如果有子分类，但没有放入子分类的文章，则显示在最后的正文章节中
                      */
-                    global $paged;
-                    echo 'paged = '.$paged;
+                    //首先处理分页
+                    $offset = 0;
+                    $numberPosts = -1;
+                    $totalPage = 1;
+                    if(waitig_gopt('waitig_post_paged_on')){
+                        global $paged;
+                        $total = $thiscat->count;
+                        $numberPosts = waitig_gopt('waitig_post_paged_num');
+                        $totalPage = $total/$numberPosts + 1;
+                        echo '$totalPage :'.$totalPage;
+                        if($paged){
+                            $offset = ($paged - 1) * $numberPosts;
+                        }
+                        echo 'offset : '.$offset;
+                    }
                     if (count($cats_id_arr) != 0) {
                         foreach ($cats_id_arr as $childCatId) {
                             $childCat = get_category($childCatId);
                             echo "<dt class=\"title\">$childCat->name</dt>";
                             $args = array(
-                                'numberposts' => -1,
-                                'offset' => 0,
+                                'numberposts' => $numberPosts,
+                                'offset' => $offset,
                                 'category' => $childCatId,
                                 'orderby' => 'post_date',
                                 'order' => 'ASC',
@@ -160,8 +173,8 @@ else{
 
                     } else {
                         $args = array(
-                            'numberposts' => -1,
-                            'offset' => 0,
+                            'numberposts' => $numberPosts,
+                            'offset' => $offset,
                             'category' => $thiscat->term_id,
                             'orderby' => 'post_date',
                             'order' => 'ASC',
@@ -176,7 +189,7 @@ else{
                     }
                     ?>
                 </dl>
-                <?php deel_paging(); ?>
+                <?php deel_paging($totalPage); ?>
                 <?= $waitig_ad_chapter_bottom ?>
             </div>
         </div>
