@@ -7,20 +7,8 @@
  * Index:http://www.waitig.com
  * Theme:WBetter Theme
  */
-session_start();
 $cat_id = $_SESSION['cat_id'];
 $thiscat = $_SESSION['thiscat'];
-/*$right_cat_id = 1;
-if (is_category()) {
-    $cat_id = get_cat_ID(single_cat_title('', false));
-} elseif (is_home()) {
-    $cat_id = waitig_gopt('index_cat_id');
-} elseif (is_single()) {
-    $categorys = get_the_category();
-    $category = $categorys[0];
-    $cat_id = get_category_root_id($category->term_id);
-}*/
-//$thiscat = get_category($cat_id);
 $catUrl = get_category_link($thiscat->term_id);
 $cats_id_arr = get_term_children($cat_id, 'category');
 $themeUrl = get_template_directory_uri();
@@ -149,6 +137,8 @@ else{
                      * 如果没有，则显示正文章节
                      * 如果有子分类，但没有放入子分类的文章，则显示在最后的正文章节中
                      */
+                    global $paged;
+                    echo 'paged = '.$paged;
                     if (count($cats_id_arr) != 0) {
                         foreach ($cats_id_arr as $childCatId) {
                             $childCat = get_category($childCatId);
@@ -186,6 +176,7 @@ else{
                     }
                     ?>
                 </dl>
+                <?php deel_paging(); ?>
                 <?= $waitig_ad_chapter_bottom ?>
             </div>
         </div>
