@@ -7,7 +7,7 @@
  */
 $dname = 'WSingle';
 $themename = 'WSingle';
-define('THEMEVERSION','2.0.1');
+define('THEMEVERSION', '2.0.1');
 $themeDir = get_stylesheet_directory_uri();
 $blogUrl = get_bloginfo('url');
 require_once('admin/waitig.php');
@@ -17,11 +17,12 @@ require_once 'inc/whtml.php';
  * 日志函数
  * @param $data
  */
-function waitig_logs($data){
-    if(constant('WP_DEBUG')==true){
-        $file = constant('ABSPATH').'/logs.txt';
-        $contant = date('Y-m-d H:i:s').' ['.$_SERVER["REQUEST_URI"].']:'.$data ."\n";
-        file_put_contents($file,$contant,FILE_APPEND);
+function waitig_logs($data)
+{
+    if (constant('WP_DEBUG') == true) {
+        $file = constant('ABSPATH') . '/logs.txt';
+        $contant = date('Y-m-d H:i:s') . ' [' . $_SERVER["REQUEST_URI"] . ']:' . $data . "\n";
+        file_put_contents($file, $contant, FILE_APPEND);
     }
 }
 
@@ -31,36 +32,37 @@ function waitig_logs($data){
 if (!function_exists('deel_paging')) :
     function deel_paging($max_page)
     {
-        $p = 4;
+        $p = 3;
         if (is_singular()) return;
-        global $wp_query, $paged;
+        global $paged;
         if ($max_page == 1) return;
         echo '<div class="pagination"><ul>';
         if (empty($paged)) $paged = 1;
-        // echo '<span class="pages">Page: ' . $paged . ' of ' . $max_page . ' </span> ';
         echo '<li class="prev-page">';
         previous_posts_link('上一页');
         echo '</li>';
-        if ($paged > $p + 1) p_link(1, '<li>第一页</li>');
+        if ($paged > $p + 1) echo p_link(1, '<li>第一页</li>');
         if ($paged > $p + 2) echo "<li><span>···</span></li>";
         for ($i = $paged - $p; $i <= $paged + $p; $i++) {
-            if ($i > 0 && $i <= $max_page) $i == $paged ? print "<li class=\"active\"><span>{$i}</span></li>" : p_link($i);
+            $content = '';
+            if ($i > 0 && $i <= $max_page) $content = $i == $paged ? "<li class=\"active\"><span>{$i}</span></li>" : p_link($i);
+            echo $content;
         }
-        if ($paged < $max_page - $p - 1) echo "<li><span> ... </span></li>";
-        //if ( $paged < $max_page - $p ) p_link( $max_page, '&raquo;' );
+        if ($paged < $max_page - $p - 1) echo "<li><span> ... </span></li>" . p_link($max_page);
         echo '<li class="next-page">';
         next_posts_link('下一页');
         echo '</li>';
-        // echo '<li><span>共 '.$max_page.' 页</span></li>';
+        echo '<li><span>共 ' . $max_page . ' 页</span></li>';
         echo '</ul></div>';
     }
 
     function p_link($i, $title = '')
     {
         if ($title == '') $title = "第 {$i} 页";
-        echo "<li><a href='", esc_html(get_pagenum_link($i)), "'>{$i}</a></li>";
+        return "<li><a href='" . esc_html(get_pagenum_link($i)) . "'>{$i}</a></li>";
     }
 endif;
+
 function deel_strimwidth($str, $start, $width, $trimmarker)
 {
     $output = preg_replace('/^(?:[\x00-\x7F]|[\xC0-\xFF][\x80-\xBF]+){0,' . $start . '}((?:[\x00-\x7F]|[\xC0-\xFF][\x80-\xBF]+){0,' . $width . '}).*/s', '\1', $str);
@@ -109,13 +111,13 @@ function Bing_show_category()
 
     $num = 1;
     foreach ($categorys as $category) { //调用菜单
-        $output .= '<td style="padding:5px;">'.$category->name . "&nbsp;&nbsp;[&nbsp" . $category->term_id . '&nbsp;]</td>';
-        if($num%4==0){
-            $output.='</tr><tr style="padding:5px;">';
+        $output .= '<td style="padding:5px;">' . $category->name . "&nbsp;&nbsp;[&nbsp" . $category->term_id . '&nbsp;]</td>';
+        if ($num % 4 == 0) {
+            $output .= '</tr><tr style="padding:5px;">';
         }
-        $num+=1;
+        $num += 1;
     }
-    $output.='</tr></tbody></table>';
+    $output .= '</tr></tbody></table>';
     return $output;
 }
 
@@ -383,6 +385,7 @@ function get_category_root_id($cat)
     }
     return $this_category->term_id; // 返回根分类的id号
 }
+
 /*获取根分类的id*/
 function get_root_category($cat)
 {
@@ -489,3 +492,84 @@ function change_post_object_label()
 //add_action( 'init', 'change_post_object_label' );
 add_action('admin_menu', 'change_post_menu_label');
 
+/**
+ * 汉字转Unicode编码
+ * @param string $str 原始汉字的字符串
+ * @param string $encoding 原始汉字的编码
+ * @param bool|boot $ishex 是否为十六进制表示（支持十六进制和十进制）
+ * @param string $prefix 编码后的前缀
+ * @param string $postfix 编码后的后缀
+ * @return string
+ */
+function unicode_encode($str, $encoding = 'UTF-8', $ishex = false, $prefix = '&#', $postfix = ';')
+{
+    $str = iconv($encoding, 'UCS-2', $str);
+    $arrstr = str_split($str, 2);
+    $unistr = '';
+    for ($i = 0, $len = count($arrstr); $i < $len; $i++) {
+        $dec = $ishex ? bin2hex($arrstr[$i]) : hexdec(bin2hex($arrstr[$i]));
+        $unistr .= $prefix . $dec . $postfix;
+    }
+    return $unistr;
+}
+
+/**
+ * Unicode编码转汉字
+ * @param $unistr
+ * @param string $encoding
+ * @param bool|boot $ishex 是否为十六进制表示（支持十六进制和十进制）
+ * @param string $prefix 编码后的前缀
+ * @param string $postfix 编码后的后缀
+ * @return string
+ * @internal param string $str Unicode编码的字符串
+ * @internal param string $decoding 原始汉字的编码
+ */
+function unicode_decode($unistr, $encoding = 'UTF-8', $ishex = false, $prefix = '&#', $postfix = ';')
+{
+    $arruni = explode($prefix, $unistr);
+    $unistr = '';
+    for ($i = 1, $len = count($arruni); $i < $len; $i++) {
+        if (strlen($postfix) > 0) {
+            $arruni[$i] = substr($arruni[$i], 0, strlen($arruni[$i]) - strlen($postfix));
+        }
+        $temp = $ishex ? hexdec($arruni[$i]) : intval($arruni[$i]);
+        $unistr .= ($temp < 256) ? chr(0) . chr($temp) : chr($temp / 256) . chr($temp % 256);
+    }
+    return iconv('UCS-2', $encoding, $unistr);
+}
+
+function uni_decode($s) {
+    preg_match_all('/\&\#([0-9]{2,5})\;/', $s, $html_uni);
+    preg_match_all('/[\\\%]u([0-9a-f]{4})/ie', $s, $js_uni);
+    $source = array_merge($html_uni[0], $js_uni[0]);
+    $js = array();
+    for($i=0;$i<count($js_uni[1]);$i++) {
+        $js[] = hexdec($js_uni[1][$i]);
+    }
+    $utf8 = array_merge($html_uni[1], $js);
+    $code = $s;
+    for($j=0;$j<count($utf8);$j++) {
+        $code = str_replace($source[$j], unicode2utf8($utf8[$j]), $code);
+    }
+    return $code;//$s;//preg_replace('/\\\u([0-9a-f]{4})/ie', "chr(hexdec('\\1'))",  $s);
+}
+
+function unicode2utf8($c) {
+    $str="";
+    if ($c < 0x80) {
+        $str.=chr($c);
+    } else if ($c < 0x800) {
+        $str.=chr(0xc0 | $c>>6);
+        $str.=chr(0x80 | $c & 0x3f);
+    } else if ($c < 0x10000) {
+        $str.=chr(0xe0 | $c>>12);
+        $str.=chr(0x80 | $c>>6 & 0x3f);
+        $str.=chr(0x80 | $c & 0x3f);
+    } else if ($c < 0x200000) {
+        $str.=chr(0xf0 | $c>>18);
+        $str.=chr(0x80 | $c>>12 & 0x3f);
+        $str.=chr(0x80 | $c>>6 & 0x3f);
+        $str.=chr(0x80 | $c & 0x3f);
+    }
+    return $str;
+}

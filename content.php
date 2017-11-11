@@ -15,19 +15,17 @@ $themeUrl = get_template_directory_uri();
 $new_list_num = waitig_gopt('new_list_num');
 $blogUrl = get_bloginfo('url');
 $blogName = get_bloginfo('name');
-$waitig_ad_chapter_top='';
-if(wp_is_mobile()){
-    $waitig_ad_chapter_top =  waitig_gopt('waitig_ad_chapter_top-wap');
+$waitig_ad_chapter_top = '';
+if (wp_is_mobile()) {
+    $waitig_ad_chapter_top = waitig_gopt('waitig_ad_chapter_top-wap');
+} else {
+    $waitig_ad_chapter_top = waitig_gopt('waitig_ad_chapter_top-PC');
 }
-else{
-    $waitig_ad_chapter_top =  waitig_gopt('waitig_ad_chapter_top-PC');
-}
-$waitig_ad_chapter_bottom='';
-if(wp_is_mobile()){
-    $waitig_ad_chapter_bottom =  waitig_gopt('waitig_ad_chapter_bottom-wap');
-}
-else{
-    $waitig_ad_chapter_bottom =  waitig_gopt('waitig_ad_chapter_bottom-PC');
+$waitig_ad_chapter_bottom = '';
+if (wp_is_mobile()) {
+    $waitig_ad_chapter_bottom = waitig_gopt('waitig_ad_chapter_bottom-wap');
+} else {
+    $waitig_ad_chapter_bottom = waitig_gopt('waitig_ad_chapter_bottom-PC');
 }
 ?>
 <?php if (is_category()) { ?>
@@ -93,27 +91,29 @@ else{
                         <?php if (waitig_gopt("cat_image_" . $thiscat->term_id)) { ?>
                             <p class="img-p">
                                 <a class="img-a" href="<?= $catUrl ?>">
-                                    <img class="img-img" alt="<?= $thiscat->name ?>" src="<?= waitig_gopt("cat_image_" . $thiscat->term_id) ?>">
+                                    <img class="img-img" alt="<?= $thiscat->name ?>"
+                                         src="<?= waitig_gopt("cat_image_" . $thiscat->term_id) ?>">
                                 </a>
                             </p>
                         <?php } ?>
-                        <span class="intro-p">内容简介：<?= wpautop($thiscat->description) ?><div class="clear"></div></span>
+                        <span class="intro-p">内容简介：<?= wpautop($thiscat->description) ?>
+                            <div class="clear"></div></span>
                     </div>
                     <div class="clear"></div>
-                    <?php if(waitig_gopt('waitig_tui')){?>
+                    <?php if (waitig_gopt('waitig_tui')) { ?>
                         <div class="tuijian">
                             重磅推荐：
                             <?= waitig_gopt('waitig_tui') ?>
                         </div>
                     <?php } ?>
                 </div>
-<?php if (waitig_gopt("cat_other_novel_" . $cat_id)) { ?>
-    <dl class="chapterlist">
-        <!--最新列表-->
-        <dt class="title"><?= waitig_gopt("cat_author_" . $cat_id) ?> 大神的其他作品</dt>
-        <?=waitig_gopt("cat_other_novel_" . $cat_id)?>
-    </dl>
-    <?php } ?>
+                <?php if (waitig_gopt("cat_other_novel_" . $cat_id)) { ?>
+                    <dl class="chapterlist">
+                        <!--最新列表-->
+                        <dt class="title"><?= waitig_gopt("cat_author_" . $cat_id) ?> 大神的其他作品</dt>
+                        <?= waitig_gopt("cat_other_novel_" . $cat_id) ?>
+                    </dl>
+                <?php } ?>
                 <?= $waitig_ad_chapter_top ?>
                 <dl class="chapterlist">
                     <!--最新列表-->
@@ -141,27 +141,32 @@ else{
                     $offset = 0;
                     $numberPosts = -1;
                     $totalPage = 1;
-                    if(waitig_gopt('waitig_post_paged_on')){
+                    if (waitig_gopt('waitig_post_paged_on')) {
                         global $paged;
                         $total = $thiscat->count;
                         $numberPosts = waitig_gopt('waitig_post_paged_num');
-                        $totalPage = $total/$numberPosts + 1;
-                        echo '$totalPage :'.$totalPage;
-                        if($paged){
+                        $totalPage = ceil($total / $numberPosts);
+                        if ($paged) {
                             $offset = ($paged - 1) * $numberPosts;
                         }
-                        echo 'offset : '.$offset;
                     }
+
+                    //判断文章列表页排序规则
+                    $waitig_post_list_order = waitig_gopt('waitig_post_list_order');
+
+                    //仿采集字段
+                    $antiSP = date('Y-m-d-H:i:s');
+
                     if (count($cats_id_arr) != 0) {
                         foreach ($cats_id_arr as $childCatId) {
                             $childCat = get_category($childCatId);
-                            echo "<dt class=\"title\">$childCat->name</dt>";
+                            echo "<dt class=\"dt-title-$antiSP title\">$childCat->name</dt>";
                             $args = array(
                                 'numberposts' => $numberPosts,
                                 'offset' => $offset,
                                 'category' => $childCatId,
                                 'orderby' => 'post_date',
-                                'order' => 'ASC',
+                                'order' => $waitig_post_list_order,
                                 'post_status' => 'publish');
                             $postList = get_posts($args);
                             foreach ($postList as $post) {
@@ -177,10 +182,10 @@ else{
                             'offset' => $offset,
                             'category' => $thiscat->term_id,
                             'orderby' => 'post_date',
-                            'order' => 'ASC',
+                            'order' => $waitig_post_list_order,
                             'post_status' => 'publish');
                         $postList = get_posts($args);
-                        echo '<dt class="title">正文</dt>';
+                        echo '<dt class="dt-title-'.$antiSP.' title">正文</dt>';
                         foreach ($postList as $post) {
                             $postUrl = get_permalink($post->ID);
                             $postTitle = $post->post_title;
@@ -189,7 +194,12 @@ else{
                     }
                     ?>
                 </dl>
-                <?php deel_paging($totalPage); ?>
+                <div class="clear"></div>
+                <?php
+                if (waitig_gopt('waitig_post_paged_on')) {
+                    deel_paging($totalPage);
+                }
+                ?>
                 <?= $waitig_ad_chapter_bottom ?>
             </div>
         </div>

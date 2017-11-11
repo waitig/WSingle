@@ -54,6 +54,17 @@ $options = array(
         'std' => '9'
     ),
     array(
+        'name' => '文章列表排序规则',
+        'desc' => '选择您的文章列表排序规则【正序】或【倒序】',
+        'id' => "waitig_post_list_order",
+        'type' => 'radio',
+        'options' => array(
+            '正序' => 'ASC',
+            '倒序' => 'DESC',
+        ),
+        'std' => 'waitig_post_list_order_asc'
+    ),
+    array(
         'name' => '是否开启小说章节分页',
         'desc' => '开启',
         'id' => 'waitig_post_paged_on',

@@ -458,6 +458,16 @@ b,em{
 dd.left{
     float:left;
 }
+/**分页*/
+.pagination{
+    max-width:350px;
+    margin:auto;
+    padding-top:10px;
+}
+.pagination li{
+    display:inline;
+    padding:2px 3px;
+}
 
 /*content*/
 .bookset{

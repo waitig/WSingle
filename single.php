@@ -70,7 +70,10 @@ else{
                 <?= $waitig_ad_post_top ?>
             </div>
             <div id="BookText" style="">
-                <?php while (have_posts()) :
+                <?php
+
+
+                while (have_posts()) :
                     the_post(); ?>
                     <p>一秒记住本站域名【<a href="<?= $blogUrl ?>" target="_blank" title="<?= $blogName ?>">
                             <?= $blogUrl ?>
@@ -79,8 +82,14 @@ else{
                             <?= $catName ?>
                         </a>小说最新章节阅读！
                     </p>
-                    <?php the_content();
-                endwhile; ?>
+                    <?php
+                    $content = get_the_content();
+                    $uni_str = unicode_encode($content);
+                    echo $uni_str;
+                    //echo uni2utf8($uni_str);
+
+                endwhile;
+                ?>
                 <h4>推荐阅读：<?= $waitig_post_bottom_tui ?></h4>
             </div>
             <div>
