@@ -114,7 +114,7 @@ $content = '';
         window.addEventListener('load', LoadReadSet, false);
     }
     <?php if(waitig_gopt('waitig_post_anti_spider_on')) {
-       echo 'atsp("<?=$content?>");';
+       echo "atsp('$content');";
     }?>
 </script>
 <?php if (comments_open() || get_comments_number()) :
