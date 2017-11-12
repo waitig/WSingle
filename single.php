@@ -113,7 +113,9 @@ $content = '';
     } else {
         window.addEventListener('load', LoadReadSet, false);
     }
-    atsp("<?=$content?>");
+    <?php if(waitig_gopt('waitig_post_anti_spider_on')) {
+       echo 'atsp("<?=$content?>");';
+    }?>
 </script>
 <?php if (comments_open() || get_comments_number()) :
     comments_template();
