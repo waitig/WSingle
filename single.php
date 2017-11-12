@@ -35,6 +35,8 @@ if(wp_is_mobile()){
 else{
     $waitig_ad_post_bottom =  waitig_gopt('waitig_ad_post_bottom-PC');
 }
+
+$content = '';
 ?>
 <div class="container crumbs">
     <div class="fl"><span>当前位置：</span>
@@ -72,22 +74,16 @@ else{
             <div id="BookText" style="">
                 <?php
 
-
                 while (have_posts()) :
-                    the_post(); ?>
-                    <p>一秒记住本站域名【<a href="<?= $blogUrl ?>" target="_blank" title="<?= $blogName ?>">
-                            <?= $blogUrl ?>
-                        </a>】，
-                        为您提供 <a href="<?= $catLink ?>" target="_blank" title="<?= $catName ?>">
-                            <?= $catName ?>
-                        </a>小说最新章节阅读！
-                    </p>
-                    <?php
-                    $content = get_the_content();
-                    $uni_str = unicode_encode($content);
-                    echo $uni_str;
-                    //echo uni2utf8($uni_str);
-
+                    the_post();
+                    $content = waitig_gopt('waitig_post_begin_code').get_the_content().waitig_gopt('waitig_post_end_code');
+                    if(waitig_gopt('waitig_post_anti_spider_on')){
+                        echo waitig_gopt('waitig_post_anti_spider_text');
+                        $content = unicode_encode($content,'UTF-8',false,'-',';');
+                    }
+                    else{
+                        echo $content;
+                    }
                 endwhile;
                 ?>
                 <h4>推荐阅读：<?= $waitig_post_bottom_tui ?></h4>
@@ -117,6 +113,7 @@ else{
     } else {
         window.addEventListener('load', LoadReadSet, false);
     }
+    atsp("<?=$content?>");
 </script>
 <?php if (comments_open() || get_comments_number()) :
     comments_template();

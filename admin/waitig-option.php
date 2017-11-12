@@ -78,6 +78,18 @@ $options = array(
         'std' => '50'
     ),
     array(
+        'name' => '是否开启文章阅读页仿采集',
+        'desc' => '开启后，也会影响搜索引擎对文章内容的爬取',
+        'id' => 'waitig_post_anti_spider_on',
+        'type'=>'checkbox'
+    ),
+    array(
+        'name' => '开启文章阅读页仿采集文字',
+        'desc' => '开启后，采集者只会采集到这些文字',
+        'id' => 'waitig_post_anti_spider_text',
+        'type' => 'textarea'
+    ),
+    array(
         'name' => 'QQ群链接',
         'desc' => '加入QQ群的链接，显示在全站最上方',
         'id' => 'qq_qun_link',
@@ -246,6 +258,18 @@ $options = array(
     array(
         'title' => '网站其他情况设置！',
         'type' => 'subtitle'
+    ),
+    array(
+        'name' => '文章开头代码',
+        'desc' => '文章开头代码，可以写版权说明等,也可以放广告代码，支持HTML',
+        'id' => 'waitig_post_begin_code',
+        'type' => 'textarea'
+    ),
+    array(
+        'name' => '文章结尾代码',
+        'desc' => '文章结尾代码，可以写版权说明等,也可以放广告代码，支持HTML',
+        'id' => 'waitig_post_end_code',
+        'type' => 'textarea'
     ),
     array(
         'name' => '网站友情链接',

@@ -15,7 +15,6 @@ $waitig_foot_code = waitig_gopt('waitig_foot_code');
                     href="https://www.waitig.com" title="WSingle主题">WSingle</a></p>
     </div>
 </div>
-<script type="text/javascript" src="http://libs.baidu.com/jquery/1.9.0/jquery.js"></script>
 <script>backtotop();</script>
 <?= waitig_gopt('waitig_tongji_code') ?>
 <?= waitig_gopt('waitig_baidu_tui_code') ?>

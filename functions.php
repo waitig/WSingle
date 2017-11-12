@@ -493,7 +493,7 @@ function change_post_object_label()
 add_action('admin_menu', 'change_post_menu_label');
 
 /**
- * 汉字转Unicode编码
+ * 汉字转Unicode编码，只转汉字
  * @param string $str 原始汉字的字符串
  * @param string $encoding 原始汉字的编码
  * @param bool|boot $ishex 是否为十六进制表示（支持十六进制和十进制）
@@ -501,17 +501,34 @@ add_action('admin_menu', 'change_post_menu_label');
  * @param string $postfix 编码后的后缀
  * @return string
  */
-function unicode_encode($str, $encoding = 'UTF-8', $ishex = false, $prefix = '&#', $postfix = ';')
-{
+function unicode_encode($str, $encoding = 'UTF-8', $ishex = false, $prefix = '&#', $postfix = ';') {
     $str = iconv($encoding, 'UCS-2', $str);
     $arrstr = str_split($str, 2);
     $unistr = '';
-    for ($i = 0, $len = count($arrstr); $i < $len; $i++) {
+    for($i = 0, $len = count($arrstr); $i < $len; $i++) {
         $dec = $ishex ? bin2hex($arrstr[$i]) : hexdec(bin2hex($arrstr[$i]));
         $unistr .= $prefix . $dec . $postfix;
     }
+    /*$unistr = '';
+    for ($i = 0; $i < strlen($str) - 1; $i = $i + 2)
+    {
+        $c = $str[$i];
+        $c2 = $str[$i + 1];
+        if (ord($c) > 0)
+        {    // 两个字节的文字
+            $commStr = $c.$c2;
+            $dec = $ishex ? bin2hex($commStr) : hexdec(bin2hex($commStr));
+            $unistr .= $prefix . $dec . $postfix;
+            //$unistr .= $prefix.base_convert(ord($c), 10, 16).base_convert(ord($c2), 10, 16).$postfix;
+        }
+        else
+        {
+            $unistr .= $c2;
+        }
+    }*/
     return $unistr;
 }
+
 
 /**
  * Unicode编码转汉字
@@ -536,40 +553,4 @@ function unicode_decode($unistr, $encoding = 'UTF-8', $ishex = false, $prefix = 
         $unistr .= ($temp < 256) ? chr(0) . chr($temp) : chr($temp / 256) . chr($temp % 256);
     }
     return iconv('UCS-2', $encoding, $unistr);
-}
-
-function uni_decode($s) {
-    preg_match_all('/\&\#([0-9]{2,5})\;/', $s, $html_uni);
-    preg_match_all('/[\\\%]u([0-9a-f]{4})/ie', $s, $js_uni);
-    $source = array_merge($html_uni[0], $js_uni[0]);
-    $js = array();
-    for($i=0;$i<count($js_uni[1]);$i++) {
-        $js[] = hexdec($js_uni[1][$i]);
-    }
-    $utf8 = array_merge($html_uni[1], $js);
-    $code = $s;
-    for($j=0;$j<count($utf8);$j++) {
-        $code = str_replace($source[$j], unicode2utf8($utf8[$j]), $code);
-    }
-    return $code;//$s;//preg_replace('/\\\u([0-9a-f]{4})/ie', "chr(hexdec('\\1'))",  $s);
-}
-
-function unicode2utf8($c) {
-    $str="";
-    if ($c < 0x80) {
-        $str.=chr($c);
-    } else if ($c < 0x800) {
-        $str.=chr(0xc0 | $c>>6);
-        $str.=chr(0x80 | $c & 0x3f);
-    } else if ($c < 0x10000) {
-        $str.=chr(0xe0 | $c>>12);
-        $str.=chr(0x80 | $c>>6 & 0x3f);
-        $str.=chr(0x80 | $c & 0x3f);
-    } else if ($c < 0x200000) {
-        $str.=chr(0xf0 | $c>>18);
-        $str.=chr(0x80 | $c>>12 & 0x3f);
-        $str.=chr(0x80 | $c>>6 & 0x3f);
-        $str.=chr(0x80 | $c & 0x3f);
-    }
-    return $str;
 }
