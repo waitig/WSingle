@@ -6,7 +6,6 @@
  * Time: 19:50
  */
 get_header();
-session_start();
 //$current_category = get_the_category();//获取当前文章所属分类
 //$category = $current_category[0];
 $cat_id = $_SESSION['cat_id'];
